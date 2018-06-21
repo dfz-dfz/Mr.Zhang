@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>配置网络</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            display: block;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+        /*header 顶部样式begin*/
+
+        .header {
+            width: 100%;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 17px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+        /*header 顶部样式end*/
+
+        .item_content {
+            padding-top: 80px;
+        }
+
+        .item_content a {
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #fff;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item_content a .arrow {
+            border-right: 1px solid #111;
+            border-bottom: 1px solid #111;
+            width: 10px;
+            height: 10px;
+            transform: rotate(-45deg);
+        }
+
+        .title {
+            font-size: 15px;
+            font-weight: normal;
+            color: #101010;
+        }
+
+        .link,
+        .notlink {
+            font-size: 12px;
+            color: #8d8d8d;
+            position: absolute;
+            right: 28px;
+            line-height: 20px;
+        }
+
+        .zerotitle {
+            font-size: 12px;
+            color: #808080;
+            padding: 12px 0 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="network">
+        <!-- header begin -->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="api.closeWin()"></i></div>
+                <div class="sect fo">配置网络</div>
+            </div>
+        </div>
+        <!-- header end -->
+
+        <div class="item_content">
+            <div class="mine">
+
+                <a href="javascript:;" onclick="openGateAdress()">
+                    <div id="turename">
+                        <span class="title">以太网<span class="link">已连接</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+
+                <a href="javascript:;" onclick="openConfigureWifi()">
+                    <div id="turename">
+                        <span class="title">wifi<span class="notlink">未连接</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+
+            </div>
+
+            <footer>
+                <div class="zerotitle">
+                    配置wiFI后即可拔掉以太网线
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    };
+    function openGateAdress(){
+      api.openWin({
+          name: 'GateAdress',
+          url: 'GateAdress.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
+    }
+    function openConfigureWifi(){
+      api.openWin({
+          name: 'ConfigureWifi',
+          url: 'ConfigureWifi.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>退出，取消</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            margin: 0;
+            padding: 0;
+          }
+          body,html{
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+          }
+          ul li {
+            list-style-type: none;
+          }
+
+          .exitaccount{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background-color: #fff;
+          }
+          .exitaccount .exit{
+            height: 48px;
+            width: 100%;
+            line-height: 48px;
+            text-align: center;
+            color: #000;
+            font-size: 16px;
+          }
+          .exitaccount .close{
+            color: #ba0000;
+            border-bottom: 1px solid #e1e1e1;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="exitaccount">
+          <div class="exit close">退出</div>
+          <div class="exit" onclick="api.closeWin()">取消</div>
+      </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+      };
+  </script>
+  </html>

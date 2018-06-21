@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>智能生活</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../../icon/iconfont.eot');
+            src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'), url('../../icon/iconfont.woff') format('woff'), url('../../icon/iconfont.ttf') format('truetype'), url('../../icon/iconfont.svg#iconfont') format('svg');
+        }
+
+        html,
+        body {
+            height: 100%;
+
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            background-color: #f1f1f1;
+        }
+        /*header头部 begin*/
+        header img {
+            width: 18px;
+        }
+
+        .header {
+            height: 44px;
+            width: 100%;
+            line-height: 44px;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            background-color: #fff;
+        }
+
+        .header {
+            display: none;
+        }
+
+        .header.current {
+            display: block;
+            height: 70px;
+        }
+
+        .header.myself,
+        header.main {
+            background: #666;
+            line-height: 44px;
+            color: #fff;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #111;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+        /*header头部 end*/
+        .index .discov {
+            display: flex;
+            justify-content: center;
+            width: 70%;
+            height: 100%;
+            line-height: 86px;
+            position: absolute;
+            top: 0;
+            right: 50%;
+            left: 50%;
+            margin-left: -38%;
+        }
+
+        .index .discov>a {
+            color: #0f0f0f;
+            font-size: 17px;
+            font-weight: normal;
+            width: 25%;
+        }
+
+        .index .discov>a.hover {
+            color: #808080;
+            height: 36px;
+            font-size: 17px;
+        }
+
+        .main p {
+            font-size: 16px;
+            color: #1c1c1c;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .main {
+            width: 100%;
+            padding-top: 10px;
+        }
+
+        .main .share {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .main .share .left {
+            position: absolute;
+            width: 27px;
+            height: 30px;
+            left: 10px;
+            text-align: center;
+            background-size: 100%;
+            top: 18%;
+            border-radius: 50%;
+        }
+
+        .main .share .left img {
+            width: 100%;
+        }
+
+        .main .share .mid {
+            position: absolute;
+            left: 50px;
+        }
+
+        .main .share .mid .t {
+            font-size: 14px;
+            color: #111;
+            line-height: 28px;
+        }
+
+        .main .share .mid .b {
+            font-size: 11px;
+            color: #6c6c6c;
+            line-height: 20px;
+        }
+
+        .b span {
+            letter-spacing: 2px;
+            display: inline-block;
+            width: 60%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .main .share .right {
+            position: absolute;
+            right: 12px;
+            color: #8e8e8e;
+            font-size: 12px;
+            line-height: 50px;
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body class="wrap">
+  <!-- 头部 begin -->
+    <header class="header index current" id="header">
+        <div class="top">
+            <div class="sect left"><i></i></div>
+        </div>
+        <div class="discov">
+            <a class="menu ">共享</a>
+            <a class="menu hover">接受</a>
+        </div>
+    </header>
+    <!-- 头部 end -->
+    <div class="main">
+
+        <div class="share">
+            <div class="left"><img src="../../images/gatewayimages/choosedevicetype/camera.png" alt=""></div>
+            <div class="mid">
+                <div class="t">智能摄像头</div>
+                <div class="b"><span>已共享至156250123.1</span></div>
+            </div>
+            <div class="right"> <i class="iconfont">&#xe86e;</i></div>
+        </div>
+
+        <div class="share">
+            <div class="left"><img src="../../images/gatewayimages/choosedevicetype/bodysensor.png" alt=""></div>
+            <div class="mid">
+                <div class="t">人体红外传感器</div>
+                <div class="b"><span>已共享至156250123.102</span></div>
+            </div>
+            <div class="right"> <i class="iconfont">&#xe86e;</i></div>
+        </div>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    };
+</script>
+
+</html>

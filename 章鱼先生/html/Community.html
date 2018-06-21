@@ -1,0 +1,640 @@
+ <!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>社区</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    @font-face {
+      font-family: 'iconfont';
+      src: url('../icon/iconfont.eot');
+      src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('../icon/iconfont.woff') format('woff'),
+      url('../icon/iconfont.ttf') format('truetype'),
+      url('../icon/iconfont.svg#iconfont') format('svg');
+    }
+    .iconfont{
+      font-family: "iconfont" !important;
+      font-style: normal;
+      font-size: 22px;
+      color: #000;
+    }
+    .talkicon{
+      font-size: 20px;
+    }
+    body,html{
+      width: 100%;height: 100%;margin: 0;padding: 0;
+      background-color: #f1f1f1;
+    }
+    ul li,ol li{
+      list-style-type: none;
+    }
+    /*导航栏*/
+    span{
+      height: 36px;
+      width: 100%;
+      line-height: 36px;
+      font-size: 16px;
+      background: #fff;
+      border-bottom: 1px solid #dfdfdf;
+      /*border-top: 1px solid #e1e1e1;*/
+    }
+    span>ul>li{
+      float: left;
+      width: 33.33%;
+      text-align: center;
+      color: #5f5d5d;
+
+    }
+    span>ul>li.hover{
+      color:#000;
+      font-style:normal;
+      font-weight: 600;
+      font-size: 17px;
+      /*border-bottom: 2px solid #000;*/
+    }
+    section{
+      margin-top: 38px;
+    }
+    /*section .maxbox{
+      border-top: 1px solid #808080
+    }*/
+    section>div{
+      display: none;
+    }
+    section>div.current{
+      display:block;
+    }
+    /*导航栏 end*/
+    .maxbox{display: none;}
+    .maxbox.current{display: block;}
+    /*main*/
+    .maxbox{
+
+      height: 100%;
+    }
+    .artical{
+      height: 100%;
+      width: 96%;
+      padding: 0 2% 0 2%;
+      border-bottom: 6px solid #f1f1f1;
+      background-color: #fff;
+      display: table;
+    }
+    .artical .head{
+      width: 100%;
+      padding-top: 8px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .artical .head .h{
+      float: left;
+    }
+    .artical .head .headerimg{
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+    }
+    .artical .head .headerimg img{
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+    }
+    .artical .head .headername{
+      padding-left: 8px;
+    }
+    .artical .head .headername .hname{
+      font-size: 14px;
+      color: #0f0f0f;
+      position: absolute;
+      top: 12px;
+    }
+    .artical .head .headername .htime{
+      font-size: 10px;
+      color: #808080;
+      position: absolute;
+      bottom: 6px;
+    }
+    .artical .head .headername .himg{
+      position: absolute;
+      width: 20px;
+      top: 12px;
+      right: 0;
+      width: 46px;
+      height: 20px;
+    }
+    .artical .head .headername .himg img{
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+    }
+    .artical .text{
+      padding-top: 10px;
+    }
+    .artical .text .title{
+      font-size: 16px;
+      color: #111;
+      padding-bottom: 14px;
+    }
+    .artical .text .textmain{
+      font-size: 14px;
+      color: #303030;
+      line-height: 20px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      word-break: break-all;
+      -webkit-word-break: break-all;
+    }
+    .artical .list{
+      padding: 10px 0 0 0;
+      font-size: 10px;
+      color: #040404;
+      line-height: 20px;
+      text-align: center;
+      height: 25px;
+    }
+    .artical .list .like img{
+      width: 22px;
+    }
+    .artical .list .ltls{
+      float: left;
+      width: 33.3%;
+    }
+    .artical .list .ltls .d{
+      height: 100%;
+      line-height: 20px;
+      position: relative;
+      display: inline-block;
+      left: 6px;
+      top: -4px;
+    }
+    .artical .list .ltls img{
+      margin-right: 6px;
+    }
+    .artical .list .talk img{
+      width: 20px;
+    }
+    .artical .list .look img{
+      width: 24px;
+    }
+    .artical .list .share{
+      float: right;
+      margin-right: 0;
+    }
+    .artical .list .share img{
+      margin-right: 0;
+      width: 20px;
+    }
+    .artical .picture{
+      width: 100%;
+      float: left;
+      padding: 10px 0 10px 0;
+    }
+    .artical .picture>div{
+      width: 31%;
+      height: 80px;
+      float: left;
+      margin-right: 2%;
+    }
+    .artical .picture img{
+      width: 100%;
+      height: 100%;
+    }
+    .artical video{
+      /*width: 100%;*/
+      height: 320px;
+    }
+    /*main end*/
+    </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+    <span id="span" style="position:fixed;top:0;z-index:1;">
+      <ul>
+        <li class="hover menu">本周热门</li>
+        <li class="menu">最新发布</li>
+        <li class="menu">最多回复</li>
+      </ul>
+    </span>
+  <!-- 导航栏 -->
+
+  <!-- main -->
+    <section class="aui-content" style="margin-top:38px;">
+        <div class="maxbox current" id="maxbox">
+            <div class="artical">
+                <div class="head">
+                    <div class="headerimg h"><img src="../images/community/community_header1.png" alt=""></div>
+                    <div class="headername h">
+                        <div class="hname">风一样的男子</div>
+                        <div class="htime">30分钟前</div>
+                        <div class="himg" id="follows"><img src="../images/same_content/attention.png" alt=""></div>
+                    </div>
+                </div>
+                <div class="text" onclick="openCommunityDetails()">
+                    <div class="title">机器人“慧眼”巡逻频率是人工的21倍</div>
+                    <div class="textmain">案涉及两个啥感觉拉苏格兰萨洛克金刚砂咖喱鸡块阿斯钢很骄傲圣诞快乐撒了个黄金</div>
+                </div>
+                <div class="list">
+                    <div class="ltls like"><i class="iconfont">&#xe617;</i><div class="d">2336</div></div>
+                    <div class="ltls talk"><i class="iconfont talkicon">&#xe75b;</i><div class="d">3745</div></div>
+                    <div class="ltls look"><i class="iconfont">&#xe600;</i></div>
+                </div>
+            </div>
+
+            <div class="artical">
+                <div class="head">
+                    <div class="headerimg h"><img src="../images/community/community_header2.png" alt=""></div>
+                    <div class="headername h">
+                        <div class="hname">科技人</div>
+                        <div class="htime">30分钟前</div>
+                        <div class="himg"><img src="../images/same_content/attention.png" alt=""></div>
+                    </div>
+                </div>
+                <div class="text" onclick="openCommunityDetails()">
+                    <div class="title">机器人“慧眼”巡逻频率是人工的21倍</div>
+                    <div class="textmain">案涉及两个啥感觉拉苏格兰萨洛克金刚砂咖喱啥都看见回复啥的感觉来看啥都管理看鸡块阿沙路口的价格杀多了个健康阿萨德国际斯钢很骄傲圣诞快乐撒了个黄金</div>
+                </div>
+                <div class="picture">
+                    <div><img src="../images/community/community1.png" alt=""></div>
+                    <div class="pict"><img src="../images/community/community2.png" alt=""></div>
+                    <div><img src="../images/community/community3.png" alt=""></div>
+                </div>
+                <div class="list">
+                    <div class="ltls like"><i class="iconfont">&#xe617;</i><div class="d">2336</div></div>
+                    <div class="ltls talk"><i class="iconfont">&#xe75b;</i><div class="d">3745</div></div>
+                    <div class="ltls look"><i class="iconfont">&#xe600;</i></div>
+                </div>
+            </div>
+
+            <div class="artical">
+                <div class="head">
+                    <div class="headerimg h"><img src="../images/community/community_header3.png" alt=""></div>
+                    <div class="headername h">
+                        <div class="hname">科技人</div>
+                        <div class="htime">30分钟前</div>
+                        <div class="himg"><img src="../images/same_content/attention.png" alt=""></div>
+                    </div>
+                </div>
+                <div class="text" onclick="openCommunityDetails()">
+                    <div class="title">机器人“慧眼”巡逻频率是人工的21倍</div>
+                    <div class="textmain">案涉及两个啥感觉拉苏格兰萨洛克金刚砂咖喱啥都看见回复啥的感觉来看啥都管理看鸡块阿沙路口的价格杀多了个健康阿萨德国际斯钢很骄傲圣诞快乐撒了个黄金</div>
+                </div>
+                <div class="picture">
+                    <div><img src="../images/community/community4.png" alt=""></div>
+                    <div class="pict"><img src="../images/community/community5.png" alt=""></div>
+                    <div></div>
+                </div>
+                <div class="list">
+                    <div class="ltls like"><i class="iconfont">&#xe617;</i><div class="d">2336</div></div>
+                    <div class="ltls talk"><i class="iconfont">&#xe75b;</i><div class="d">3745</div></div>
+                    <div class="ltls look"><i class="iconfont">&#xe600;</i></div>
+                </div>
+            </div>
+
+            <div class="artical">
+                <div class="head">
+                    <div class="headerimg h"><img src="../images/community/community_header4.png" alt=""></div>
+                    <div class="headername h">
+                        <div class="hname">科技人</div>
+                        <div class="htime">30分钟前</div>
+                        <div class="himg"><img src="../images/same_content/attention.png" alt=""></div>
+                    </div>
+                </div>
+                <div class="text" onclick="openCommunityDetails()">
+                    <div class="title">机器人“慧眼”巡逻频率是人工的21倍</div>
+                    <div class="textmain"></div>
+                </div>
+                <div class="picture">
+                    <div><img src="../images/community/community6.png" alt=""></div>
+                    <div class="pict"></div>
+                    <div></div>
+                </div>
+                <div class="list">
+                    <div class="ltls like"><i class="iconfont">&#xe617;</i><div class="d">2336</div></div>
+                    <div class="ltls talk"><i class="iconfont">&#xe75b;</i><div class="d">3745</div></div>
+                    <div class="ltls look"><i class="iconfont">&#xe600;</i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- main end -->
+
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+//切换盒子
+    var column =0;
+    var btns = document.getElementById('span').getElementsByTagName('li');
+    for(var i=0;i<btns.length;i++){
+        btns[i].index =i
+        btns[i].onclick = function(){
+        //把所有的按钮的类都清除掉！
+          for(var i=0;i<btns.length;i++){
+                btns[i].className = '';
+           }
+           //确立自己
+            this.className = 'hover';
+            html='';
+            CommunityDate(this.index);
+            column=this.index;
+        }
+    }
+    var nums = 0;
+    var total = 0;
+    apiready = function(){
+      api.addEventListener({
+          name: 'swiperight'
+      }, function(ret, err){
+        api.sendEvent({
+            name: 'indexright',
+        });
+
+      });
+      CommunityDate(column,0)
+      //下拉刷新
+      api.setRefreshHeaderInfo({
+          loadingImg: 'widget://image/refresh.png',
+          bgColor: '#f1f1f1',
+          textColor: '#000',
+          textDown: '拉我试试',
+          textUp: '松开刷新...',
+          showTime:'false'
+      } , function(ret, err) {
+            html = '';
+            CommunityDate(column,0)
+            nums=0;
+            api.refreshHeaderLoadDone();
+      });
+      //上拉加载
+      api.addEventListener({
+        name:'scrolltobottom',
+        extra:{
+          threshold:0 //设置距离底部多少距离时触发，默认值为0，数字类型
+        }
+      }, function(ret, err){
+          nums++;
+          CommunityDate(column,nums);
+          num = nums;
+      })
+
+    }
+    //ajax
+    var html = '';
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var data = {};
+    function CommunityDate(column,num){
+      if(total<num){
+        num = total;
+        nums = total;
+        return;
+      }
+      var community = {};
+      if(userdata){
+        community.column = column;
+        community.num = num;
+        community.uid = userdata.uid;
+      }else {
+        community.column = column;
+        community.num = num;
+      }
+      api.ajax({
+          url:'http://www.lxzntech.com/discuss.php',
+          method:'POST',
+          cache:false,
+          data:{
+            values:community
+          }
+      },function(ret, err){
+          total = ret.total;
+          if (ret.status == 1) {
+            data = ret.data;
+            for(var i = 0;i<data.length;i++){
+                html += '<div class="artical">';
+                    html+='<div class="head">';
+                      html+='<div class="headerimg h">';
+                        html+='<img src="'+data[i]['avatar']+'alt="" onclick="openFriendDetailsData('+data[i]['authorid']+')">';//发布人头像
+                      html+='</div>';
+                      html+='<div class="headername h">';
+                        html+='<div class="hname" onclick="openFriendDetailsData('+data[i]['authorid']+')">'+data[i]['author']+'</div>';//发布人
+                        html+='<div class="htime">'+data[i]['dateline']+'</div>';//发布时间
+                        html+='<div class="himg" id="follows'+data[i]['tid']+'">';//关注
+                          if(data[i]['haveFollow']){
+                            html+='<img src="../images/same_content/attentioned.png" alt="" onclick="followed('+data[i]['authorid']+',\''+data[i]['author']+'\','+data[i]['tid']+')">';
+                          }else {
+                            html+='<img src="../images/same_content/attention.png" alt="" onclick="follow('+data[i]['authorid']+',\''+data[i]['author']+'\','+data[i]['tid']+')">';
+                          }
+                        html+='</div>';
+                      html+='</div>';
+                    html+='</div>';
+                    html+='<div class="text" onclick="openCommunityDetails('+data[i]['tid']+','+data[i]['authorid']+')">';
+                        html+='<div class="title">'+data[i]['subject']+'</div>';//题目
+                        html+='<div class="textmain" id="textmain">'+data[i]['message']+'</div>';//内容
+                    html+='</div>';
+                    if(data[i]['images'].length){
+                      html+='<div class="picture">';
+                        for(var j = 0;j<data[i]['images'].length&&j<3;j++){//图片
+                          html+='<div><img src="'+data[i]['images'][j]+'" alt="" onclick="openimg(this)" onerror="this.src=\'../images/about/Logo.png\'"></div>'
+                        }
+                      html+='</div>';
+                    }
+                    html+='<div class="list">';
+                      if(data[i]['haveLike']){
+                        html+='<div class="ltls like"><i class="iconfont" onclick="like('+data[i]['tid']+','+data[i]['recNum']+')" id="likeimg'+data[i]['tid']+'">&#xe635;</i><div class="d" id="likenum'+data[i]['tid']+'">'+data[i]['recNum']+'</div></div>';//帖子喜欢数
+                      }else {
+                        html+='<div class="ltls like"><i class="iconfont" onclick="like('+data[i]['tid']+','+data[i]['recNum']+')" id="likeimg'+data[i]['tid']+'">&#xe617;</i><div class="d" id="likenum'+data[i]['tid']+'">'+data[i]['recNum']+'</div></div>';//帖子喜欢数
+                      }
+                      html+='<div class="ltls talk"><i class="iconfont talkicon" onclick="toTalk('+data[i]['tid']+','+data[i]['authorid']+')">&#xe75b;</i><div class="d">'+data[i]['num']+'</div></div>';//帖子评论数
+                      html+='<div class="ltls look"><i class="iconfont" onclick="openShareOther()">&#xe600;</i><div class="d"></div></div>';//分享
+                    html+='</div>';
+                html += '</div>';
+              }
+            }  else if (ret.status == 2) {
+              html = '';
+              html ='<div style="text-align:center;line-height:50px;">没有数据</div>';
+            // msg'错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode);
+           }else {
+             api.alert(ret.msg);
+           }
+             $api.html($api.byId('maxbox'),html);
+        });
+    }
+
+
+
+    function openCommunityDetails(tid,authorid){
+        api.openWin({
+          name: 'CommunityDetails',
+          url: 'CommunityDetails.html',
+          pageParam: {tid:tid,authorid:authorid}
+      });
+    }
+    function toTalk(tid,authorid){
+      api.openWin({
+        name: 'CommunityDetails',
+        url: 'CommunityDetails.html',
+        pageParam: {tid:tid,authorid:authorid,talk:'#toTalk'}
+        //跳转到评论
+      });
+    }
+  //打开一张图片
+    function openimg(ret) {
+		    var src = ret.getAttribute("src");
+        //图片加载
+        var photoBrowser = api.require('photoBrowser');
+        photoBrowser.open({
+          images: [
+              src
+          ],
+        bgColor: '#000'
+    }, function(ret, err) {
+        if(ret.eventType=='click'){
+            photoBrowser.close();
+        }
+      });
+	}
+  //打开分享界面
+  function openShareOther(){
+    api.openFrame({
+        name: 'ShareOther',
+        url: 'ShareOther.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            name: 'test'
+        },
+        animation:{
+          type:"push",
+          subType:"from_bottom",
+          duration:300
+        },
+        bounces: false,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: false,
+        hScrollBarEnabled: false
+    });
+  }
+  //点击关注
+  function follow(a,b,c){
+    var followdatas = {};
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    if(userdata){
+      followdatas.uid=userdata.uid;
+      followdatas.username=userdata.username;
+      followdatas.followuid=a;
+      followdatas.fusername=b
+    }else{
+      Toast('请登录再进行操作')
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/action.php?action=follow',
+        method: 'post',
+        data: {
+            values: followdatas
+        }
+    },function(ret, err){
+      // alert('<img src="../images/same_content/attentioned.png" onclick="followed('+a+',"'+b+'",'+c+')" alt="">');
+        if (ret.status == 1) {
+            $api.html($api.byId('follows'+c),'<img src="../images/same_content/attentioned.png" onclick="followed('+a+',\''+b+'\','+c+')" alt="">');
+            Toast('关注成功',1000)
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+  //已关注
+  function followed(d,e,f){
+    var followdatas = {};
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    if(userdata){
+      followdatas.uid=userdata.uid;
+      followdatas.followuid=d;
+    }else{
+      Toast('请登录再进行操作')
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/actionCancel.php?action=follow',
+        method: 'post',
+        data: {
+            values: followdatas
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            $api.html($api.byId('follows'+f),'<img src="../images/same_content/attention.png" onclick="follow('+d+',\''+e+'\','+f+')" alt="">');
+            Toast('取消关注成功',1000);
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+  //点赞
+  function like(tid,likenum){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var likeDatas = {};
+    if(userdata){
+      likeDatas.uid=userdata.uid;
+      likeDatas.username=userdata.username;
+      likeDatas.tid=tid
+    }else{
+      Toast('请登录再进行操作')
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/action.php?action=like',
+        method: 'post',
+        data: {
+            values: likeDatas
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            Toast('点赞成功');
+            var likenums = likenum+1;
+            $api.text($api.byId('likenum'+tid), likenums);
+            $api.html($api.byId('likeimg'+tid), "&#xe635;");
+        } else {
+            Toast(ret.msg);
+        }
+    });
+  }
+  function openFriendDetailsData(authorid){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    if(userdata){
+      api.openWin({
+          name: 'FriendDetailsData',
+          url: 'FriendDetailsData.html',
+          pageParam: {
+              uid: authorid
+          }
+      });
+    }else {
+      Toast('请登录再进行操作')
+    }
+  }
+  //自定义弹框
+  function Toast(msg,duration){
+      duration=isNaN(duration)?3000:duration;
+      var m = document.createElement('div');
+      m.innerHTML = msg;
+      m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+      document.body.appendChild(m);
+      setTimeout(function() {
+          var d = 0.5;
+          m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+          m.style.opacity = '0';
+          setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+      }, duration);
+  }
+</script>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>我的参与</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    .quote{
+      background-color: #f5f5f5;
+    }
+    .quote>blockquote{
+      margin:0;
+      text-align: left;
+      padding-left: 5px;
+      font-size: 14px;
+      color: #3a3a3a;
+    }
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+        /*我的参与头部开始*/
+        ul,li{
+          list-style: none;
+        }
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../images/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 16px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+        /*我的参与头部结束*/
+
+        .newsetinformation {
+            width: 100%;
+            background-color: #fff;
+            padding: 80px 0 0 0;
+            position: relative;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .newsetinformation span {
+            position: absolute;
+            top: 10px;
+            margin-left: 10px;
+            width: 60%;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .newtime span,
+        .newname span,
+        .newbook span {
+            font-size: 12px;
+            color: #808080;
+            position: absolute;
+            width: 50%;
+            margin-top: -18px;
+            margin-left: 10px;
+        }
+
+        .newname span {
+            margin-top: -18px;
+            margin-left: 80px;
+        }
+
+        .newbook span {
+            margin-top: -18px;
+            margin-left: 154px;
+        }
+
+        .befollowed {
+            width: 25%;
+            margin-left: 75%;
+            margin-top: -70px;
+            font-size: 11px;
+            color: #808080;
+            position: absolute;
+            display:-webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient:vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+      /*  .allright {
+            margin-bottom: 10px;
+        }*/
+
+        .view {
+            padding-top: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mypartticipate" style="overflow:hidden">
+        <!-- header我的参与头部开始-->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="api.closeWin()"></i></div>
+                <div class="sect fo">我的参与</div>
+            </div>
+        </div>
+        <!-- header我的参与头部结束-->
+        <div class="view" id="view">
+            <div class="allright">
+                <ul>
+                    <li class="newsetinformation"><span>对的</span></li>
+                    <li class="newtime"><span>2018-3-19</span></li>
+                    <li class="newname"><span>哇哈</span></li>
+                    <li class="newbook"><span>100阅读</span></li>
+                    <div class="befollowed">
+                        机器人“慧眼”巡逻频率是人工的21倍
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+apiready = function() {
+  MyParticipateData();
+};
+function MyParticipateData(){
+  var html='';
+  var userdata = {};
+  userdata = $api.getStorage('userdata');
+  // alert(JSON.stringify(pageParamuid))
+  api.ajax({
+      url: 'http://www.lxzntech.com/tabMenu.php?type=join',
+      method: 'post',
+      data: {
+          values: {
+              uid:userdata['uid']
+          }
+      }
+  },function(ret, err){
+      if (ret.status==1) {
+        var data = ret.data
+        for (var i = 0; i < data.length; i++) {
+            html+='<div class="allright" onclick="openCommunityDetails('+data[i]['id']+','+data[i]['uid']+',\''+data[i]['type']+'\')">';
+                  html+='<ul>';
+                        html+='<li class="newsetinformation"><span>'+data[i]['message']+'</span></li>';
+                        html+='<li class="newtime"><span>'+data[i]['dateline']+'</span></li>';
+                        html+='<li class="newname"><span>'+data[i]['username']+'</span></li>';
+                        html+='<li class="newbook"><span>'+data[i]['views']+'阅读</span></li>';
+                        html+='<div class="befollowed">'+data[i]['title']+'</div>';
+                  html+='</ul>';
+            html+='</div>';
+        }
+      }else {
+        // alert(JSON.stringify(ret.msg))
+      }
+      $api.html($api.byId('view'), html);
+  });
+}
+
+function openCommunityDetails(id,authorid,type){
+  if(type == 'tid'){
+    api.openWin({
+      name: 'CommunityDetails',
+      url: 'CommunityDetails.html',
+      pageParam: {tid:id,authorid:authorid}
+    });
+  }else if(type == 'aid'){
+    api.openWin({
+        name: 'ArticalDetails',
+        url: 'ArticalDetails.html',
+        pageParam: {
+            aid: id
+        }
+    });
+  }
+}
+</script>
+
+</html>

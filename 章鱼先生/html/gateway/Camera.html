@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>摄像头</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../../icon/iconfont.eot');
+            src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'), url('../../icon/iconfont.woff') format('woff'), url('../../icon/iconfont.ttf') format('truetype'), url('../../icon/iconfont.svg#iconfont') format('svg');
+        }
+
+        * {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+
+        ul,
+        li,
+        ol {
+            list-style: none;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+        }
+
+        header {
+            height: 70px;
+            line-height: 86px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: url('../../images/gatewayimages/same_content/Header.jpg') no-repeat;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            z-index: 99;
+        }
+
+        header>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .headermenu {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 50px;
+        }
+
+        .headermenu ul {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .headermenu ul li {
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-right: 3px;
+        }
+
+        .area {
+            padding-top: 66px;
+        }
+
+        .area,
+        .bigzero {
+            position: relative;
+        }
+
+        .detection img {
+            width: 100%;
+            height: 270px;
+        }
+
+        .stop {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .ways {
+            width: 102px;
+            height: 30px;
+            background-color: #c1c1c1;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .bigzero {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #d1d1d1;
+            margin: 65px auto;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .smallzero {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #d1d1d1;
+            border-radius: 50%;
+            margin: 33px auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px #9e9e9e;
+        }
+
+        .ways .top,
+        .ways .right {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 1px solid #797979;
+            border-top: none;
+            border-right: none;
+        }
+
+        .top i {
+            left: 15px;
+            top: 14px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #d1d1d1;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 36px;
+            color: #000;
+            position: absolute;
+            top: 50px;
+            right: 56px;
+        }
+
+        .iconfonta {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #000;
+        }
+
+        .iconfontb {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #fff;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background-color: #808080;
+        }
+
+        .text {
+            position: absolute;
+            width: 54%;
+            height: 20px;
+            right: 0;
+        }
+        /*footer*/
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 44px;
+            border-top: 1px solid #efefef;
+            background-color: #f7f7f7;
+        }
+
+        footer .footer ul {
+            width: 100%;
+        }
+
+        footer .footer ul li {
+            width: 24.5%;
+            line-height: 50px;
+            float: right;
+            display: flex;
+            justify-content: center;
+        }
+        /*footer end*/
+    </style>
+</head>
+
+<body>
+    <!-- 头部 begin -->
+    <header>
+        <i></i>
+        <span>摄像头</span>
+        <div class="headermenu">
+            <ul style=" height: 86px;">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </header>
+    <!-- 头部 end -->
+
+    <div class="area">
+        <div class="detection" style="position:relative;">
+            <p style="position:absolute;right:10px;top:10px;font-size:13px;color:#111;">2018-4-18 <span style="margin-left:15px;">12:30:12</span></p>
+            <i class="iconfontb">&#xe603;</i>
+            <img src="../../images/gatewayimages/ditectionarea/detection.png">
+        </div>
+    </div>
+
+    <div class="stop">
+        <div class="ways">
+            <i class="top" style="right:84px;top:10px;transform:rotate(45deg);"></i>
+            <i class="right" style="right:74px;top:10px;transform:rotate(-135deg);"></i>
+            <span style="font-size；11px;color:#fff;">stop</span>
+            <i class="top" style="right:12px;top:12px;transform:rotate(-45deg);"></i>
+            <i class="right" style="right:12px;top:6px;transform:rotate(135deg);"></i>
+        </div>
+    </div>
+
+    <section>
+        <div class="bigzero">
+            <i class="top" style="position:absolute;width:18px;height:18px;border:1px solid #d1d1d1;border-top:none;border-right:none;right:68px;top:12px;transform:rotate(135deg);"></i>
+            <i class="right" style="position:absolute;width:18px;height:18px;border:1px solid  #d1d1d1;border-top:none;border-right:none;right:68px;top:118px;transform:rotate(-45deg);"></i>
+            <i class="bottom" style="position:absolute;width:18px;height:18px;border:1px solid  #d1d1d1;border-top:none;border-right:none;right:120px;top:65px;transform:rotate(45deg);"></i>
+            <i class="left" style="position:absolute;width:18px;height:18px;border:1px solid #d1d1d1;border-top:none;border-right:none;right:10px;top:65px;transform:rotate(225deg);"></i>
+
+            <div class="smallzero">
+                <div>
+                    <i class="iconfont">&#xe729;</i>
+                </div>
+                <i class="top" style="position:absolute;width:18px;height:35px;border:1px solid  #d1d1d1;border-top:none;border-right:none;border-bottom:none;right:20px;top:22px;transform:rotate(45deg);"></i>
+                <i class="right" style="position:absolute;width:18px;height:36px;border:1px solid #d1d1d1;border-top:none;border-right:none;border-bottom:none;right:112px;top:24px;transform:rotate(126deg);"></i>
+                <i class="bottom" style="position:absolute;width:18px;height:36px;border:1px solid  #d1d1d1;border-top:none;border-right:none;border-bottom:none;right:106px;top:98px;transform:rotate(45deg);"></i>
+                <i class="left" style="position:absolute;width:18px;height:36px;border:1px solid  #d1d1d1;border-top:none;border-right:none;border-bottom:none;right:32px;top:103px;transform:rotate(135deg);"></i>
+            </div>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer>
+        <div class="footer">
+            <ul>
+                <form style="float:left;">
+                    <select name="cars" style="position:absolute;color:#3a3a3a;border:1px solid #d1d1d1;background-color:#fff;width:40%;height:25px;float:left;left:5px;margin-top:10px;">
+      <option value="">远程监控</option>
+        <option value="">远程监控</option>
+          <option value="">本地监控（高清）</option>
+            <option value="">远程监控（标清）</option>
+    </select>
+                </form>
+                <div class="text">
+
+                    <li><i class="iconfonta" style="font-size:20px;margin-left:4px;margin-top:-2px;">&#xe607;</i></li>
+                    <!--互动  -->
+                    <li><i class="iconfonta" style="font-size:27px;">&#xe610;</i></li>
+                    <!-- 相机 -->
+                    <li><i class="iconfonta" style="font-size:19px;">&#xe75b;</i></li>
+                    <!-- 信息 -->
+                    <li><i class="iconfonta" style="font-size:22px;margin-top:-2px;">&#xe651;</i></li>
+                    <!-- 声音 -->
+                </div>
+            </ul>
+        </div>
+    </footer>
+    <!-- footer end -->
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    };
+</script>
+
+</html>

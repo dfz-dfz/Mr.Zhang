@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>动态详情</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          @font-face {
+            font-family: 'iconfont';
+            src: url('../icon/iconfont.eot');
+            src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('../icon/iconfont.woff') format('woff'),
+            url('../icon/iconfont.ttf') format('truetype'),
+            url('../icon/iconfont.svg#iconfont') format('svg');
+          }
+          .iconfont{
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 14px;
+            color: #000;
+            position: absolute;
+            right: 46px;
+            top: 0;
+          }
+          body，html{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+          ul li{
+            list-style-type: none;
+          }
+          /*section 顶部样式*/
+          .section{
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            background: url('../images/same_content/Header.jpg');
+            z-index: 1;
+          }
+          .section .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .section .fo{
+            font-size: 16px;
+            color: #ffffff;
+            line-height: 86px;
+            text-align: center;
+          }
+          .section .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+          }
+          /*section end*/
+
+          /*header*/
+          .header{
+            padding-top: 70px;
+            border-bottom: 4px solid #f1f1f1;
+          }
+          .header .head{
+            height: 58px;
+            display: flex;
+            align-items: center;
+            position: relative;
+          }
+          .header .head .left img{
+            width: 40px;
+            margin-left: 8px;
+            border-radius: 50%;
+          }
+          .header .head .right{
+            height: 44px;
+            margin-left: 10px;
+          }
+          .header .head .right .up{
+            height: 18px;
+            line-height: 28px;
+            font-size: 16px;
+            color: #222;
+          }
+          .header .head .right>i{
+            position: absolute;
+            right: 15px;
+            top:14px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #808080;
+            border-top: none;
+            border-right: none;
+            transform:rotate(-45deg);
+            -webkit-transform:rotate(-45deg);
+          }
+          .header .head .right .down{
+            height: 18px;
+            line-height: 34px;
+            font-size: 10px;
+            color: #808080;
+          }
+          .header .text{
+            line-height: 24px;
+            margin:0 8px 0 56px;
+            font-size: 16px;
+            color: #111;
+          }
+          @media screen and (max-width: 360px){
+            .main .mid .right img{
+              margin: -15px;
+            }
+          }
+          .header .href{
+            font-size: 12px;
+            margin:12px 0 0 56px;
+            height: 20px;
+            line-height: 10px;
+          }
+          .header .href a{
+            color: #004eae;
+          }
+
+          /*header end*/
+
+          /*main*/
+          .mue{
+            width: 100%;
+            height: 26px;
+            border-bottom: 1px solid #e1e1e1;
+            line-height: 26px;
+          }
+          .mue .left{
+            padding-left: 12px;
+            color: #464646;
+            font-size: 12px;
+          }
+          .main{
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+          }
+          .main .left{
+            width: 54px;
+          }
+          .main .left img{
+            width: 40px;
+            margin: 6px 6px 0 8px;
+            border-radius: 50%;
+          }
+          .main .mid{
+            width: 100%;
+          }
+          .main .mid .text .top{
+            position: relative;
+            width: 100%;
+            font-size: 14px;
+            color: #222;
+            height: 20px;
+            line-height: 20px;
+          }
+          .main .mid .text .top>i{
+            position: absolute;
+            right: 15px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #808080;
+            border-top: none;
+            border-right: none;
+            transform:rotate(-45deg);
+            -webkit-transform:rotate(-45deg);
+          }
+          .main .mid .text .mi{
+            color: #242424;
+            font-size: 14px;
+            line-height: 21px;
+            padding-right: 10px;
+          }
+          .main .mid .text .mi a{
+            color: #002663;
+          }
+          .main .mid .image{
+            width: 10%;
+            float: right;
+          }
+          .main .mid .right img{
+            width: 20px;
+            margin-top: 10px;
+          }
+          .main .answer{
+            font-size: 15px;
+            color: #3a3a3a;
+            clear: both;
+          }
+          .main .answer{
+            color: #808080;
+            font-size: 10px;
+            height: 20px;
+            line-height: 18px;
+            position: relative;
+          }
+          .main .answer .answ{
+            position: absolute;
+            top: 0;
+            right: 10px;
+            font-size: 12px;
+            color: #4e4e4e;
+          }
+          /*main end*/
+
+          /*footer*/
+          .footer{
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            bottom: 0;
+            background-color: #f7f7f7;
+          }
+          .footer .mai input[type="text"]{
+            position: absolute;
+            width: 85%;
+            height: 60%;
+            background-color: #fff;
+            border-radius: 5px;
+            padding-left: 5px;
+            top:20%;
+            left: 5px;
+            outline: none;
+            border: 1px solid #e1e1e1;
+            font-size: 12px;
+            color: #8f8f8f;
+          }
+          .footer .mai input[type="button"]{
+            position: absolute;
+            width: 10%;
+            height: 60%;
+            top: 20%;
+            right: 5px;
+            color: #8f8f8f;
+            font-size: 12px;
+            outline: none;
+          }
+          /*footer end*/
+      </style>
+  </head>
+  <body>
+    <div class="comment_answer">
+      <!-- section 顶部 -->
+        <div class="section">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">动态详情</div>
+        </div>
+      <!-- section end -->
+
+      <div style="overflow: hidden; width:100%;height:92%;padding-bottom:50px;">
+
+      <!-- header -->
+      <div class="header" id="header">
+        <div class="head">
+          <div class="left"><img src="../images/community_comment_details/commDetails1.png"></div>
+          <div class="right">
+            <div class="up">afbgn</div>
+            <div class="down">1小时前</div>
+            <i></i>
+          </div>
+        </div>
+        <div class="text">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</div>
+        <div class="href"><a href="#">查看原文章</a></div>
+      </div>
+
+      <!-- header end -->
+      <div class="mue">
+        <div class="left">全部回复：</div>
+      </div>
+      <div id="main">
+        <div class="main">
+          <div class="left"><img src="../images/community_comment_details/commDetails2.png"></div>
+          <div class="mid">
+            <div class="text">
+              <div class="top">iusjjd、<i></i></div>
+              <div class="mi">回复<a href="#">@afbgn</a>：水电费付付付</div>
+              <div class="answer">
+                <div class="time">1小时前</div>
+                <div class="answ">回复</div>
+                <i class="iconfont">&#xe617;</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- main end -->
+
+      </div>
+
+      <!-- footer -->
+      <div class="footer">
+        <div class="mai">
+          <input type="text" id="inputtext" maxlength="50" name="" value="" placeholder="回复评论">
+          <input type="button" name="" onclick="criticism()" value="发送">
+        </div>
+      </div>
+      <!-- footer end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  // 限制文本输入长度
+  var input = document.querySelector("#inputtext")
+  console.log(input.maxLength);
+
+    var pageParamtid = '';
+    var pageParampid = '';
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    //评论
+    var replyPid = 0;
+    var fid = '';
+    function criticisms(m_pid){
+      document.getElementById('inputtext').focus();
+      replyPid = m_pid;
+    }
+    function criticism(){
+          fid = api.pageParam.fid;
+          pageParampid = api.pageParam.pid;
+          pageParamtid = api.pageParam.tid;
+          var inputtext = $api.val($api.byId('inputtext'));
+          var criticismData={};
+          criticismData.fid = fid;
+          criticismData.tid = pageParamtid;//文章id
+          criticismData.authorid = userdata['uid'];//操作用户id
+          criticismData.author = userdata['username'];//操作用户id名称
+          criticismData.message = inputtext;//评论内容
+          criticismData.pid = replyPid?replyPid:pageParampid;
+          criticismData.bbcodeoff = 0;
+          alert(fid+"+"+pageParamtid+"+"+userdata['uid']+"+"+userdata['username']+"+"+inputtext+"+"+replyPid)
+          if(inputtext==''){
+            Toast('请输入你要评论的内容',2000)
+          }else {
+            api.ajax({
+              url: 'http://www.lxzntech.com/comment.php',
+              method: 'post',
+              data: {
+                    values:criticismData
+              }
+              },function(ret, err){
+              if (ret.status == 1) {
+                Toast('发表成功',1000);
+                CommunityCommentDetails();
+              }else {
+                Toast(ret.msg);
+              }
+          });
+        }
+    }
+    apiready = function(){
+      CommunityCommentDetails();
+    }
+    function CommunityCommentDetails(){
+      var html = '';
+      var htmls = '';
+      var data = {};
+      var datas;
+      pageParampid = api.pageParam.pid;
+      pageParamtid =api.pageParam.tid;
+      api.ajax({
+          url: 'http://www.lxzntech.com/discDetail.php',
+          method: 'post',
+          data: {
+              values: {
+                tid:pageParamtid
+              }
+          }
+      },function(ret, err){
+          if (ret.status==1) {
+              for(var i=0;i<ret.data.reply.length;i++){
+                if(ret.data.reply[i]['pid'] == pageParampid){
+                  data = ret.data.reply[i];
+                  html+='<div class="head">';
+                    html+='<div class="left" onclick="openFriendDetailsData('+data['m_uid']+')"><img src="'+data['m_avatar']+'"></div>';//楼主头像
+                    html+='<div class="right"><div class="up">'+data['m_name']+'</div><div class="down">'+data['m_dateline']+'</div>';//楼主名字和发表时间
+                      if(data['m_uid'] == userdata['uid']){//举报
+                        html+='';
+                      }else{
+                        html+='<i onclick="accusation('+data['pid']+','+pageParamtid+',\'post\')"></i>';
+                      }
+                    html+='</div>';
+                  html+='</div>';
+                  html+='<div class="text">'+data['m_message']+'</div>';//楼主回复的内容
+                  html+='<div class="href"><a href="#" onclick="openCommunityDetails('+data['tid']+','+data['authorid']+')">查看原文章</a></div>';
+                  for(var j=0;j<data['comments'].length;j++){
+                    datas = data['comments'][j];
+                    htmls+='<div class="main">';
+                      htmls+='<div class="left" onclick="openFriendDetailsData('+datas['m_uid']+')"><img src="'+datas['m_avatar']+'" alt=""></div>';//回复楼主的人的头像
+                      htmls+='<div class="mid">';
+                        htmls+='<div class="text">';
+                          htmls+='<div class="top">'+datas['m_name']+'';//回复楼主的人的名字
+                            if(data['m_uid'] == userdata['uid']){//举报
+                              htmls+='';
+                            }else{
+                              htmls+='<i onclick="accusation('+datas['m_pid']+','+pageParamtid+',\'post\')"></i>';
+                            }
+                          htmls+='</div>';
+                          htmls+='<div class="mi" onclick="criticisms('+datas['m_pid']+')">回复<a href="#">'+data['m_name']+'</a>：'+datas['msg']+'</div>';//楼主的名字和回复楼主的内容
+                          htmls+='<div class="answer"><div class="time">'+datas['m_dateline']+'</div><div class="answ">回复</div>';//回复楼主的时间
+
+                          if(datas['floorLike'] == 1){
+                            htmls+='<i class="iconfont" id="postlike'+datas['m_pid']+'" onclick="postlike('+datas['m_pid']+')">&#xe635;</i>';
+                          }else{
+                            htmls+='<i class="iconfont" id="postlike'+datas['m_pid']+'" onclick="postlike('+datas['m_pid']+')">&#xe617;</i>';
+                          }
+                          htmls+='</div>';
+                        htmls+='</div>';
+                      htmls+='</div>';
+                    htmls+='</div>';
+                  }
+                }
+              }
+          } else {
+              Toast( JSON.stringify( err ) );
+          }
+          $api.html($api.byId('header'), html);
+          $api.html($api.byId('main'), htmls);
+      });
+    }
+    //举报
+    function accusation(pid,tid,type){
+      api.openFrame({
+          name: 'accusation',
+          url: 'Accusation.html',
+          rect: {
+              x: 0,
+              y: 0,
+              w: 'auto',
+              h: 'auto'
+          },
+          pageParam: {
+              pid:pid,tid:tid,type:type
+          },
+          animation:{
+            type:"push",
+            subType:"from_bottom",
+            duration:300
+          },
+          bounces: false,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: false,
+          hScrollBarEnabled: false
+      });
+
+    }
+
+    //回复评论的点赞
+    function postlike(pid){
+      api.ajax({
+          url: 'http://www.lxzntech.com/postLike.php',
+          method: 'post',
+          data: {
+              values: {
+                  pid:pid,uid:userdata['uid'],username:userdata['username'],tid:pageParamtid
+              }
+          }
+      },function(ret, err){
+          if (ret.status == 1) {
+              var data = ret.data;
+              $api.html($api.byId('postlike'+pid),"&#xe635;");
+              Toast('点赞成功')
+          } else {
+              alert(ret.msg);
+          }
+      });
+    }
+
+    //自定义弹框
+    function Toast(msg,duration){
+        duration=isNaN(duration)?3000:duration;
+        var m = document.createElement('div');
+        m.innerHTML = msg;
+        m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+        document.body.appendChild(m);
+        setTimeout(function() {
+            var d = 0.5;
+            m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+            m.style.opacity = '0';
+            setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+        }, duration);
+    }
+
+    function openFriendDetailsData(authorid){
+      api.openWin({
+          name: 'FriendDetailsData',
+          url: 'FriendDetailsData.html',
+          pageParam: {
+              uid: authorid
+          }
+      });
+    }
+
+    function openCommunityDetails(tid,authorid){
+        api.openWin({
+        name: 'CommunityDetails',
+        url: 'CommunityDetails.html',
+        pageParam: {tid:tid,authorid:authorid}
+      });
+    }
+  </script>
+  </html>

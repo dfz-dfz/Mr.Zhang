@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>设备命名</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+
+
+        /*header 顶部样式*/
+
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 16px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+        /*header end*/
+
+        .main {
+            background: #f2f2f2;
+            padding-top: 70px;
+        }
+
+        .main ul li {
+            font-size: 16px;
+            color: #1c1c1c;
+        }
+
+        .alldevice {
+            padding: 15px 0px 10px 10px;
+        }
+
+        .allborder {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .alldevice i {
+            display: inline-block;
+            font-style: normal;
+            font-size: 13px;
+            color: #707070;
+            margin-left: 15px;
+        }
+
+        .border {
+            width: 115px;
+            height: 120px;
+            border: 1px solid #fff;
+            background-color: #fff;
+            margin: 0 10px 10px 10px;
+        }
+
+        .border img {
+            width: 55px;
+            height: 55px;
+            padding: 15px 0px 15px 30px;
+        }
+
+        .border span {
+            display: flex;
+            justify-content: center;
+            font-size: 14px;
+            color: #0c0c0c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gateway">
+        <!-- header begin -->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="api.closeWin()"></i></div>
+                <div class="sect fo">选择设备型号</div>
+            </div>
+        </div>
+        <!-- header end -->
+
+        <div class="main">
+            <div>
+                <ul>
+            <!-- 常用设备 begin-->
+                    <li class="alldevice">常用设备</li>
+                    <div class="allborder">
+                        <div class="border" onclick="openNetworkConfigure()">
+                            <img src="../../images/gatewayimages/choosedevicetype/camera.png">
+                            <span>摄像头</span>
+                        </div>
+                    </div>
+              <!-- 常用设备 end-->
+
+              <!-- 传感器 begin -->
+                    <!-- <li class="alldevice">可燃气体传感器<i>连接前请先绑定网关和摄像头</i></li>
+                    <div class="allborder">
+                        <div class="border">
+                            <img src="../../images/gatewayimages/choosedevicetype/combustiblesensor.png">
+                            <span>可燃气体传感器</span>
+                        </div>
+
+                        <div class="border">
+                            <img src="../../images/gatewayimages/choosedevicetype/bodysensor.png">
+                            <span>人体红外传感器</span>
+                        </div>
+                        <div class="border">
+                            <img src="../../images/gatewayimages/choosedevicetype/doorsensor.png">
+                            <span>门磁传感器</span>
+                        </div>
+
+                        <div class="border">
+                            <img src="../../images/gatewayimages/choosedevicetype/emengercysensor.png">
+                            <span>紧急按钮传感器</span>
+                        </div>
+
+                    </div> -->
+                    <!-- 传感器 end -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    function openNetworkConfigure(){
+      api.openWin({
+          name: 'NetworkConfigure',
+          url: 'NetworkConfigure.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
+    }
+</script>
+
+</html>

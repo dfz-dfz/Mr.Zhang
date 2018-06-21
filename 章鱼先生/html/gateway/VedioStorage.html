@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>报警设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+            background-color: #f1f1f1;
+        }
+
+        header {
+            height: 70px;
+            line-height: 86px;
+            position: fixed;
+            background: url('../../images/gatewayimages/same_content/Header.jpg') no-repeat;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            color: #fff;
+            background-size: 150%;
+        }
+
+        header>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .main {
+            -moz-box-flex: 1.0;
+            /* Firefox */
+            -webkit-box-flex: 1.0;
+            /* Safari 和 Chrome */
+            box-flex: 1.0;
+            position: relative;
+            background: #f2f2f2;
+        }
+
+        .main ul {
+            padding: 0;
+        }
+
+        .main ul li {
+            height: 50px;
+            background: #fff;
+            line-height: 40px;
+            font-size: 15px;
+            color: #1e1e1e;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .main ul .cache>span {
+            position: absolute;
+            right: 15px;
+            font-size: 11px;
+            color: #6c6c6c;
+
+        }
+
+        .music i {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 50px;
+            height: 30px;
+        }
+
+        .music .toggle {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 50px;
+            height: 30px;
+        }
+
+        .toggle {
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            width: 52px;
+            height: 32px;
+            background: #dfdfdf;
+            border-radius: 16px;
+            border: 1px solid #dfdfdf;
+            outline: 0;
+            box-sizing: border-box;
+        }
+
+        .toggle:checked {
+            border-color: #00e167;
+            background-color: #00e167;
+        }
+
+        .toggle:before,
+        .toggle:after {
+            content: " ";
+            position: absolute;
+            top: -1px;
+            left: 0;
+            height: 30px;
+            border-radius: 15px;
+            transition: transform 0.01s;
+            transition: -webkit-transform 0.01s;
+            transition: transform 0.01s, -webkit-transform 0.01s;
+            -webkit-transition: -webkit-transform 0.01s;
+        }
+
+        .toggle:before {
+            width: 50px;
+            background-color: #fdfdfd;
+        }
+
+        .toggle:after {
+            width: 30px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .toggle:checked:before {
+            transform: scale(0);
+            -webkit-transform: scale(0);
+        }
+
+        .toggle:checked:after {
+            transform: translateX(20px);
+            -webkit-transform:translateX(20px);
+        }
+
+        .storage {
+            border: 1px solid;
+            height: 6px;
+            width: 80%;
+        }
+
+        .store {
+            border: 1px solid #fff;
+            height: 4px;
+            width: 60%;
+            background-color: #111;
+        }
+
+        a {
+            display: block;
+            color: #111;
+            right: 10px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .popup {
+          border-radius: 10px;
+            width: 55%;
+            margin: -70px auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            transform: translate(-50%);
+            display: none;
+        }
+
+        .popup p {
+            padding: 20px 10px 20px 10px;
+            font-size: 14px;
+            color: #1d1d1d;
+            text-align: center;
+        }
+
+        .popup .button {
+            display: flex;
+            height: 35px;
+            font-size: 14px;
+            color: #111;
+        }
+
+        .popup .button span {
+            display: flex;
+            flex: 0 0 50%;
+            border: 1px solid #e1e1e1;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <i></i>
+        <span>视频监控存储</span>
+    </header>
+    <div class="main">
+        <div>
+            <ul style="padding:10px 0px 0px 0px;">
+
+                <li class="music" style="margin-bottom:10px;">
+                    <span>是否开启录像</span>
+                    <div class="t" style="font-size:11px; color:#6c6c6c;line-height:5px;">
+                        开启后摄像头将会保存录像
+                    </div>
+                    <input type="checkbox" class="toggle">
+                </li>
+                <li class="cache" style="line-height:34px;border-bottom: 1px solid #e1e1e1;">可用:&nbsp;200GB&nbsp;&nbsp;总共：&nbsp;600GB&nbsp;
+                    <div class="storage">
+                        <div class="store">
+
+                        </div>
+                    </div>
+                </li>
+                <div class="delete" style="position:relative;">
+                    <li class="cache" style="height；50px;line-height:50px;">格式化内存卡<span><a class="del"  href="javascript:;">点击格式化</a></span></li>
+
+
+
+                </div>
+                <div class="mask">
+                </div>
+                <div class="popup">
+                    <p>是否确认格式化？</p>
+                    <div class="button">
+                        <span class="close">取消</span>
+                        <span class="confirm">确定</span>
+                    </div>
+
+                </div>
+
+            </ul>
+
+            <div class="password">
+
+                <p style="margin:10px 0px 0px 10px;font-size:13px;color:#808080;">
+                    视频监控会不间断写入到存储卡中，当存储卡空间不足时，会自动删除最久远的视频</p>
+                <p style="margin:10px 0px 0px 10px;font-size:13px;color:#808080;">
+                    格式化存储卡之后，会有一部分存储卡空间用于存储系统文件，因为显示的容量可能小于您的存储卡实际大小</p>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var mask = document.querySelector(".mask");
+    var popup = document.querySelector(".popup")
+    var del = document.querySelector(".del")
+    var close = document.querySelector(".close")
+    var confirm = document.querySelector(".confirm")
+    del.addEventListener("click", function() {
+        mask.style.display = "block"
+        popup.style.display = "block"
+    })
+    close.addEventListener("click", function() {
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+
+    confirm.addEventListener('click', function(a) {
+        ///点击确认后的逻辑，比如说我这里弹出
+        /*  alert("想看呀，不给") ///此处是你自己想执行的逻辑
+          //再次关闭*/
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+</script>
+
+</html>

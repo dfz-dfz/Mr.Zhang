@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设置</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {}
+
+        body {
+            font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: #f1f1f1;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            display: block;
+        }
+
+        input {
+            border: none;
+        }
+
+        ul,
+        li,
+        ol {
+            list-style: none;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            /* overflow: hidden; */
+        }
+
+        body {
+            background: #f1f1f1;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        .myindex {
+            position: relative;
+            background: #fff;
+            overflow-x: hidden
+        }
+        /*my-header开始*/
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 17px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+        /*my-header结束*/
+
+
+        .item_content .phone,
+        .item_content .mine {
+            padding-top: 10px;
+        }
+
+        .mine .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .item_content a {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #fff;
+            align-items: center;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .item_content a img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .item_content a .title {
+            font-size: 15px;
+            color: #101010;
+            margin-left: 10px;
+        }
+
+        .item_content a .arrow {
+            border-right: 1px solid #666;
+            border-bottom: 1px solid #666;
+            width: 10px;
+            height: 10px;
+            transform: rotate(-45deg);
+        }
+
+        .add a {
+            display: block;
+            border: 1px solid #cccccc;
+            color: #111;
+            right: 10px;
+            padding: 0;
+            top: 164px;
+            width: 15%;
+            background-color: #fff;
+            margin: 10px auto;
+            text-align: center;
+            position: absolute;
+        }
+
+        .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+
+        .popup {
+            border-radius: 10px;
+            width: 50%;
+            margin: -70px auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            transform: translate(-50%);
+            display: none;
+        }
+
+        .popup p {
+            padding: 0px 10px 20px 10px;
+            font-size: 13px;
+            color: #1d1d1d;
+        }
+
+        .popup .button {
+            display: flex;
+            height: 35px;
+            font-size: 13px;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .popup .button span {
+            display: flex;
+            flex: 0 0 50%;
+            border: 1px solid #e1e1e1;
+            padding: 10px;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="myindex">
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i></i></div>
+                <div class="sect fo">用户管理</div>
+            </div>
+        </div>
+    </div>
+    <div class="item_content" id="data">
+        <div class="phone">
+            <a href="javascript:;">
+                <div class="left">
+                    <img src="../../images/same_content/fly.png" alt="">
+                    <span class="me" style="position:absolute;margin-left:10px;">我</span>
+                    <div class="t" style="font-size:11px; color:#6c6c6c;margin-left:40px;margin-top:-10px;">
+                        15689456123
+                    </div>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+        </div>
+
+        <div class="mine">
+            <a href="javascript:;">
+                <div class="left">
+                    <img src="../../images/same_content/fly.png" alt="">
+                    <span class="title">大艺术家</span>
+                </div>
+                <div class="add">
+                    <a class="del" href="javascript:;">删除</a>
+                </div>
+                <div class="mask">
+                </div>
+                <div class="popup">
+                    <strong style="display:flex;justify-content:center;margin:10px 0 10px 0;">解除绑定</strong>
+                    <p>解除绑定后将不能获取任何数据</p>
+                    <div class="button">
+                        <span class="close">取消</span>
+                        <span class="confirm">确定</span>
+                    </div>
+
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var mask = document.querySelector(".mask");
+    var popup = document.querySelector(".popup")
+    var del = document.querySelector(".del")
+    var close = document.querySelector(".close")
+    var confirm = document.querySelector(".confirm")
+    del.addEventListener("click", function() {
+        mask.style.display = "block"
+        popup.style.display = "block"
+    })
+    close.addEventListener("click", function() {
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+
+    confirm.addEventListener('click', function(a) {
+        ///点击确认后的逻辑，比如说我这里弹出
+        /*   alert("") ///*/
+
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+</script>
+
+</html>

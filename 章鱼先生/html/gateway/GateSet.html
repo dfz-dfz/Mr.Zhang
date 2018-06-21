@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>设置</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../../icon/iconfont.eot');
+            src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'), url('../../icon/iconfont.woff') format('woff'), url('../../icon/iconfont.ttf') format('truetype'), url('../../icon/iconfont.svg#iconfont') format('svg');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {}
+
+        body {
+            background-color: #f1f1f1;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            display: block;
+        }
+
+        ul,
+        li,
+        ol {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-weight: 400;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            /* overflow: hidden; */
+        }
+
+        body {
+            background: #f1f1f1;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        .myindex {
+            position: relative;
+            background: #fff;
+
+        }
+        /*my-header开始*/
+
+        .header .top {
+            /*position: fixed;*/
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 17px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+        /*my-header结束*/
+
+        .item_content .devicename,
+        .item_content .mine,
+        .item_content .msg,
+        .item_content .usermap {
+            padding-top: 10px;
+        }
+        .devicename a {
+            color: #111;
+        }
+        .item_content a {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            line-height: 20px;
+            background-color: #fff;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item_content a img {
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .item_content a .title {
+            vertical-align: top;
+            font-size: 15px;
+            color: #1e1e1e;
+        }
+
+        .item_content a .arrow {
+            border-right: 1px solid #666;
+            border-bottom: 1px solid #666;
+            width: 10px;
+            height: 10px;
+            transform: rotate(-45deg);
+        }
+
+        .footer>div>i {
+            border-left: 1px solid #cfcfcf;
+            border-right: 1px solid #cfcfcf;
+            margin-left: 25px;
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #000;
+        }
+
+        .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+
+        .popup {
+            border-radius: 10px;
+            width: 55%;
+            margin: -70px auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            transform: translate(-50%);
+            display: none;
+        }
+
+        .popup p {
+            padding: 0px 10px 0px 10px;
+            font-size: 14px;
+            color: #1d1d1d;
+        }
+
+        .popup .button {
+            display: flex;
+            height: 35px;
+            font-size: 14px;
+            color: #111;
+        }
+
+        .popup .button span {
+            display: flex;
+            flex: 0 0 50%;
+            border: 1px solid #e1e1e1;
+            padding: 10px;
+            justify-content: center;
+        }
+
+
+
+        input {
+            border: 1px solid #e1e1e1;
+            display: flex;
+            margin: 10px auto;
+            width: 50%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+  <!-- 头部 begin -->
+  <header>
+    <div class="myindex">
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i></i></div>
+                <div class="sect fo">设置</div>
+            </div>
+        </div>
+    </div>
+  </header>
+    <!-- 头部 end -->
+    <div class="item_content" >
+
+        <div class="devicename">
+            <!-- 设备命名 begin -->
+            <a class="del" href="javascript:;">
+                <div id="headerimg">
+                    <i class="iconfont">&#xe62e;</i>
+                    <span class="title">设备命名</span>
+                </div>
+                <div class="mask"></div>
+                <span class="arrow"></span>
+                <div class="popup">
+                    <strong style="display:flex;justify-content:center;margin:10px 0  0 10px;">设备命名</strong>
+                    <p><input type="password" value="" placeholder="摄像机"></p>
+                    <div class="button">
+                        <span class="close">取消</span>
+                        <span class="confirm">确定</span>
+                    </div>
+                </div>
+                <!-- 设备命名 end -->
+            </a>
+        </div>
+
+        <div class="mine">
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#3468f9;">&#xe602;</i>
+                    <span class="title">安全设置</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#d73737;">&#xe616;</i>
+                    <span class="title">报警设置</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#2394fc;font-size:18px;">&#xe66c;</i>
+                    <span class="title">视频监控存储</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#2f2f2f;">&#xe626;</i>
+                    <span class="title">图像翻转</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+        </div>
+
+        <div class="msg">
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#1296da;">&#xe606;</i>
+                    <span class="title">网络信息</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#f2ca7d;">&#xe611;</i>
+                    <span class="title">用户管理</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+       <!-- 解除绑定 begin -->
+            <a class="del" href="javascript:;">
+                <div >
+                    <i class="iconfont" style="color:#0a0a0a;font-size:20px;">&#xe66b;</i>
+                    <span class="title">解除绑定</span>
+                </div>
+                <div class="mask"> </div>
+                <span class="arrow"></span>
+                <div class="popup">
+                    <strong>设备命名</strong>
+                    <p>摄像机</p>
+                    <div class="button">
+                        <span class="close">取消</span>
+                        <span class="confirm">确定</span>
+                    </div>
+                </div>
+              <!-- 解除绑定 end -->
+            </a>
+        </div>
+
+        <div class="usermap">
+
+            <a href="javascript:;">
+                <div >
+                    <i class="iconfont" style="font-size:24px;">&#xe631;</i>
+                    <span class="title">使用指南</span>
+                </div>
+                <span class="arrow"></span>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var mask = document.querySelector(".mask");
+    var popup = document.querySelector(".popup")
+    var del = document.querySelector(".del")
+    var close = document.querySelector(".close")
+    var confirm = document.querySelector(".confirm")
+    del.addEventListener("click", function() {
+        mask.style.display = "block"
+        popup.style.display = "block"
+    })
+    close.addEventListener("click", function() {
+        /*  mask.style.display = ""*/
+        popup.style.display = ""
+    })
+
+    confirm.addEventListener('click', function(a) {
+
+        /*    alert("") ///
+            //再次关闭*/
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+</script>
+
+</html>

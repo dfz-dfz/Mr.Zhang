@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>连接wifi</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../../icon/iconfont.eot');
+            src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'), url('../../icon/iconfont.woff') format('woff'), url('../../icon/iconfont.ttf') format('truetype'), url('../../icon/iconfont.svg#iconfont') format('svg');
+        }
+
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+            background-color: #f1f1f1;
+        }
+        /*header 顶部样式 begin*/
+
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 16px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .header .top .right {
+            position: relative;
+        }
+        /*header end*/
+
+        .main {
+            -moz-box-flex: 1.0;  /* Firefox */
+            -webkit-box-flex: 1.0;  /* Safari 和 Chrome */
+            box-flex: 1.0;
+            position: relative;
+            background: #f2f2f2;
+            padding-top: 70px;
+        }
+
+        .main ul {
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .main ul li {
+            height: 50px;
+            background: #fff;
+            line-height: 50px;
+            font-size: 15px;
+            color: #9e9e9e;
+            font-weight: normal;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-input {
+            width: 70%;
+            height: 50px;
+            background: #fff;
+            text-align: left;
+            padding-left: 10px;
+            font-size: 15px;
+            color: #9e9e9e;
+        }
+
+        .number {
+            font-size: 15px;
+            color: #9e9e9e;
+            margin-left: 13px;
+        }
+
+        .main i {
+            border-right: 1px solid #111;
+            border-bottom: 1px solid #111;
+            width: 10px;
+            height: 10px;
+            transform: rotate(-45deg);
+            -webkit-transform:transform: rotate(-45deg);
+            float: right;
+            margin: 15px;
+        }
+
+        .title {
+            padding: 10px 0;
+            margin-left: 10px;
+            font-size: 13px;
+            color: #101010;
+        }
+
+        .center-button button {
+            background-color: #24292d;
+            width: 98%;
+            height: 50px;
+            border: 1px solid #999;
+            color: #ffffff;
+            outline: none;
+            border-radius: 6px;
+            font-size: 15px;
+            margin: 13px auto;
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #000;
+            float: right;
+            top: 0;
+            right: 5px;
+            position: absolute;
+            ;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="gateway">
+        <!-- header -->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="api.closeWin()"></i></div>
+                <div class="sect fo">连接wifi</div>
+            </div>
+        </div>
+        <!-- header end -->
+
+        <div class="main">
+            <div>
+                <ul>
+
+                    <li><span class="number">请选择wifi</span><i></i></li>
+
+                    <li> <input class="search-input"  type="text" id="title"  maxLength="15" placeholder="请输入wifi密码" >
+                        <span><p class="iconfont">&#xe61d;</p></span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="title">
+            输入摄像头连接的家庭WIFI网络名和密码。连接过程请将摄像头.路由器尽可能地靠近。
+        </div>
+
+        <div class="center-button" style="padding:0px 10px;">
+            <button type="button" name="">完成</button>
+        </div>
+
+        <div class="title">
+            如需更改wifi:设置-网络信息
+        </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+var input = document.querySelector("#title")
+console.log(input.maxLength);
+</script>
+
+</html>

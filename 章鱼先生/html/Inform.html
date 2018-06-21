@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>通知</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+      @font-face {
+        font-family: 'iconfont';
+        src: url('../icon/iconfont.eot');
+        src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../icon/iconfont.woff') format('woff'),
+        url('../icon/iconfont.ttf') format('truetype'),
+        url('../icon/iconfont.svg#iconfont') format('svg');
+      }
+      .iconfont{
+        font-family: "iconfont" !important;
+        font-style: normal;
+        font-size: 22px;
+        color: #20252b;
+        padding: 5px;
+      }
+          body,html{
+            width: 100%;height: 100%; margin: 0; padding: 0;
+            background-color: #f1f1f1;
+          }
+
+          ul li{
+            list-style-type:none;
+          }
+
+          /*section 顶部样式*/
+          .section{
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            background: url('../images/same_content/Header.jpg');
+          }
+          .section .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .section .fo{
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 86px;
+            text-align: center;
+          }
+          .section .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+          }
+          /*section end*/
+
+          /*ul菜单*/
+          .inform ul{
+            padding-top: 70px;
+          }
+          .inform ul li{
+            width: 100%;
+            height: 55px;
+            display: flex;
+            align-items: center;
+          }
+
+          .inform ul li span{
+            width: 32px;
+            height: 32px;
+            margin:0 5px;
+            background-size: 80% !important;
+            background-position: center center !important;
+          }
+
+          .inform ul li .main{
+            width: 100%;
+            height: 55px;
+            float: right;
+            border-bottom: 1px solid #e1e1e1;
+          }
+
+          .inform ul li .time{
+            font-size: 10px;
+            color: #bebebe;
+            float: right;
+            margin-top: -42px;
+            margin-right: 10px;
+            position: relative;
+          }
+          .inform ul li .time .num{
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            background-color: #d84a42;
+            bottom:-20px;
+            right: 0;
+            color: #fff;
+          }
+          .inform ul li .title{
+            height: 50%;
+            font-size: 14px;
+            color: #111;
+            line-height: 42px;
+          }
+
+          .inform ul li .text{
+            height: 50%;
+            font-size: 10px;
+            color: #6c6c6c;
+            line-height: 24px;
+          }
+          /*ul菜单 edn*/
+      </style>
+  </head>
+  <body>
+    <div class="inform">
+      <!-- section 顶部 -->
+        <div class="section">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">通知</div>
+        </div>
+      <!-- section end -->
+      <!-- ul菜单 -->
+      <ul>
+        <li>
+          <i class="iconfont" style="font-size:16px;" >&#xe630;</i>
+          <!-- <span style="background:url('../images/inform/device_sharing.png') no-repeat"></span> -->
+          <div class="main" style="margin-left:5px;">
+            <div class="title">设备通知</div>
+            <div class="text">暂无消息</div>
+            <!-- <div class="time">04-11 <div class="num">1</div></div> -->
+          </div>
+        </li>
+        <li>
+            <i class="iconfont" style="padding-left:3px;">&#xe60a;</i>
+          <!-- <span style="background:url('../images/inform/artical_notefation.png') no-repeat"></span> -->
+          <div id="messageinfo" class="main" onclick="openMessageNotification()">
+            <div class="title">消息通知</div>
+            <div class="text">收到新的点赞</div>
+            <div class="time">04-11 <div class="num">1</div></div>
+          </div>
+        </li>
+        <li>
+            <i class="iconfont" style="padding-left:3px;">&#xe60d;</i>
+          <!-- <span style="background:url('../images/inform/community_notice.png') no-repeat"></span> -->
+          <div id="systeminfo" class="main" onclick="openSystermNotification()">
+            <div class="title">系统通知</div>
+            <div class="text">无</div>
+          </div>
+        </li>
+      </ul>
+      <!-- ul菜单 end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      var userdata = {};
+      userdata = $api.getStorage('userdata');
+
+      apiready = function(){
+        informonbush();
+        setInterval("informonbush()",2000)
+      }
+
+      function informonbush(){
+        var html = '';
+        var sys = '';
+        if(userdata){
+          api.ajax({
+              url: 'http://www.lxzntech.com/getNotice.php',
+              method: 'post',
+              data: {
+                  values: {
+                      type:'msgNum',uid:userdata['uid']
+                  }
+              }
+          },function(ret, err){
+              if (ret.status == 1) {
+                  var data = ret.data;
+
+                  html+='<div class="title">消息通知</div>';
+                  if(data['info']['total']>0){
+                    html+='<div class="text">'+data['info']['msg']+'</div>';
+                  }else{
+                    html+='<div class="text">暂无消息</div>';
+                  }
+                  if(data['info']['total']>0){
+                    html+='<div class="time">'+data['info']['dateline']+'<div class="num">'+data['info']['total']+'</div></div>';
+                  }else{
+                    html+='';
+                  }
+
+                  sys+='<div class="title">系统通知</div>';
+                  if(data['system']['total']>0){
+                    sys+='<div class="text">'+data['system']['msg']+'</div>';
+                  }else{
+                    sys+='<div class="text">暂无消息</div>';
+                  }
+                  if(data['system']['total']>0){
+                    sys+='<div class="time">'+data['system']['dateline']+'<div class="num">'+data['system']['total']+'</div></div>';
+                  }else {
+                    sys+='';
+                  }
+
+              } else {
+                  alert( JSON.stringify( err ) );
+              }
+              $api.html($api.byId('messageinfo'), html);
+              $api.html($api.byId('systeminfo'), sys);
+          });
+
+        }else{
+          html+='<div class="title">消息通知</div>';
+            html+='<div class="text">暂无消息</div>';
+          sys+='<div class="title">系统通知</div>';
+            sys+='<div class="text">暂无消息</div>';
+          $api.html($api.byId('messageinfo'), html);
+        }
+      }
+
+      function openSystermNotification(){
+        api.openWin({
+            name: 'SystermNotification',
+            url: 'Inform/SystermNotification.html',
+            pageParam: {
+                type: 'system'
+            }
+        });
+      }
+
+      function openMessageNotification(){
+        api.openWin({
+            name: 'MessageNotification',
+            url: 'Inform/MessageNotification.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+      }
+  </script>
+  </html>

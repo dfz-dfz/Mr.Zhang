@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+  />
+  <title>社区详情</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <style>
+  @font-face {
+    font-family: 'iconfont';
+    src: url('../icon/iconfont.eot');
+    src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../icon/iconfont.woff') format('woff'),
+    url('../icon/iconfont.ttf') format('truetype'),
+    url('../icon/iconfont.svg#iconfont') format('svg');
+  }
+    body,html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: "son mincho";
+      background-color: #f1f1f1;
+    }
+    ul li {
+      list-style-type: none;
+    }
+    .comment_details {
+      width: 100%;
+      background-color: #f5f5f5;
+      height: 97%;
+      overflow-x: hidden;
+    }
+
+    /*header*/
+    .header {
+      width: 100%;
+      height: auto;
+      background-color: white;
+      border-bottom: 10px solid #f5f5f5;
+    }
+    .header .uptop {
+      margin: 8px 10px 12px 10px;
+      align-items: center;
+      position: relative;
+      background-color: #f7f7f7;
+      height: 70px;
+    }
+    .header .uptop div {
+      float: left;
+    }
+    .header .uptop .left {
+      margin-top: 10px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+    }
+    .header .uptop .left img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .header .uptop .mid {
+      margin-top: 10px;
+      height: 48px;
+      position: relative;
+      width: 60%;
+      float: left;
+      left: 10px;
+    }
+    .header .uptop .mid .name{
+      font-size: 16px;
+      color: #222;
+      line-height: 28px;
+      height: 24px;
+    }
+    .header .uptop .mid .sign{
+      height: 24px;
+      font-size: 12px;
+      color: #8f8f8f;
+      line-height: 24px;
+      position: absolute;
+      bottom: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp:1;
+      -webkit-box-orient:vertical;
+    }
+    .header .uptop .right img {
+      position: absolute;
+      width: 46px;
+      top: 50%;
+      margin-top: -12px;
+      right: 10px;
+    }
+    .header .title{
+      margin-left: 10px;
+      color: #111;
+      font-size: 18px;
+      padding:28px 0 14px 0;
+      position: relative;
+      font-weight: bold;
+    }
+    .header .title .titl{
+      margin-right: 20px;
+    }
+    .header .nametime{
+      width: 100%;
+      height: 20px;
+      margin:0 10px 20px 10px;
+      display: flex;
+      align-items: center;
+    }
+    .header .nametime .name{
+      display: flex;
+      align-items: center;
+      color: #002663;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+    .header .nametime .name>div{
+      height: 10px;
+      border-right: 1px solid #cfcfcf;
+      margin-left: 8px;
+    }
+    .header .nametime .time{
+      display: flex;
+      align-items: center;
+      color: #555;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+    .header .nametime .time>div{
+      height: 10px;
+      border-right: 1px solid #cfcfcf;
+      margin-left: 8px;
+    }
+    .header .nametime .readnum{
+      color: #555;
+      font-size: 12px;
+    }
+    .header .bottom {
+      margin: 0 10px 0 10px;
+      color: #303030;
+      font-size: 16px;
+      padding-bottom: 10px;
+      line-height: 24px;
+    }
+    .header .bottom img{
+      width: 100%;
+    }
+    /*header end*/
+
+    /*main*/
+    .main {
+      width: 100%;
+      background-color: white;
+      border-bottom: 1px solid #e1e1e1;
+    }
+    .main .mue{
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      background-color: #fff;
+    }
+    .main .mue .left{
+      color: #555;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+      line-height: 40px;
+      border-bottom: 1px solid #f7f7f7;
+    }
+    .main .replay{
+      border-bottom: 1px solid #f7f7f7;
+      width: 100%;
+    }
+    .main .menu {
+      width: 100%;
+      height: 26px;
+      line-height: 25px;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .main .menu div {
+      float: left;
+      font-size: 15px;
+      color: #515151;
+    }
+    .main .menu .left {
+      margin-left: 10px;
+    }
+    .main .menu .left div {
+      margin-right: 5px;
+    }
+    .main .menu .mid {
+      color: #000000;
+      margin-left: 30px;
+    }
+    .main .menu .mid div {
+      margin-right: 5px;
+      border-bottom: 2px solid black;
+    }
+    .main .menu .right {
+      margin-right: 18px;
+      float: right;
+    }
+    .main .menu .right div {
+      margin-right: 5px;
+    }
+    .main .text {
+      width: 100%;
+      background-color: #fff;
+      position: relative;
+    }
+    .main .text .left {
+      width: 40px;
+      height: 40px;
+      margin: 10px 6px 10px 10px;
+      border-radius: 50%;
+      z-index: 1;
+      position: relative;
+    }
+    .main .text .left img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .main .text .right .top {
+      font-size: 14px;
+      color: #4a4a4a;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding:10px 0 6px 60px;
+    }
+    .main .text .right>i{
+      position: absolute;
+      right: 15px;
+      top:6px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #808080;
+      border-top: none;
+      border-right: none;
+      transform:rotate(-45deg);
+      -webkit-transform:rotate(-45deg);
+    }
+    .main .text .right .mid {
+      padding-left: 60px;
+      margin-top:-22px;
+    }
+    .main .text .right .mid .art {
+      color: #242424;
+      font-size: 16px;
+      line-height: 22px;
+      margin: 2px;
+    }
+    .main .text .right .mid .answer {
+      width: 98%;
+      padding-left: 2%;
+      background-color: #f5f5f5;
+    }
+    .li {
+      width: 100%;
+      padding-top: 4px;
+      font-size: 14px;
+      color: #3a3a3a;
+    }
+    .main .text .right .mid .answer a {
+      color: #002663;
+    }
+    .main .text .right .mid .answer .li.an {
+      font-size: 12px;
+      color: #003663;
+      padding-bottom: 8px;
+    }
+    .main .text .right .mid .answer span {
+      margin: 0 5px 0 5px;
+    }
+    .main .foot {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      position: relative;
+    }
+    .main .foot div {
+      height: 100%;
+    }
+    .main .foot .left{
+      font-size: 12px;
+      color: #8d8d8d;
+    }
+    .main .foot .left .date {
+      position: absolute;
+      left: 60px;
+    }
+    .main .foot .left .time {
+      position: absolute;
+      left: 90px;
+    }
+    .main .foot .right{
+      font-size: 12px;
+      color: #4e4e4e;
+    }
+    .main .foot .right .talk {
+      position: absolute;
+      bottom: 0;
+      right: 10px;
+      color: #4e4e4e;
+      font-size: 12px;
+    }
+    .main .foot .right .img{
+      position: absolute;
+      bottom: 0;
+      right: 50px;
+      width: 10px;
+      font-style: normal;
+      font-size: 14px;
+      color: #000;
+      font-family: "iconfont" !important;
+    }
+    .main .foot .right .share {
+      position: absolute;
+      top: 0;
+      right: 15px;
+    }
+    /*main end*/
+
+    /*footer*/
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 44px;
+      display: flex;
+      background-color: #fff;
+      border: 1px solid #e1e1e1;
+      z-index: 2;
+    }
+    footer .ii {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10%;
+      position: relative;
+    }
+    footer .ii>i{
+      position: absolute;
+      left: 16px;
+      top:18px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #808080;
+      border-top: none;
+      border-right: none;
+      transform:rotate(45deg);
+      -webkit-transform:rotate(45deg);
+    }
+    footer .list {
+      display: flex;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    footer .list .li{
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    footer .list input {
+      height: 26px;
+      background-color: #fff;
+      width: 100%;
+      border-radius: 16px;
+      color: #8f8f8f;
+      font-size: 12px;
+      text-indent: 10px;
+      border: 1px solid #e7e7e7;
+      outline: none;
+    }
+    footer .list a {
+      display: flex;
+      align-items: center;
+      width: 25%;
+      justify-content: center;
+    }
+    footer .list a:nth-child(1){
+      position: relative;
+    }
+    footer .list a:nth-child(2){
+      position: relative;
+    }
+    .iconfont{
+      font-family: "iconfont" !important;
+      font-style: normal;
+      font-size: 22px;
+      color: #000;
+    }
+    .icontalk{
+      font-size: 20px;
+    }
+    .iconlike{
+      font-size: 22px;
+    }
+    .iconcollection{
+      font-size: 24px;
+    }
+    .iconshare{
+      font-size: 20px;
+    }
+    footer .list .talknum{
+      position: absolute;
+      background-color: #fff;
+      font-size: 10px;
+      color: #000;
+      text-align: center;
+      line-height: 20px;
+      width: 16px;
+      height: 16px;
+      border-radius: 5px;
+      top: -6px;
+      right: 0;
+    }
+    footer .list .likenum{
+      position: absolute;
+      background-color: #fff;
+      font-size: 10px;
+      color: #000;
+      text-align: center;
+      line-height: 20px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      top: -6px;
+      right: 0;
+    }
+    /*footer end*/
+    /*textareaMain*/
+    .textareaMain{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      max-height: 120px;
+      background-color: #fff;
+      border-top: 1px solid #e1e1e1;
+      display: none;
+      z-index: 2;
+    }
+    .textareaMain textarea{
+      font-size: 12px;
+      color: #8f8f8f;
+      background-color: #eee;
+      line-height: 18px;
+      border-radius: 10px;
+      height: 50px;
+      max-height: 62px;
+      padding:3px 0 3px 5px;
+      margin: 0 2% 0 2%;
+      width: 96%;
+      outline: none;
+      resize: none;
+      overflow: visible;
+      -webkit-voerflow:visible;
+      position: absolute;
+      bottom: 6px;
+    }
+    .textareaMain .text{
+      top: 0;
+      width: 100%;
+      height: 38px;
+    }
+    .textareaMain .text .attention input{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #eee;
+    }
+    .textareaMain .text .attention .atttext{
+      position: absolute;
+      top: 9px;
+      left: 28px;
+      font-size: 12px;
+    }
+    .textareaMain .text .send{
+      position: absolute;
+      top: 10px;
+      right: 8px;
+      color:#8f8f8f;
+    }
+    /*textareaMain end*/
+  </style>
+</head>
+
+<body>
+  <div class="comment_details">
+      <div id="details" onclick='toggleFooter()'>
+        <!-- header -->
+        <div class="header">
+          <div class="title">
+            <div class="titl">机器人“慧眼”巡逻速率是人工的21倍</div>
+          </div>
+          <div class="nametime">
+            <div class="name">CCVCVCV<div></div></div>
+            <div class="time">2018-04-02<div></div></div>
+            <div class="readnum">浏览数:666</div>
+          </div>
+          <div class="bottom">
+            如果你无法简洁的表达你的想法，那只说明你还不够了解它如果你无法简洁的表达你的想法，那只说明你 还不够了解它--啊尔伯特·爱因斯坦尔伯特
+            如果你无法简洁的表达你的想法，那只说明你还不够了解它如果你无法简洁的表达你的想法，那只说明你 还不够了解它--啊尔伯特·爱因斯坦尔伯特
+          </div>
+          <div class="uptop">
+            <div class="left">
+              <img src="../images/same_content/fly.png" alt="">
+            </div>
+            <div class="mid">
+                <div class="name">CCVCVCV</div>
+                <div class="sign">每天给自己一个微笑。每天给自己一个微笑。每天给自己一个微笑。</div>
+            </div>
+            <div class="right">
+              <img src="../images/comment_details/follow.png" alt="">
+            </div>
+          </div>
+        </div>
+        <!-- header end -->
+
+        <!-- main -->
+        <div class="main">
+          <div class="mue">
+              <div class="left">评论</div>
+          </div>
+          <div class="replay">
+            <div class="text">
+              <div class="left">
+                  <img src="../images/same_content/fly.png" alt="">
+              </div>
+              <div class="right">
+                  <div class="top">afbgn</div>
+                  <i></i>
+                  <div class="mid">
+                      <div class="art">如果你无法简洁的表达你打想法，那只说明你还不够了解它。阿尔伯特·爱因斯坦</div>
+                      <div class="answer">
+                          <div class="li">
+                              <a href="">iusjjdj：</a>
+                              <span>hshdfshsdfhdfs</span>
+                          </div>
+                          <div class="li">
+                              <a href="">dgdgjkaf：</a>
+                              <span>sdfgsdfhsdhsdhdsfg</span>
+                          </div>
+                          <div class="an li">
+                              <a href="javascript:void(0)" onclick="OpcomSonSon()">共<span>8</span>条回复&nbsp;></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="foot">
+                <div class="left">
+                    <div class="date">3-20</div>
+                    <div class="time">15:10</div>
+                </div>
+                <div class="right">
+                    <div><i class="iconfont img">&#xe617;</i></div>
+                    <div class="talk">回复</div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- main end -->
+    </div>
+    <!-- footer -->
+    <footer id="footer">
+            <div class="ii" onclick="api.closeWin();">
+                  <i></i>
+            </div>
+            <div class="list">
+                  <div class="li">
+                      <input type="text" name="" id="talk" placeholder="写评论..." onclick="inputFouse();">
+                  </div>
+                  <div class="li">
+                    <a href="javascript:;">
+                        <i class="iconfont icontalk">&#xe75b;</i>
+                        <div class="talknum">28</div>
+                    </a>
+                    <a href="javascript:;" onclick = "footerAll('like')">
+                        <i class="iconfont iconlike">&#xe617;</i>
+                        <div class="likenum">28</div>
+                    </a>
+                    <a href="javascript:;" onclick = "footerAll('favorite')">
+                        <i class="iconfont iconcollection">&#xe6a7;</i>
+                    </a>
+                    <a href="javascript:;">
+                        <i class="iconfont iconshare">&#xe600;</i>
+                    </a>
+                  </div>
+            </div>
+    </footer>
+    <!-- footer end -->
+    <!-- 增大后的评论 -->
+    <div class="textareaMain" id="textareaMain">
+        <div class="text" id="text">
+            <div class="attention">
+                <input id="attenchb" type="checkbox">
+                <div class="atttext">同时关注这篇文章作者</div>
+            </div>
+            <div class="send" onclick="criticism()">发送</div>
+        </div>
+        <textarea name="textarea" id="textarea" cols="40" rows="1" autofocus placeholder="回复评论" onpropertychange="changeHeight(this)" oninput="changeHeight(this)"></textarea>
+    </div>
+    <!-- 增大后的评论 -->
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+  var html = '';
+  var htmlfooter = '';
+  var data = {};
+  var userdata = {};
+  userdata = $api.getStorage('userdata');
+  var pageParamTid;
+  var talk;
+  //评论盒子显示和消失
+  var textareaMain = document.getElementById('textareaMain')
+  var footer = document.getElementById('footer')
+  var replyPid = 0;
+  function inputFouse(type){
+    if(userdata){
+      replyPid = 0;
+      replyPid = type;
+      if(replyPid){
+        event.stopPropagation();
+      }
+      textareaMain.style.display = 'block';
+      footer.style.display = 'none';
+      textareaMain.getElementsByTagName("textarea")[0].focus();
+    }else{
+      Toast('请登录之后再进行操作')
+      footer.getElementsByTagName("input")[0].blur();
+    }
+  }
+
+  //点击切换底部
+  function toggleFooter(){
+    if(textareaMain){
+      textareaMain.style.display = 'none';
+      footer.style.display = 'flex';
+    }
+  }
+
+  apiready=function(){
+    pageParamTid = api.pageParam.tid;
+    CommentDetailsData();
+    talk = api.pageParam.talk;
+  }
+
+  function CommentDetailsData(){
+    var CommentDetailsDatas = {};
+    if(userdata){
+      CommentDetailsDatas.tid=pageParamTid;
+      CommentDetailsDatas.uid=userdata.uid
+    }else{
+      CommentDetailsDatas.tid=pageParamTid
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/discDetail.php',
+        method: 'post',
+        data: {
+            values: CommentDetailsDatas
+        }
+    },function(ret, err){
+        if (ret.status==1) {
+          html = '';
+          htmlfooter = '';
+          data = ret.data;
+          html+='<div class="header" id="headerbox">';
+                html+='<div class="title">';
+                      html+='<div class="titl">'+data['subject']+'</div>';//文章标题
+                html+='</div>';
+                html+='<div class="nametime">';
+                      html+='<div class="name" onclick="openFriendDetailsData('+data['authorid']+')">'+data['author']+'<div></div></div>';//名字
+                      html+='<div class="time">'+data['dateline']+'<div></div></div>';//发表时间
+                      html+='<div class="readnum">浏览数：'+data['view']+'</div>';//浏览数
+                html+='</div>';
+                html+='<div class="bottom">'+data['topic']+'</div>';//文章内容
+                html+='<div class="uptop">';
+                      html+='<div class="left">';
+                            html+='<img src="'+data['avatar']+'" alt="" onclick="openFriendDetailsData('+data['authorid']+')">';//关注头像
+                      html+='</div>';
+                      html+='<div class="mid">';
+                            html+='<div class="name">'+data['author']+'</div>';//关注名字
+                            if(data['sign']){
+                              html+='<div class="sign">'+data['sign']+'</div>';//个性签名
+                            }else {
+                              html+='<div class="sign">暂无签名</div>';
+                            }
+                      html+='</div>';
+                      html+='<div class="right" id="follows">';
+                            if(data['haveFollow']){
+                                html+='<img src="../images/same_content/attentioned.png" alt="" onclick="followed(\'follow\')">';
+                            }else{
+                                html+='<img src="../images/same_content/attention.png" alt="" onclick="footerAll(\'follow\')">';
+                            }
+                      html+='</div>';
+                html+='</div>';
+          html+='</div>';
+
+          html+='<div class="main" id="toTalk">';
+                html+='<div class="mue">';
+                      html+='<div class="left">评论</div>';
+                html+='</div>';
+                if(data.reply){
+                for(var i = 0;i<data.reply.length;i++){
+                html+='<div class="replay">';
+                      html+='<div class="text">';
+                            html+='<div class="left" onclick="openFriendDetailsData('+data.reply[i]['m_uid']+')">';
+                                  html+='<img src="'+data.reply[i]['m_avatar']+'" alt="">';//评论头像
+                            html+='</div>';
+                            html+='<div class="right">';
+                                    html+='<div class="top">'+data.reply[i]['m_name']+'</div>';//评论名字
+                                    if(userdata){
+                                      if(data.reply[i]['m_uid'] == userdata['uid']){
+                                        html+='';
+                                      }else{
+                                        html+='<i onclick="accusation('+data.reply[i]['pid']+','+pageParamTid+',\'post\')"></i>';
+                                      }
+                                    }else{
+                                      html+='<i></i>';
+                                    }
+
+                                    html+='<div class="mid">';
+                                          html+='<div class="art">'+data.reply[i]['m_message']+'</div>';//评论内容
+                                          if(data.reply[i]['comNum']>0){
+                                            if(data.reply[i]['comments']){
+                                              html+='<div class="answer">';
+                                              for(var j = 0;j<data.reply[i]['comments'].length;j++){
+                                                  html+='<div class="li">';
+                                                        html+='<a href="javascript:;">'+data.reply[i]['comments'][j]['m_name']+':</a>';
+                                                        html+='<span>'+data.reply[i]['comments'][j]['msg']+'</span>';
+                                                  html+='</div>'
+                                                }
+                                                html+='<div class="an li">';
+                                                      html+='<a href="javascript:void(0)" onclick="OpcomSonSon('+data.reply[i]['pid']+','+pageParamTid+','+data['fid']+')">共<span>'+data.reply[i]['comNum']+'</span>条回复&nbsp;></a>';
+                                                html+='</div>'
+                                              html+='</div>';
+                                            }
+                                          }
+                                    html+='</div>';
+                            html+='</div>';
+                      html+='</div>';
+                      html+='<div class="foot">';
+                            html+='<div class="left">';
+                                  html+='<div class="date">'+data.reply[i]['m_dateline']+'</div>';
+                            html+='</div>';
+                            html+='<div class="right">';
+                                  if(data.reply[i]['floorLike'] == 1){
+                                    html+='<i class="iconfont img" id="postlike'+data.reply[i]['pid']+'" onclick="postlike('+data.reply[i]['pid']+')">&#xe635;</i>';
+                                  }else{
+                                    html+='<i class="iconfont img" id="postlike'+data.reply[i]['pid']+'" onclick="postlike('+data.reply[i]['pid']+')">&#xe617;</i>';
+                                  }
+                                  html+='<div class="talk" onclick="inputFouse('+data.reply[i]['pid']+')">回复</div>';
+                                  // html+='<div class="share">'+data.[i]['recNum']+'</div>';
+                            html+='</div>';
+                      html+='</div>';
+                html+='</div>';
+              }
+            }else{
+                html+='<div class="replay" style="margin:30px auto;text-align:center;border:0;">暂无评论</div>';
+            }
+          html+='</div>';
+
+          htmlfooter+='<div class="ii" onclick="api.closeWin();"><i></i></div>';
+          htmlfooter+='<div class="list">';
+            htmlfooter+='<div class="li"><input type="text" name="" id="talk" placeholder="写评论..." onclick="inputFouse();"></div>';
+            htmlfooter+='<div class="li">';
+              htmlfooter+='<a href="javascript:;"><i class="iconfont icontalk" onclick="toTalk()">&#xe75b;</i><div class="talknum">'+data['topicNum']+'</div></a>';
+              if(data['haveLike']){
+                htmlfooter+='<a href="javascript:;" onclick ="footerAll(\'like\','+data['recNum']+')"><i class="iconfont iconlike" id="likeimg">&#xe635;</i><div class="likenum" id="likenum">'+data['recNum']+'</div></a>';
+              }else {
+                htmlfooter+='<a href="javascript:;" onclick ="footerAll(\'like\','+data['recNum']+')"><i class="iconfont iconlike" id="likeimg">&#xe617;</i><div class="likenum" id="likenum">'+data['recNum']+'</div></a>';
+              }
+              if(data['haveFav']){
+                htmlfooter+='<a href="javascript:;" id="favorite" onclick="faved(\'favorite\')"><i class="iconfont iconcollection">&#xe672;</i></a>';
+              }else{
+                htmlfooter+='<a href="javascript:;" id="favorite" onclick="footerAll(\'favorite\')"><i class="iconfont iconcollection">&#xe6a7;</i></a>';
+              }
+              htmlfooter+='<a href="javascript:;"><i class="iconfont iconshare">&#xe600;</i></a>';
+            htmlfooter+='</div>';
+          htmlfooter+='</div>';
+
+        }else {
+            api.alert(ret.msg);
+        }
+        $api.html($api.byId('details'), html);
+        $api.html($api.byId('footer'), htmlfooter);
+        if(talk){
+            location.href  = "#toTalk";
+        }
+    })
+  }
+  //跳转
+  function toTalk(){
+    location.href  = "#toTalk";
+  }
+  //举报
+  function accusation(pid,tid,type){
+    api.openFrame({
+        name: 'accusation',
+        url: 'Accusation.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            pid:pid,tid:tid,type:type
+        },
+        animation:{
+          type:"push",
+          subType:"from_bottom",
+          duration:300
+        },
+        bounces: false,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: false,
+        hScrollBarEnabled: false
+    });
+
+  }
+  // 打开回复详情
+  function OpcomSonSon(pid,tid,fid) {
+    if(userdata){
+      api.openWin({
+        name: 'CommunityCommentDetails',
+        url: 'CommunityCommentDetails.html',
+        pageParam: {
+            pid: pid,tid:tid,fid:fid
+        }
+      });
+    }else{
+      Toast('请登录之后再进行操作' )
+    }
+  }
+  //打开一张图片
+    function openimg(ret) {
+        var src = ret.getAttribute("src");
+        //图片加载
+        var photoBrowser = api.require('photoBrowser');
+        photoBrowser.open({
+          images: [
+              src
+          ],
+        bgColor: '#000'
+    }, function(ret, err) {
+        if(ret.eventType=='click'){
+            photoBrowser.close();
+        }
+      });
+  }
+  //评论自动换行
+  function changeHeight(i){
+    i.style.height = 'auto';
+    i.style.height=i.scrollHeight +32 +"px";
+    var text = document.getElementById('text');
+    text.style.height = 'auto';
+    text.style.height = text.scrollHeight + i.style.height + text.style.height + "px";
+    var textareaMain = document.getElementById('textareaMain');
+    textareaMain.style.padding = "0 0 6px 0";
+    textareaMain.style.height = textareaMain.scrollHeight + i.style.height + text.style.height;
+  }
+  //收藏，点赞，评论
+  function footerAll(type,likenum){
+    var userdata = {};
+    var pageParamAuthorid = api.pageParam.authorid;
+    userdata = $api.getStorage('userdata');
+    var resData={};
+    if(type == 'follow'){
+      if(userdata){
+        resData.followuid = pageParamAuthorid;//收藏被关注人id
+        resData.fusername = data['author'];//被关注人名称
+        resData.uid = userdata['uid'];//操作用户id
+        resData.username = userdata['username'];//操作用户id名称
+      }else{
+        Toast('请登录之后再进行操作')
+      }
+    }else if(type == 'like'){
+      if(userdata){
+        resData.uid = userdata['uid'];
+        resData.username = userdata['username'];
+        resData.tid = pageParamTid;
+      }else{
+        Toast('请登录之后再进行操作')
+      }
+    }else if(type == 'favorite'){
+      if(userdata){
+        resData.uid = userdata['uid'];
+        resData.username = userdata['username'];
+        resData.id = pageParamTid;
+        resData.idtype = 'tid';
+        resData.title = data['subject'];
+      }else{
+        Toast('请登录之后再进行操作')
+      }
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/action.php?action='+type,
+        method: 'post',
+        data: {
+            values: resData
+        }
+    },function(ret, err){
+        if (ret.status==1) {
+          if(type == "follow"){
+            $api.html($api.byId('follows'),'<img src="../images/same_content/attentioned.png" onclick="followed()" alt="">');
+            Toast('关注成功',1000);
+          }else if(type == "like"){
+            Toast('点赞成功',1000);
+            var likenums = likenum+1;
+            $api.text($api.byId('likenum'), likenums);
+            $api.html($api.byId('likeimg'),"&#xe635;");
+          }else if(type == "favorite"){
+            Toast('收藏成功',1000);
+            $api.html($api.byId('favorite'),'<i class="iconfont iconcollection">&#xe672;</i>');
+            document.getElementById('favorite').removeAttribute('onclick');
+            document.getElementById('favorite').setAttribute('onclick','faved(\'favorite\')')
+          }
+        } else {
+            // Toast(ret.msg,1000);
+        }
+    });
+  }
+  //已收藏
+  function faved(type){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var favdata = '';
+    resData={};
+    if(userdata){
+      resData.uid = userdata['uid'];
+      resData.id = pageParamTid;//文章id
+      resData.type = 'tid';//收藏帖子
+    }else {
+      Toast('请登录之后再进行操作')
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/actionCancel.php?action=fav',
+        method: 'post',
+        data: {
+            values: resData
+        }
+    },function(ret, err){
+        if (ret.status==1) {
+          $api.html($api.byId('favorite'),'<i class="iconfont iconcollection">&#xe6a7;</i>')
+          document.getElementById('favorite').removeAttribute('onclick');
+          document.getElementById('favorite').setAttribute('onclick','footerAll(\'favorite\')')
+          Toast('取消收藏成功',1000)
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+  //已关注
+  function followed(){
+    var pageParamAuthorid = api.pageParam.authorid;
+    var followdatas = {};
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    if(userdata){
+      followdatas.uid=userdata.uid;
+      followdatas.followuid=pageParamAuthorid;
+    }else{
+      Toast('请登录之后再进行操作')
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/actionCancel.php?action=follow',
+        method: 'post',
+        data: {
+            values: followdatas
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            $api.html($api.byId('follows'),'<img src="../images/same_content/attention.png" onclick="footerAll(\'follow\')" alt="">');
+            Toast('取消关注成功',1000)
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+  //回复内容点赞
+  function  postlike(pid) {
+    if(userdata){
+      api.ajax({
+          url: 'http://www.lxzntech.com/postLike.php',
+          method: 'post',
+          data: {
+              values: {
+                  pid:pid,uid:userdata['uid'],username:userdata['username'],tid:pageParamTid
+              }
+          }
+      },function(ret, err){
+          if (ret.status == 1) {
+              var data = ret.data;
+              $api.html($api.byId('postlike'+pid),"&#xe635;");
+              Toast('点赞成功')
+          } else {
+              alert(ret.msg);
+          }
+      });
+    }else{
+      Toast('请登录之后再进行操作')
+    }
+  }
+
+  //主题评论提交
+  function criticism(){
+        var attenchb = document.getElementById('attenchb').checked;
+        var userdata = {};
+        var pageParamTid = api.pageParam.tid;
+        userdata = $api.getStorage('userdata');
+        var textarea = $api.val($api.byId('textarea'));
+        var criticismData={};
+        criticismData.fid = data['fid'];
+        criticismData.tid = pageParamTid;//文章id
+        criticismData.authorid = userdata['uid'];//操作用户id
+        criticismData.author = userdata['username'];//操作用户id名称
+        criticismData.message = textarea;//评论内容
+        criticismData.pid = replyPid?replyPid:0;
+        criticismData.follow = attenchb;
+        if(criticismData.pid==0){
+          criticismData.bbcodeoff = -1;
+        }else {
+          criticismData.bbcodeoff = 0;
+        }
+        if(textarea==''){
+          Toast('请输入你要评论的内容',2000)
+        }else {
+          api.ajax({
+            url: 'http://www.lxzntech.com/comment.php',
+            method: 'post',
+            data: {
+                  values:criticismData
+            }
+            },function(ret, err){
+            if (ret.status == 1) {
+              Toast('发表成功',1000);
+              CommentDetailsData();
+            }else {
+              Toast(ret.msg);
+            }
+        });
+      }
+    }
+  //自定义弹框
+  function Toast(msg,duration){
+      duration=isNaN(duration)?1000:duration;
+      var m = document.createElement('div');
+      m.innerHTML = msg;
+      m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+      document.body.appendChild(m);
+      setTimeout(function() {
+          var d = 0.5;
+          m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+          m.style.opacity = '0';
+          setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+      }, duration);
+  }
+
+  function openFriendDetailsData(authorid){
+    if(userdata){
+      api.openWin({
+          name: 'FriendDetailsData',
+          url: 'FriendDetailsData.html',
+          pageParam: {
+              uid: authorid
+          }
+      });
+    }else {
+      Toast('请登录之后再进行操作')
+    }
+
+  }
+  //视频加载
+  function openVideo(str){
+    var videoPlayer = api.require('videoPlayer');
+    videoPlayer.play({
+        styles: {
+            head: {
+                bg: 'rgba(0.5,0.5,0.5,0.7)',
+                height: 24,
+                titleSize: 10,
+                titleColor: '#fff',
+                backSize: 24,
+                backImg: 'fs://img/back.png',
+                setSize: 24,
+                setImg: 'fs://img/set.png'
+            },
+            foot: {
+                bg: 'rgba(0.5,0.5,0.5,0.7)',
+                height: 24,
+                playSize: 24,
+                playImg: 'fs://img/back.png',
+                pauseImg: 'fs://img/back.png',
+                nextSize: 24,
+                nextImg: 'fs://img/back.png',
+                timeSize: 14,
+                timeColor: '#fff',
+                sliderImg: 'fs://img/slder.png',
+                progressColor: '#696969',
+                progressSelected: '#76EE00'
+            }
+        },
+        path:str , //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
+        //在 android 平台上不支持 widget://
+        autoPlay: true //（可选项）布尔类型；打开时是否自动播放；默认：true（自动播放）
+    }, function(ret, err) {
+
+    });
+  }
+  // function changeboss(){
+  //     var changebos = api.pageParam.change;
+  //     if(changebos=='1'){
+  //       var headerbox = document.getElementById('headerbox').scrollHeight;
+  //       var bodyScrollTop = document.body.scrollTop;
+  //       window.scrollTo(0,100)
+  //     }
+  // }
+</script>
+
+</html>

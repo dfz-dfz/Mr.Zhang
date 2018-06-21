@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>举报取消</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            margin: 0;
+            padding: 0;
+          }
+          body,html{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(241, 241, 241, 0.2);
+          }
+          ul li {
+            list-style-type: none;
+          }
+
+          .accusation{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background-color: #fff;
+          }
+          .accusation .acc{
+            height: 48px;
+            width: 100%;
+            line-height: 48px;
+            text-align: center;
+            color: #000;
+            font-size: 16px;
+          }
+          .accusation .accu{
+            border-bottom: 1px solid #e1e1e1;
+          }
+      </style>
+  </head>
+  <body>
+      <div class="accusation">
+          <div class="acc accu" onclick="accus()">举报</div>
+          <div class="acc" onclick="closeAcc()">取消</div>
+      </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      var pid;
+      var tid;
+      var type;
+      apiready = function(){
+         pid = api.pageParam.pid;
+         tid = api.pageParam.tid;
+         type = api.pageParam.type;
+      };
+
+      function accus(){
+        var userdata = {};
+        userdata = $api.getStorage('userdata');
+        api.ajax({
+            url: 'http://www.lxzntech.com/report.php',
+            method: 'post',
+            data: {
+                values: {
+                  // rid	举报id：如帖子评论的pid；文章评论的cid	string	Y	-
+                  // tid	举报的帖子tid或者文章的aid	string	Y	-
+                  // uid	举报人id	string	Y	-
+                  // username	举报人名称	string	Y	-
+                  // type	举报的类型：post为帖子，article为文章	string	Y	-
+                  // message	举报说明	string	N	-
+                  rid:pid,tid:tid,uid:userdata['uid'],username:userdata['username'],type:type
+                }
+            }
+        },function(ret, err){
+            if (ret.status == 1) {
+                Toast('举报成功',1000)
+                setTimeout(function(){api.closeFrame();},1000);
+            } else {
+                Toast(ret.msg,1000);
+            }
+        });
+
+      }
+      //关闭当前窗口
+      function closeAcc(){
+        api.closeFrame({
+            name: 'accusation'
+        });
+
+      }
+      //自定义弹框
+      function Toast(msg,duration){
+          duration=isNaN(duration)?3000:duration;
+          var m = document.createElement('div');
+          m.innerHTML = msg;
+          m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+          document.body.appendChild(m);
+          setTimeout(function() {
+              var d = 0.5;
+              m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+              m.style.opacity = '0';
+              setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+          }, duration);
+      }
+  </script>
+  </html>

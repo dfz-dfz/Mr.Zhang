@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+  />
+  <title>关于</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    a {
+      text-decoration: none;
+      color: #1e1e1e;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    }
+
+    body,
+    html {
+      background-color: #f1f1f1;
+      width: 100%;
+      height: 100%;
+    }
+
+    ul li {
+      list-style-type: none;
+    }
+
+    /*my-header*/
+    .myhead{
+      width: 100%;
+      height: 224px;
+      position: relative;
+    }
+    .myheader {
+      width: 100px;
+      padding-top: 58px;
+      position: absolute;
+      left: 50%;
+      margin-left: -50px;
+    }
+    .myheader img{
+      width: 100%;
+      height: 100%;
+    }
+    .community {
+      width: 100%;
+      background-color: #f2f2f2;
+      height: 90%;
+    }
+
+    .section {
+      width: 100%;
+      height: 70px;
+       background: url('../images/same_content/Header.jpg');
+
+    }
+
+    .section .sect {
+      float: left;
+      width: 33.33%;
+      height: 100%;
+    }
+
+    .section .fo {
+      font-size: 16px;
+      color: #ffffff;
+      line-height: 86px;
+      text-align: center;
+    }
+
+    .section .left>i{
+      position: absolute;
+      left: 15px;
+
+      top:35px;
+      width: 15px;
+      height: 15px;
+
+      border: 1px solid #fff;
+      border-top: none;
+      border-right: none;
+      transform:rotate(45deg);
+      -webkit-transform:rotate(45deg);
+    }
+
+    .section .right ul li {
+      float: right;
+      background: #fff;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      position: relative;
+      right: 8px;
+      top: 28px;
+      margin-left: 5px;
+    }
+
+    .upper,
+    .lower {
+      width: 100%;
+      background-color: #fff;
+      margin-bottom: 10px;
+    }
+    .upper a .div{
+      font-size: 16px;
+      color: #1e1e1e;
+    }
+    .upper a,
+    .lower a {
+      display: flex;
+      width: 100%;
+      height: 50px;
+      font-size: 17px;
+      justify-content: space-between;
+      padding: 0 10px;
+      align-items: center;
+    }
+
+    .upper a:nth-of-type(1),
+    .lower a:nth-of-type(1) {
+      border-bottom: 1px solid #eee;
+    }
+
+    .upper a span {
+      color: #8d8d8d;
+      font-size: 12px;
+    }
+
+    .lower .help_i {
+      position: absolute;
+      right: 15px;
+      top:426px;
+      width: 12px;
+      height: 12px;
+      border: 1px solid #000;
+      border-top: none;
+      border-right: none;
+      transform:rotate(-135deg);
+      -webkit-transform:rotate(-135deg);
+    }
+    .lower .score_i{
+      position: absolute;
+      right: 15px;
+      top:474px;
+      width: 12px;
+      height: 12px;
+      border: 1px solid #000;
+      border-top: none;
+      border-right: none;
+      transform:rotate(-135deg);
+      -webkit-transform:rotate(-135deg);
+    }
+    footer{
+      color: #8d8d8d;
+      font-size: 10px;
+      line-height: 15px;
+      padding-bottom: 10px;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      margin-left: -123.5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="community">
+    <div class="section">
+      <div class="sect left">
+        <i onclick="api.closeWin()"></i>
+      </div>
+      <div class="sect fo">关于</div>
+    </div>
+    <div class="myhead">
+        <div class="myheader">
+            <img src="../images/about/Logo.png">
+        </div>
+    </div>
+    <div class="mymain">
+      <ul class="upper">
+        <a href="javascript:;">
+          <div>当前版本</div>
+          <span>1.0.0</span>
+        </a>
+        <a href="javascript:;">
+          <div>新版更新</div>
+          <span>无新版</span>
+        </a>
+      </ul>
+      <ul class="lower">
+        <a href="javascript:;">
+          <div>帮助与反馈</div>
+          <i class="help_i"></i>
+        </a>
+        <a href="javascript:;">
+          <div>给软件评分</div>
+          <i class="score_i"></i>
+        </a>
+      </ul>
+      <footer>
+        <p>copyright @2018 fenxiangzhineng All Right Reserved</p>
+      </footer>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</html>

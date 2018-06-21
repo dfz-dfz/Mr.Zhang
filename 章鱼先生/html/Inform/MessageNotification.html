@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>消息通知</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+      <style>
+      @font-face {
+        font-family: 'iconfont';
+        src: url('../../icon/iconfont.eot');
+        src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../../icon/iconfont.woff') format('woff'),
+        url('../../icon/iconfont.ttf') format('truetype'),
+        url('../../icon/iconfont.svg#iconfont') format('svg');
+      }
+
+          body,html{
+            width: 100%;height: 100%; margin: 0; padding: 0;
+          }
+
+          ul li{
+            list-style-type:none;
+          }
+
+          /*section 顶部样式*/
+          .section{
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            background: url('../../images/same_content/Header.jpg');
+          }
+          .section .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .section .fo{
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 86px;
+            text-align: center;
+            white-space: nowrap;
+          }
+          .section .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+          }
+          /*section end*/
+
+          /*ul菜单*/
+          .inform ul{
+            padding-top: 70px;
+          }
+          .inform ul li{
+            width: 100%;
+            height: 54px;
+            display: flex;
+            align-items: center;
+
+          }
+
+          .inform ul li span{
+            width: 32px;
+            height: 32px;
+            margin-left: 5px;
+            background-size: 80% !important;
+            background-position: center center !important;
+            font-family: "iconfont" !important;
+
+          }
+
+          .inform ul li .main{
+            width: 100%;
+            height: 44px;
+            float: right;
+            border-bottom: 1px solid #e1e1e1;
+            font-family: "iconfont" !important;
+            margin-left: 6px;
+          }
+
+          .inform ul li .time{
+            font-size: 9px;
+            color: #808080;
+            float: right;
+            margin-top: -36px;
+            margin-right: 10px;
+            position: relative;
+          }
+          .inform ul li .time .num{
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 14px;
+            background-color: #d84a42;
+            bottom:-20px;
+            right: 0;
+            color: #fff;
+          }
+          .inform ul li .title{
+            height: 50%;
+            font-size: 14px;
+            color: #111;
+            line-height: 28px;
+          }
+
+          .inform ul li .text{
+            height: 50%;
+            font-size: 11px;
+            color: #7c7c7c;
+            line-height: 20px;
+          }
+          .iconfont{
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #000;
+            margin-left: 6px;
+          }
+          /*ul菜单 edn*/
+      </style>
+  </head>
+  <body>
+    <div class="inform">
+      <!-- section 顶部 -->
+        <div class="section">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">消息通知</div>
+        </div>
+      <!-- section end -->
+      <!-- ul菜单 -->
+      <ul>
+        <li>
+          <i class="iconfont">&#xe63a;</i>
+          <div id="communityinfo" class="main" onclick="openCommunityNotification()">
+            <div class="title">社区通知</div>
+            <div class="text">有一条新的评论</div>
+            <div class="time">04-11 <div class="num">1</div></div>
+          </div>
+        </li>
+        <li>
+          <i class="iconfont">&#xe63a;</i>
+          <div id="articalinfo" class="main" onclick="openArticalNotification()">
+            <div class="title">文章通知</div>
+            <div class="text">有一条新的点赞</div>
+            <div class="time">04-11 <div class="num">1</div></div>
+          </div>
+        </li>
+        <li>
+          <i class="iconfont">&#xe62f;</i>
+          <div id="friendinfo" class="main" onclick="openFriendNotification()">
+            <div class="title">好友通知</div>
+            <div class="text">有一条新回复</div>
+            <div class="time">04-11 <div class="num">1</div></div>
+          </div>
+        </li>
+      </ul>
+      <!-- ul菜单 end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript">
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+
+    apiready = function(){
+      messagebush();
+      setInterval("messagebush()",5000)
+    }
+
+    function messagebush(){
+      var cominfo = '';
+      var artinfo = '';
+      var friinfo = '';
+      if(userdata){
+        api.ajax({
+            url: 'http://www.lxzntech.com/getNotice.php',
+            method: 'post',
+            data: {
+                values: {
+                    type: 'msgInfo',uid:userdata['uid']
+                }
+            }
+        },function(ret, err){
+            if (ret.status == 1) {
+                var data = ret.data;
+
+                cominfo+='<div class="title">社区通知</div>';
+                if(data['post']['total']>0){
+                  cominfo+='<div class="text">'+data['post']['msg']+'</div>';
+                }else {
+                  cominfo+='<div class="text">暂无消息</div>';
+                }
+                if(data['post']['total']>0){
+                  cominfo+='<div class="time">'+data['post']['dateline']+'<div class="num">'+data['post']['total']+'</div></div>';
+                }else {
+                  cominfo+='';
+                }
+
+                artinfo+='<div class="title">文章通知</div>';
+                if(data['article']['total']>0){
+                  artinfo+='<div class="text">'+data['article']['msg']+'</div>';
+                }else {
+                  artinfo+='<div class="text">暂无消息</div>';
+                }
+                if(data['article']['total']>0){
+                  artinfo+='<div class="time">'+data['article']['dateline']+'<div class="num">'+data['article']['total']+'</div></div>';
+                }else{
+                  artinfo+='';
+                }
+
+                friinfo+='<div class="title">好友通知</div>';
+                if(data['follow']['total']>0){
+                  friinfo+='<div class="text">'+data['follow']['msg']+'</div>';
+                }else{
+                  friinfo+='<div class="text">暂无消息</div>';
+                }
+                if(data['follow']['total']>0){
+                  friinfo+='<div class="time">'+data['follow']['dateline']+'<div class="num">'+data['follow']['total']+'</div></div>';
+                }else {
+                  friinfo+='';
+                }
+
+            } else {
+                // alert( JSON.stringify( err ) );
+            }
+            $api.html($api.byId('communityinfo'), cominfo);
+            $api.html($api.byId('articalinfo'), artinfo);
+            $api.html($api.byId('friendinfo'), friinfo);
+        });
+      }else{
+        cominfo+='<div class="title">社区通知</div>';
+          cominfo+='<div class="text">暂无消息</div>';
+        artinfo+='<div class="title">文章通知</div>';
+          artinfo+='<div class="text">暂无消息</div>';
+        friinfo+='<div class="title">好友通知</div>';
+          friinfo+='<div class="text">暂无消息</div>';
+        $api.html($api.byId('communityinfo'), cominfo);
+        $api.html($api.byId('articalinfo'), artinfo);
+        $api.html($api.byId('friendinfo'), friinfo);
+      }
+    }
+
+    function openFriendNotification(){
+      api.openWin({
+          name: 'FriendNotification',
+          url: 'FriendNotification.html',
+          pageParam: {
+              type: 'follow'
+          }
+      });
+
+    }
+
+    function openArticalNotification(){
+      api.openWin({
+          name: 'ArticalNotification',
+          url: 'ArticalNotification.html',
+          pageParam: {
+              type: 'article'
+          }
+      });
+
+    }
+
+    function openCommunityNotification(){
+      api.openWin({
+          name: 'CommunityNotification',
+          url: 'CommunityNotification.html',
+          pageParam: {
+                type: 'topic'
+          }
+      });
+
+    }
+  </script>
+  </html>

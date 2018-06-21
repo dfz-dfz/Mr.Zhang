@@ -1,0 +1,509 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="css/api.css" />
+    <style type="text/css">
+    @font-face {
+      font-family: 'iconfont';
+      src: url('icon/iconfont.eot');
+      src: url('icon/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('icon/iconfont.woff') format('woff'),
+      url('icon/iconfont.ttf') format('truetype'),
+      url('icon/iconfont.svg#iconfont') format('svg');
+    }
+        .iconfont,
+        .iconfonta{
+            font-family: "iconfont" !important;
+            font-size: 18px;
+            color: #e8e8e8;
+            position: absolute;
+            top: 0;
+            right: 38px;
+
+        }
+        .iconfont{
+          position: absolute;
+          top: 0;
+          left: 10px;
+          width: 18px;
+          height: 18px;
+        }
+
+        .iconfonta {
+          width: 18px;
+          height: 18px;
+          top: 0;
+          right: 10px;
+          font-size: 20px;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        i {
+            font-style: normal;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+
+        .header {
+            height: 68px;
+            width: 100%;
+            line-height: 54px;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 9;
+            background-color: #343434;
+        }
+
+        .header.myself,
+        header.main {
+            background: #666;
+            line-height: 54px;
+            color: #fff;
+        }
+
+        .index .discov{
+          display: inline-block;
+          width: 50%;
+          height: 100%;
+          position: absolute;
+          top:10px;
+          right: 50%;
+          left: 50%;
+          margin-left: -25%;
+        }
+
+      /*.index .discov>i{
+          position: absolute;
+          height: 16px;
+          top: 19px;
+          border-left:0px solid #d5d5d5;
+          border-right:1px solid #d5d5d5;
+        }*/
+        .index .discov a{
+          font-size: 18px;
+          color: #a5a5a5;
+          width: 38%;
+        }
+        .index .discov a.hover{
+          color:#fff;
+          height: 100%;
+          font-weight:600;
+        }
+        .index .serchedit{
+          height: 56px;
+          width: 10%;
+          position: absolute;
+          left: 0;
+          top:9px;
+        }
+        .index .edit{
+          margin-left: 10px;
+          width: 16px;
+        }
+        header img{
+          width: 18px;
+
+        }
+        /*脚步*/
+
+        footer {
+            height: 50px;
+            width: 100%;
+            background-color: #81a9c3;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        footer ul {
+            width: 100%;
+            height: 100%;
+            background: #fdfdfd;
+            border-top: 1px solid #efefef;
+        }
+
+        footer ul li {
+            width: 33.333%;
+            height: 100%;
+            float: left;
+            background: #fdfdfd;
+        }
+
+        footer ul li span {
+            height: 20px;
+            font-size: 10px;
+            display: inline;
+        }
+
+        footer ul li div {
+            height: 14px;
+            font-size: 10px;
+            color: #999;
+        }
+
+        footer ul li div.footerBg {
+            height: 36px;
+            width: 36px;
+            margin: 0 auto;
+        }
+
+        footer ul li div.footerBg div {
+            width: 26px;
+            height: 26px;
+            position: relative;
+            margin: 0 auto;
+            top: 6px;
+        }
+
+        footer ul li div.footerBg.big {
+            position: relative;
+            margin: 0 auto;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            /*background: #666;*/
+            font-family: "iconfont" !important;
+            font-size: 50px;
+            line-height: 50px;
+            color:#1d1d1d;
+        }
+        footer ul li div.footerBg.one {
+            font-family: "iconfont" !important;
+            font-size: 26px;
+            line-height: 38px;
+            color:#1d1d1d;
+        }
+        footer ul li div.footerBg.three {
+            font-family: "iconfont" !important;
+            font-size: 28px;
+            line-height: 39px;
+            color:#1d1d1d;
+        }
+        .bottomIndex{
+          color:#000;
+          line-height: 10px;
+        }
+        .bottomMy{
+          color: #000;
+          line-height: 10px;
+        }
+        /*.bottomIndex.current{
+          color:#000;
+          font-weight:bold;
+        }*/
+        .flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            position: relative;
+        }
+
+        .serchedit {
+            display: none;
+        }
+
+        .serchedit.current {
+            display: block;
+        }
+
+        .serchedit.sent {
+            right:0;
+            left:auto;
+        }
+    </style>
+</head>
+
+<body class="wrap">
+    <header class="header index current" id="header">
+        <div class="discov">
+            <a style="margin-right:-5px;" class="menu hover" onclick="fnSetNavMenuIndex(0)">发现</a>
+            <i></i>
+            <a class="menu" onclick="fnSetNavMenuIndex(1)">社区</a>
+        </div>
+        <div class="serchedit current" id="serchedit current">
+            <i onclick="openSearch()" class="iconfont">&#xe612;</i>
+        </div>
+        <div class="serchedit sent" id="serchedit">
+            <i onclick="openFindChoice()" class="iconfonta">&#xe60e;</i>
+        </div>
+    </header>
+
+
+
+    <section class="flex-1">
+    </section>
+    <footer id="footer">
+        <ul id="Sfooter">
+            <li onclick="clickRandomSwiBtn1()" class="footbottom">
+                <div class="footerBg one">
+                    &#xe621;
+                </div>
+                <div class="bottomIndex">首页</div>
+            </li>
+            <li onclick="clickRandomSwiBtn2()" class="footbottom">
+                <div class="footerBg big two">
+                    &#xe618;
+                </div>
+            </li>
+            <li onclick="clickRandomSwiBtn3()" class="footbottom">
+                <div class="footerBg three">
+                    &#xe61e;
+                </div>
+                <div class="bottomMy">我的</div>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript">
+    var userdata = {};
+    var u = navigator.userAgent, app = navigator.appVersion;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    apiready = function() {
+        userdata = $api.getStorage('userdata');
+
+        // 引导页
+        var intro_ist = $api.getStorage('introt');
+         if (!intro_ist) {
+          api.openWin({
+              name: 'index_introt',
+              url: 'html/index_introt.html',
+              pageParam: {
+                  name: 'index_introt'
+              }
+          });
+        }
+
+        api.addEventListener({
+            name: 'indexleft'
+        }, function(ret, err) {
+            Goright();
+        });
+        api.addEventListener({
+            name: 'indexright'
+        }, function(ret, err) {
+            Goleft();
+        });
+        //状态栏颜色
+        api.setStatusBarStyle({
+            style: 'light',
+            color:'#363636'
+        });
+        var header = $api.dom('header'); // 获取 header 标签元素
+        var footer = $api.dom('footer'); // 获取 footer 标签元素
+        // 1.修复开启沉浸式效果带来的顶部Header与手机状态栏重合的问题，最新api.js方法已支持适配iPhoneX；
+        // 2.默认已开启了沉浸式效果 config.xml中 <preference name="statusBarAppearance" value="true"/>
+        // 3.沉浸式效果适配支持iOS7+，Android4.4+以上版本
+        headerH = $api.fixStatusBar(header);
+        $api.fixIos7Bar(header);
+        // 最新api.js为了适配iPhoneX增加的方法，修复底部Footer部分与iPhoneX的底部虚拟横条键重叠的问题；
+        footerH = $api.fixTabBar(footer);
+        menus = $api.domAll(header, ".menu");
+
+        api.openFrameGroup ({
+          name: 'toggleIndex',
+          background: '#fff',
+          scrollEnabled: false,
+          rect: {
+            marginTop: 54, // main页面距离win顶部的高度
+            marginBottom: footerH, // main页面距离win底部的高度
+            w: 'auto' // main页面的宽度 自适应屏幕宽度
+          },
+          index: 0,
+          frames: [{
+              name: 'Discovery',
+              url: 'html/Discovery.html',
+              bgColor: '#fff'
+          },{
+              name: 'ThisWeekHot',
+              url: 'html/Community.html',
+              bgColor: '#000'
+          }
+        ]
+      }, function(ret, err){
+          SetClass(ret.index);
+          var serchedit = document.getElementById('serchedit');
+          if(ret.index==0){
+            serchedit.style.display = 'none';
+            api.closeFrame({
+                name: 'FindChoice'
+            });
+          }else if(ret.index==1){
+            serchedit.style.display = 'block';
+          }
+
+
+        });
+    };
+    //定义全局元素
+    var menus, header, footer, headerH, footerH, navH;
+    //定义首页发现
+    //点击切换社区栏目
+    function fnSetNavMenuIndex(index_) {
+        SetClass(index_);
+        api.setFrameGroupIndex({
+            name: 'toggleIndex',
+            index: index_,
+            scroll: true
+        });
+    }
+
+    function Goright() {
+        api.setFrameGroupIndex({
+            name: 'toggleIndex',
+            index: 1,
+            scroll: true
+        });
+    }
+
+    function Goleft() {
+        api.setFrameGroupIndex({
+            name: 'toggleIndex',
+            index: 0,
+            scroll: true
+        });
+    }
+    //循环查出判断Class
+    function SetClass(index_) {
+        for (var i = 0; i < menus.length; i++) {
+            if (index_ == i) {
+                $api.addCls(menus[i], "hover");
+            } else {
+                $api.removeCls(menus[i], "hover");
+            }
+        }
+    }
+    function clickRandomSwiBtn1() {
+
+        api.closeFrame({
+            name: 'SmartLife'
+        });
+        api.closeFrame({
+            name: 'My'
+        });
+      $api.html($api.dom(".footerBg.one"),'&#xe621;')
+      $api.html($api.dom(".footerBg.three"),'&#xe61e;')
+      $api.html($api.dom(".footerBg.two"),'&#xe618;')
+      if (isIOS) {
+          api.setStatusBarStyle({
+              style: 'light',
+              color:'#363636'
+          });
+      }
+    }
+
+    //打开zhineng页面
+    function clickRandomSwiBtn2() {
+
+        api.openFrame({
+            name: 'SmartLife',
+            url: 'html/SmartLife.html',
+            rect: {
+                marginTop: 0,
+                marginBottom: footerH,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces: false
+        });
+
+        $api.html($api.dom(".footerBg.two"),'&#xe615;')
+        $api.html($api.dom(".footerBg.three"),'&#xe61e;')
+        $api.html($api.dom(".footerBg.one"),'&#xe629;')
+
+        if (isIOS) {
+            api.setStatusBarStyle({
+                style: 'dark',
+                color:'#363636'
+            });
+        }
+
+    }
+    //打开My页面
+    function clickRandomSwiBtn3() {
+
+        api.openFrame({
+            name: 'My',
+            url: 'html/my.html',
+            rect: {
+                marginTop: 0,
+                marginBottom: footerH,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces: false
+        });
+      $api.html($api.dom(".footerBg.three"),'&#xe620;')
+      $api.html($api.dom(".footerBg.one"),'&#xe629;')
+      $api.html($api.dom(".footerBg.two"),'&#xe618;')
+
+      if (isIOS) {
+          api.setStatusBarStyle({
+              style: 'light',
+              color:'#363636'
+          });
+      }
+    }
+    //打开search页面
+    function openSearch() {
+        api.openWin({
+            name: 'search',
+            url: 'html/Search.html'
+        });
+
+        if (isIOS) {
+            api.setStatusBarStyle({
+                style: 'dark',
+                color:'#363636'
+            });
+        }
+    }
+    var num = 0;
+
+    function openFindChoice(){
+        api.openWin({
+            name: 'ReleaseImageText',
+            url: 'html/ReleaseImageText.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+        if (isIOS) {
+            api.setStatusBarStyle({
+                style: 'dark',
+                color:'#363636'
+            });
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>设备共享</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+
+        * {
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+        /*header 顶部样式*/
+
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 16px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+        /*header end*/
+        /*main*/
+
+        .main {
+            width: 100%;
+            padding-top: 80px;
+        }
+
+        .main .share {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .main .share .left {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            left: 10px;
+            top: 5%;
+            text-align: center;
+            background-size: 100%;
+            border-radius: 50%;
+        }
+
+        .main .share .left img {
+            width: 100%;
+        }
+
+        .main .share .mid {
+            position: absolute;
+            left: 60px;
+        }
+
+        .main .share .mid .t {
+            font-size: 14px;
+            color: #2f2f2f;
+            line-height: 28px;
+        }
+
+        .main .share .mid .b {
+            font-size: 12px;
+            color: #8e8e8e;
+            line-height: 20px;
+        }
+
+        a {
+            display: block;
+            border: 1px solid #cccccc;
+            color: #111;
+            right: 10px;
+            width: 20%;
+            margin: 10px auto;
+            text-align: center;
+            position: absolute;
+            text-decoration: none;
+        }
+
+        .popup {
+            border-radius: 10px;
+            width: 55%;
+            margin: -70px auto;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            transform: translate(-50%);
+            display: none;
+        }
+
+        .popup p {
+            padding: 20px 10px 20px 10px;
+            font-size: 14px;
+            color: #1d1d1d;
+        }
+
+        .popup .button {
+            display: flex;
+            height: 35px;
+            font-size: 14px;
+            color: #111;
+        }
+
+        .popup .button span {
+            display: flex;
+            flex: 0 0 50%;
+            border: 1px solid #e1e1e1;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+
+        /*main end*/
+    </style>
+</head>
+
+<body>
+    <div class="deviceshare">
+        <!-- header begin-->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="CloseDeviceShare()"></i></div>
+                <div class="sect fo">管理</div>
+
+            </div>
+        </div>
+        <!-- header end -->
+
+        <!-- main -->
+        <div class="main">
+            <div class="share">
+                <div class="left"><img src="../../images/gatewayimages/choosedevicetype/camera.png" alt=""></div>
+                <div class="mid">
+                    <div class="t">智能摄像头</div>
+                    <div class="b"><span style="letter-spacing:3px;">来自KEVIN的分享</span></div>
+                </div>
+                <div class="delete" style="position:relative;">
+                    <a class="del" href="javascript:;">删除</a> </div>
+                <div class="mask">
+                </div>
+                <div class="popup">
+                    <p>确认删除来自“<strong style="font-size:13px;color:#000;">KEVIN</strong>”分享的智能摄像头</p>
+                    <div class="button">
+                        <span class="close">取消</span>
+                        <span class="confirm">确定</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="share">
+                <div class="left"><img src="../../images/gatewayimages/choosedevicetype/bodysensor.png" alt=""></div>
+                <div class="mid">
+                    <div class="t">人体红外传感器</div>
+                    <div class="b"><span style="letter-spacing:3px;">来自KEVIN的分享</span></div>
+                </div>
+                <div class="delete" style="position:relative;">
+                    <a class="del" href="javascript:;">删除</a> </div>
+                <div class="mask">
+                </div>
+                <div class="popup">
+                    <p>确认删除来自“<strong style="font-size:13px;color:#000;">KEVIN</strong>”分享的智能摄像头</p>
+                    <div class="button">
+                        <span class="close">取消</span>
+                        <span class="confirm">确定</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- main end -->
+
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var mask = document.querySelector(".mask");
+    var popup = document.querySelector(".popup")
+    var del = document.querySelector(".del")
+    var close = document.querySelector(".close")
+    var confirm = document.querySelector(".confirm")
+    del.addEventListener("click", function() {
+        mask.style.display = "block"
+        popup.style.display = "block"
+    })
+    close.addEventListener("click", function() {
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+
+    confirm.addEventListener('click', function(a) {
+        ///点击确认后的逻辑，比如说我这里弹出
+        /*    alert("") ///此处是你自己想执行的逻辑
+            //再次关闭*/
+        mask.style.display = ""
+        popup.style.display = ""
+    })
+</script>
+
+</html>

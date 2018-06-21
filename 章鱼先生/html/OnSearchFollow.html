@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+  />
+  <title>打开搜索</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    html,body {
+      height: 100%;
+    }
+
+    ul,li,ol {
+      list-style: none;
+    }
+
+    i {
+      font-style: normal;
+    }
+    .ul{
+      border-bottom:5px solid #f2f2f2;
+      width: 96%;
+      margin: 0 2% 0 2%;
+    }
+    .flex{
+      position: relative;
+      padding-top: 30px;
+    }
+    .search-input {
+      height: 28px;
+      text-align: center;
+      background-color: #fff;
+      font-size: 16px;
+      color: #939494;
+      outline: none;
+      width: 85%;
+      padding-left: 30px;
+    }
+    .searchbtn{
+      position: absolute;;
+      vertical-align:middle;
+      text-align: center;
+      line-height: 50px;
+      font-size: 15px;
+      width: 15%;
+      color: #686868;
+      font-style: normal;
+      bottom: -4px;
+      right: 0;
+    }
+    .flex img{
+      position: absolute;
+      bottom: 14px;
+      width: 16px;
+      left: 50%;
+      margin-left: -110px;
+    }
+    .content,.share,.contentitem {
+      display: flex;
+      padding: 5px 8px 0px 8px;
+      position: relative;
+      background-color: #fff;
+      margin-bottom: 5px;
+      height: 75px;
+      width: 100%;
+    }
+
+    .contentitem img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    /*头部结束*/
+    .contentitem .title{
+      font-size: 14px;
+      color: #111;
+    }
+    .contentitem .cate {
+      font-size: 10px;
+      padding: 1px 2px;
+      border: 1px solid #4e5d67;
+      color: #4e5d67;
+      text-align: center;
+    }
+    .contentitem p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp:1;
+      -webkit-box-orient:vertical;
+      word-break: break-all;
+      width: 100%;
+      line-height: 28px;
+      font-size: 12px;
+      color: #3d3d3d;
+    }
+    .contentitem a{
+      position: absolute;
+      right: 8px;
+      font-size: 12px;
+      color: #1f4075;
+      padding: 2px 6px;
+      border: 1px solid #1f4075;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="artical">
+      <div class="searchbox">
+        <div id="header" style="height:44px;line-height: 44px">
+          <ul class="ul">
+            <li class="flex">
+              <input type="text" class="search-input" placeholder="请输入搜索内容" autofocus="autofocus" id="input" maxLength="10" onkeyup="searchFans()" onfocus="SearchFocus()" onblur="SearchBlur()"/>
+              <img src="../images/same_content/search.png" alt="" id="img">
+              <div class="searchbtn" onclick="api.closeWin()">取消</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="main" id="main"></div>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+
+    }
+
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var inputtext = document.getElementById('input');
+    var images = document.getElementById('img');
+
+    function SearchFocus(){
+      images.style.left = 10 + 'px';
+      images.style.marginLeft = 'auto';
+      inputtext.style.textAlign = 'left';
+    }
+
+    function SearchBlur(){
+      images.style.left = '50%';
+      images.style.marginLeft = -110 + 'px';
+      inputtext.style.textAlign = 'center';
+    }
+
+    function searchFans(){
+      var text = $api.val($api.byId('input'));
+      var word = text;
+      if(word != ''){
+        api.ajax({
+            url: 'http://www.lxzntech.com/tabMenu.php?type=follow&action=follow',
+            method: 'post',
+            data: {
+                values: {
+                    uid:userdata['uid'],word:word
+                }
+            }
+        },function(ret, err){
+            if (ret.status == 1) {
+                var html = '';
+                if (ret.status == 1) {
+                    var data = ret.data;
+                    for(var i=0;i<data.length;i++){
+                      html+='<div class="view" onclick="openFriendDetalisData('+data[i]['uid']+')">';
+                        html+='<div class="contentitem">';
+                          html+='<img src="'+data[i]['avatar']+'" alt="">';
+                          html+='<div class="commentcontent">';
+                            html+='<div class="title">'+data[i]['username']+'</div>';
+                            html+='<span class="cate">'+data[i]['group']+'</span>';
+                            if(data[i]['sign']){
+                              html+='<p>'+data[i]['sign']+'</p>';
+                            }else{
+                              html+='<p>暂无签名</p>';
+                            }
+                          html+='</div>';
+                          html+='<a style="color:#afafaf;border: 1px solid #afafaf;">已关注</a>';
+                        html+='</div>';
+                      html+='</div>';
+                    }
+                } else {
+                    alert( ret.msg);
+                }
+                $api.html($api.byId('main'),html);
+                Toast('搜索成功')
+            } else {
+                Toast( ret.msg );
+            }
+        });
+      }else{
+        Toast('请输入内容')
+        var html ='';
+        $api.html($api.byId('main'),html);
+      }
+    }
+
+    function openFriendDetalisData(uid) {
+        if(userdata){
+          api.openWin({
+              name: 'FriendDetailsData',
+              url: 'FriendDetailsData.html',
+              pageParam: {
+                  uid: uid
+              }
+          });
+        }else {
+          Toast('请登录再进行操作')
+        }
+    }
+
+    //自定义弹框
+    function Toast(msg,duration){
+        duration=isNaN(duration)?3000:duration;
+        var m = document.createElement('div');
+        m.innerHTML = msg;
+        m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+        document.body.appendChild(m);
+        setTimeout(function() {
+            var d = 0.5;
+            m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+            m.style.opacity = '0';
+            setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+        }, duration);
+    }
+    // 限制文本输入长度
+    var input = document.querySelector("#input")
+    console.log(input.maxLength);
+</script>
+</html>

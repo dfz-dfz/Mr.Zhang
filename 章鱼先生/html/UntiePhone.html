@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>解绑手机</title>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f1f1f1;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+        }
+
+        header {
+            height: 70px;
+            line-height: 86px;
+            position: fixed;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            background: url('../images/same_content/Header.jpg');
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            color: #fff;
+        }
+
+        header>i {
+          position: absolute;
+          left: 15px;
+          top:36px;
+          width: 12px;
+          height: 12px;
+          border: 1px solid #fff;
+          border-top: none;
+          border-right: none;
+          transform:rotate(45deg);
+          -webkit-transform:rotate(45deg);
+        }
+
+        .main {
+            padding-top: 28px;
+        }
+
+        .main ul {
+            padding: 0;
+        }
+
+        .main li {
+            height: 40px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            max-width: 300px;
+        }
+
+        .main li .bg {
+            background: #fff;
+            height: 100%;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+        }
+
+        .main li .bg.one {
+            width: 59%;
+            position: relative;
+        }
+
+        .main li div div {
+            float: left;
+        }
+
+        .main li .name {
+            height: 100%;
+            line-height: 40px;
+            padding-left: 5px;
+            color: #5c5c5c;
+            width:20%;
+            font-size: 16px;
+        }
+
+        .main li .input {
+            height: 100%;
+            line-height: 40px;
+            width: 73%;
+            max-width: 220px;
+            padding-left: 5%px;
+        }
+
+        .main li .input.one {
+            width: 60%;
+            max-width: 120px;
+        }
+
+        .main li .input input {
+            height: 35px;
+            width: 100%;
+            background-color: #fff;
+            font-size: 16px;
+            max-width: 230px;
+            color: #b3b3b3;
+            outline: none;
+        }
+
+        .main .bg.one .name.yzm {
+            position: absolute;
+            right: -120px;
+            border-radius: 4px;
+            width: 100px;
+            text-align: center;
+            background: #20232a;
+            color: #fff;
+            font-size: 16px;
+            padding-left: 0;
+        }
+
+        .main .bottom {
+            height: 40px;
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            max-width: 300px;
+            display: block;
+            border-radius: 5px;
+            background: #e8e8e8;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            background-color: #20232a;
+            font-size: 16px;
+        }
+        .main li .name.two{
+          width: 34%;
+        }
+        .main .tipstext{
+          font-size: 12px;
+          text-align: center;
+          color: #b3b3b3;
+          height: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <i onclick="api.closeWin()"></i>
+        <span>解绑手机</span>
+    </header>
+    <form action="" id='myForm' method="post" >
+      <div class="main">
+          <ul>
+              <li>
+                  <div class="bg">
+                      <div class="name">手机号</div>
+                      <div class="input">
+                          <input type="text" id="phonenum" maxlength="14"  placeholder="请输入手机号" onfocus="tips()" onblur="canceltips()">
+                      </div>
+                  </div>
+              </li>
+              <li>
+                  <div class="bg one">
+                      <div class="name two">验证码</div>
+                      <div class="input one">
+                          <input type="text" id="code" maxlength="8"  placeholder="请输入验证码">
+                      </div>
+                      <input type="button" class="name yzm" id="sendbtn" onclick="sendCode()" value="获取验证码">
+                  </div>
+              </li>
+              <div class="tipstext" id="tips"></div>
+          </ul>
+          <bottom class="bottom" onclick="binding()">解除绑定</bottom>
+      </div>
+    </form>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+
+    apiready = function(){
+
+    }
+    function tips(){
+      $api.text($api.byId('tips'),'修改绑定的手机号后，原手机号将不能再用来登录');
+    }
+    function canceltips(){
+      $api.text($api.byId('tips'),'');
+    }
+
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var phone = '';
+    var code = '';
+    function sendCode(){
+      var countdown = 60;
+      var sendbtn = $api.byId('sendbtn');
+      var phonenum = $api.val($api.byId('phonenum'));
+      if(!(/^1[3|7|5|8][0-9]\d{4,8}$/.test(phonenum))){
+         alert("请输入正确的手机号码");
+         document.getElementById('phonenum').focus();
+         return false;
+      }
+
+      phone = phonenum;
+      api.ajax({
+          url: 'http://www.lxzntech.com/sendSms.php',
+          method: 'post',
+          data: {
+              values: {
+                  phone:phone
+              }
+          }
+      },function(ret, err){
+          if (ret.status == 1) {
+              var data =ret.data;
+              Toast( '发送成功' );
+              sendbtn.disabled = true;
+              sendbtn.value = '重新发送'+countdown;
+              sendbtn.style.backgroundColor = '#e1e1e1';
+              clock = setInterval(timeclock,1000);
+              function timeclock(){
+                countdown--;
+                if(countdown > 0){
+                  sendbtn.value = '重新发送'+countdown;
+                  sendbtn.style.backgroundColor = '#e1e1e1';
+                }else{
+                  clearInterval(clock);
+                  sendbtn.disabled = false;
+                  sendbtn.value = '获取验证码';
+                  sendbtn.style.backgroundColor = '#20232a';
+                  nums = 60;
+                }
+              };
+          } else{
+              Toast(ret.msg);
+          }
+      });
+
+    }
+
+    function binding(){
+      var phonenum = $api.val($api.byId('phonenum'));
+      var codenum = $api.val($api.byId('code'));
+      phone = phonenum;
+      code = codenum;
+      api.ajax({
+          url: 'http://www.lxzntech.com/cancelMobile.php',
+          method: 'post',
+          data: {
+              values: {
+                  phone: phone,code:code,uid:userdata['uid']
+              }
+          }
+      },function(ret, err){
+          if (ret.status == 1) {
+              var data =ret.data;
+              Toast( '绑定成功' );
+              api.closeWin();
+              api.sendEvent({
+                  name: 'mydata'
+              });
+          } else {
+              Toast( ret.msg );
+          }
+      });
+
+    }
+
+    //自定义弹框
+    function Toast(msg,duration){
+        duration=isNaN(duration)?3000:duration;
+        var m = document.createElement('div');
+        m.innerHTML = msg;
+        m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+        document.body.appendChild(m);
+        setTimeout(function() {
+            var d = 0.5;
+            m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+            m.style.opacity = '0';
+            setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+        }, duration);
+    }
+</script>
+
+</html>

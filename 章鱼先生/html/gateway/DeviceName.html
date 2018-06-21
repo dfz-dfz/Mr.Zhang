@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>设备命名</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../../icon/iconfont.eot');
+            src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'), url('../../icon/iconfont.woff') format('woff'), url('../../icon/iconfont.ttf') format('truetype'), url('../../icon/iconfont.svg#iconfont') format('svg');
+        }
+
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f1f1f1;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+        }
+        /*header 顶部样式 begin*/
+
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 17px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .header .top .right {
+            position: relative;
+        }
+
+        .header .top .right .t {
+            position: absolute;
+            font-size: 13px;
+            color: #dfdfdf;
+            right: 12px;
+            text-align: center;
+            line-height: 86px;
+        }
+        /*header end*/
+
+        .main {
+            padding-top: 40px;
+        }
+
+        .main ul {
+            padding: 0;
+            padding-top: 40px;
+        }
+
+        .main li {
+            height: 40px;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .main li .bg {
+            background: #fff;
+            height: 100%;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+        }
+
+        .main li div div {
+            float: left;
+        }
+
+        .main li .name {
+            white-space: nowrap;
+            height: 100%;
+            line-height: 40px;
+            padding-left: 10px;
+            color: #1e1e1e;
+            width: 28%;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        .main li .input {
+            height: 100%;
+            line-height: 40px;
+            max-width: 220px;
+            padding-left: 5px;
+        }
+
+        .main li .input input {
+            white-space: nowrap;
+            height: 35px;
+            width: 100%;
+            background-color: #fff;
+            font-size: 15px;
+            max-width: 230px;
+            color: #9e9e9e;
+            outline: none;
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-style: normal;
+            font-size: 22px;
+            color: #000;
+            float: right;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header begin -->
+    <header>
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="api.closeWin()"></i></div>
+                <div class="sect fo">设备命名</div>
+                <div class="sect right">
+                    <div class="t" onclick="openCinfigureNetwork()">保存</div>
+                </div>
+            </div>
+        </div>
+    </header>
+      <!-- header end -->
+
+    <div class="main">
+        <ul>
+
+            <li>
+                <div class="bg">
+                    <div class="name">设备名称&nbsp;：</div>
+                    <div class="input">
+                        <input type="text" id="text"  maxlength="15"  placeholder="网关云台摄像机">
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="bg">
+                    <div class="name">密码&nbsp;：</div>
+                    <div class="input" style="margin-left:-38px;">
+                        <input type="" id="text"  maxlength="15"  placeholder="初始密码123456">
+                    </div><i class="iconfont">&#xe61d;</i>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+// 限制文本框输入长度
+var textarea = document.querySelector("#text")
+console.log(textarea.maxLength);
+
+    apiready = function(){
+
+    }
+    function openCinfigureNetwork(){
+      api.openWin({
+          name: 'CinfigureNetwork',
+          url: 'CinfigureNetwork.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
+    }
+</script>
+
+</html>

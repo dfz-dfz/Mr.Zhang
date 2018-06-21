@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+
+    <title>参与关注</title>
+
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('../icon/iconfont.eot');
+            src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+             url('../icon/iconfont.woff') format('woff'),
+             url('../icon/iconfont.ttf') format('truetype'),
+             url('../icon/iconfont.svg#iconfont') format('svg');
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        i {
+            font-style: normal;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navmenu {
+            background-color: #fff;
+            border-radius: 5px;
+            position: fixed;
+            top: 15%;
+            right: 1%;
+            box-shadow: 0 0 3px 5px #cccccc;
+        }
+
+        .navmenu::after {
+            position: absolute;
+            top: -8px;
+            right: 8px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #ffffff;
+        }
+
+        .navmenu span {
+            color: #111;
+            font-size: 14px;
+            vertical-align: text-top;
+        }
+
+        .navmenu i {
+            color: #000000;
+            font-size: 23px;
+        }
+
+        .navmenu a {
+            padding: 10px 8px;
+            border-bottom: 1px solid #cccccc;
+            text-align: left;
+            display: block;
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 22px;
+            font-style: normal;
+            color: black;
+        }
+        /*  .font .iconfont{
+
+  }*/
+    </style>
+</head>
+
+<body>
+    <div class="navmenu">
+        <ul>
+
+            <li>
+                <a href="javascript:;" onclick="openReleaselmage()">
+                    <span></span>&nbsp;
+                    <i class="iconfont" style="color:#588be6; font-size:25px;">&#xe608;</i>
+                    <span>  发文字  </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <span></span>&nbsp;
+                    <i class="iconfont" style="color:#f4c846;">&#xe60b;</i>
+                    <span>  发图文</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <span></span>&nbsp;
+                    <i class="iconfont" style="color:#ed6a6f;">&#xe690;</i>
+                    <span>  发视频</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+   apiready = function () {
+
+          };
+          function openReleaselmage(){
+            api.openWin({
+                name: 'ReleaseImageText',
+                url: 'ReleaseImageText.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+          }
+</script>
+
+</html>

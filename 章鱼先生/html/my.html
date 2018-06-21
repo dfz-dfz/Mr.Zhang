@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+  <style>
+      @font-face {
+        font-family: 'iconfont';
+        src: url('../icon/iconfont.eot');
+        src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../icon/iconfont.woff') format('woff'),
+        url('../icon/iconfont.ttf') format('truetype'),
+        url('../icon/iconfont.svg#iconfont') format('svg');
+      }
+      .iconfont{
+        font-family: "iconfont" !important;
+        font-style: normal;
+        font-size: 28px;
+        color: #fff;
+        position: absolute;
+        right: 8px;
+        top: 22px;
+      }
+  .iconfonta{
+    font-family: "iconfont" !important;
+    font-style: normal;
+    font-size: 20px;
+    color: #20252b;
+  }
+      * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+      }
+      body,html{
+       font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+       background-color: #f1f1f1;
+       overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        display: block;
+      }
+
+      input {
+        border: none;
+      }
+
+      ul,li,ol {
+        list-style: none;
+      }
+
+      h1, h2,h3,h4,h5 {
+       font-weight: 400;
+      }
+      body,html{
+         width: 100%;height: 100%; margin: 0; padding: 0;
+         /* overflow: hidden; */
+      }
+      body{
+         background:#f1f1f1;
+      }
+      ul li{
+         list-style-type:none;
+      }
+      .myindex{
+         position:relative;
+         background: #fff;
+         overflow-x:hidden
+      }
+         /*my-header*/
+         .my-header{
+           width: 100%;
+           height:10rem;
+           background:url('../images/my/headerMy.png') no-repeat;
+           background-size:100% 65%;
+         }
+         .my-header .set {
+          background:url('../images/my/headerSet.png') no-repeat;
+          position: absolute;
+          width: 40px;
+          height: 50px;
+          top:12px;
+         -webkit-background-size: 100% 100%;
+          background-size: 100% 100%;
+         }
+         .my-header .inform{
+           position: relative;
+         }
+         .my-header .inform #infostyle{
+           position: absolute;
+           top: 26px;
+           right: 12px;
+           width: 6px;
+           height: 6px;
+           border-radius: 50%;
+           background-color: red;
+           display: none;
+         }
+         .my-header img{
+          height: 30px;
+          width: 10%;
+        }
+
+          .nick_img img{
+           width: 60px;
+           height: 60px;
+           border-radius: 50%;
+           border: 1px solid #f1f1f1;
+           background-color: #fff;
+         }
+          .nickname{
+           font-size:13px;
+           color:#7b7b7b;
+           padding-top: 8px;
+         }
+          .nick{
+           width:80px;
+           height:80px;
+           position:absolute;
+           top:50%;
+           left:50%;
+           margin-left:-40px;
+           top: 62px;
+           text-align: center;
+         }
+         .thisopp{
+           text-align: center;
+           display: inline-block;
+           font-size: 9px;
+           color: #7c7c7c;
+           padding-top: 5px;
+         }
+          .interest{
+           height: 35px;
+           text-align: center;
+           line-height: 18px;
+        }
+          .interest span{
+           text-align: center;
+           display: inline-block;
+         }
+          .footer{
+           line-height: 40px;
+         }
+          .footer div{
+            width: 33.3%;
+            height: 38px;
+            text-align: center;
+            font-size: 15px;
+            color: #3c3c3c;
+            float: left;
+            position: relative;
+          }
+          .footer i{
+            position: absolute;
+            right: 0;
+            top: 12px;
+            border-right: 1px solid #e5e5e5;
+            height: 15px;
+          }
+         .item_content .phone,.item_content .mine{
+          margin-bottom: 10px;
+         }
+         .item_content{
+           margin-top: 10px;
+         }
+         .item_content a {
+           position: relative;
+          display:flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          height: 40px;
+          padding: 0 12px;
+          background-color: #fff;
+          align-items: center;
+          border-bottom: 1px solid #eee;
+      }
+         /*.item_content a img{
+          width: 30px;
+
+          display: inline-block;
+          padding-left: 8px;
+   }*/
+         .item_content a .title{
+           position: absolute;
+           left: 40px;
+           line-height: 0;
+          font-size: 15px;
+          color: #3c3c3c;
+     }
+        .item_content a .arrow{
+         display: inline-block;
+         border-right: 1px solid #666;
+         border-bottom: 1px solid #666;
+         width: 10px;
+         height: 10px;
+         transform: rotate(-45deg);
+         -webkit-transform: rotate(-45deg);
+     }
+
+        .notmean{
+         font-size: 12px;
+         color: #7b7b7b;
+         position: absolute;
+         right: 28px;
+         line-height: 21px;
+        }
+  </style>
+</head>
+<body>
+  <div class="myindex" id="myindex">
+      <div class="my-header">
+          <div class="inform">
+            <i class="iconfont">&#xe667;</i>
+            <div id="infostyle"></div>
+          </div>
+          <div class="set" onclick="Openset()"></div>
+      </div>
+  </div>
+        <div class="item_content">
+            <div class="phone">
+                <a href="javascript:;" onclick="OpenDeviceShare()" >
+                  <i class="iconfonta" style="font-size:15px;margin-left:2px;">&#xe630;</i>
+                    <div>
+                        <span class="title">共享设备</span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+                <a href="javascript:;" id="bindingphonenum" onclick="OpenBindingCellPhone()">
+                  <i class="iconfonta" style="font-size:18px;">&#xe642;</i>
+                    <div>
+                        <span class="title">手机号码</span>
+                    </div>
+                    <span class="notmean">未绑定</span>
+                    <span class="arrow"></span>
+                </a>
+            </div>
+            <div class="mine">
+                <a href="javascript:;" onclick="OpenmyCollection()">
+                  <i class="iconfonta">&#xe613;</i>
+                    <div>
+                        <span class="title">我的收藏</span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+                <a href="javascript:;" onclick="OpenMyReport()">
+                  <i class="iconfonta">&#xe60a;</i>
+                    <div>
+                        <span class="title">我的发表</span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+                <a href="javascript:;">
+                  <i class="iconfonta" style="font-size:17px;margin-left:2px;">&#xe641;</i>
+                    <div>
+                        <span class="title" style="margin-left:1px;">我的订单</span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+            </div>
+
+            <div class="msg">
+                <a href="javascript:;" onclick="OpenSuggestionFeedback()">
+                  <i class="iconfonta" style="font-size:18px;">&#xe609;</i>
+                    <div>
+                        <span class="title">意见反馈</span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+                <a href="javascript:;" onclick="OpAgreement()">
+                  <i class="iconfonta" style="font-size:18px;">&#xe677;</i>
+                    <div>
+                        <span class="title">用户协议</span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+apiready=function(){
+  VueUser();
+  ontimebush();
+  api.addEventListener({
+      name: 'RefreshMy'
+  }, function(ret, err){
+      Toast('成功登录账号')
+      VueUser();
+  });
+  api.addEventListener({
+      name: 'ENDMy'
+  }, function(ret, err){
+      Toast('成功退出当前账号')
+      VueUser();
+  });
+
+  api.addEventListener({
+      name: 'mydata'
+  }, function(ret, err){
+    VueUser();
+  });
+
+  setInterval("ontimebush()",5000);
+}
+function ontimebush(){
+  var inforred = document.getElementById('infostyle')
+  var userdata = {};
+  userdata = $api.getStorage('userdata');
+  if(userdata){
+    api.ajax({
+        url: 'http://www.lxzntech.com/getNotice.php',
+        method: 'post',
+        data: {
+            values: {
+                type:'total',uid:userdata['uid']
+            }
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            if(ret.total){
+                inforred.style.display = 'block';
+            }else{
+                inforred.style.display = 'none';
+            }
+        } else {
+            // alert( JSON.stringify( err ) );
+        }
+
+    });
+  }
+}
+function VueUser(){
+  var userdata = {};
+  userdata = $api.getStorage('userdata');
+  var html = '';
+  var bindingphonenum = '';
+  if(userdata){
+    api.ajax({
+        url: 'http://www.lxzntech.com/myCenter.php',
+        method: 'post',
+        data:{
+          values:{
+              uid:userdata['uid']
+          }
+        }
+    },function(ret, err){
+        if (ret.status ==1) {
+          var data = ret.data;
+            html+='<div class="my-header">';
+                  html+='<div class="inform"><i class="iconfont" id="hvaeinform" onclick="openInform()">&#xe667;</i><div id="infostyle"></div></div>';
+                  html+='<div class="set" onclick="Openset()"></div>';
+            html+='</div>';
+            html+='<div class="nick">';
+                  html+='<div class="nick_img">';
+                        html+='<img src="'+ret.data['avatar']+'" onerror="this.src=\'../images/about/Logo.png\'" onclick="openMyProfile()">';
+                  html+='</div>';
+                  html+='<div class="nickname">'+userdata['username']+'</div>';
+                  if(userdata){
+                    html+='';
+                  }else{
+                    html+='<span class="thisopp" onclick="openLogin()">点击登录</span>';
+                  }
+            html+='</div>';
+            html+='<div class="footer">';
+              html+='<div class="participate" onclick="openMyParticipate('+ret.data['uid']+')">参与&nbsp;'+ret.data['joinNum']+'<i></i></div>';
+              html+='<div onclick="openMyAttention('+ret.data['uid']+')">关注&nbsp;'+ret.data['followNum']+'<i></i></div>';
+              html+='<div onclick="openMyFans('+ret.data['uid']+')">粉丝&nbsp;'+ret.data['fansNum']+'</div>';
+            html+='</div>';
+            if(data['mobile'] != ''){
+                bindingphonenum+='<i class="iconfonta" style="font-size:18px;">&#xe642;</i>';
+                bindingphonenum+='<div>';
+                  bindingphonenum+='<span class="title">手机号码</span>';
+                bindingphonenum+='</div>';
+                bindingphonenum+='<span class="notmean">'+data['mobile']+'</span>';
+              bindingphonenum+='<span class="arrow"></span>';
+              document.getElementById('bindingphonenum').removeAttribute('onclick');
+              document.getElementById('bindingphonenum').setAttribute('onclick','openUntiePhone()');
+            }else{
+                bindingphonenum+='<i class="iconfonta" style="font-size:18px;">&#xe642;</i>';
+                bindingphonenum+='<div>';
+                  bindingphonenum+='<span class="title">手机号码</span>';
+                bindingphonenum+='</div>';
+                bindingphonenum+='<span class="notmean">未绑定</span>';
+              bindingphonenum+='<span class="arrow"></span>';
+              document.getElementById('bindingphonenum').removeAttribute('onclick');
+              document.getElementById('bindingphonenum').setAttribute('onclick','OpenBindingCellPhone()');
+            }
+
+            $api.html($api.byId('myindex'), html);
+            $api.html($api.byId('bindingphonenum'), bindingphonenum);
+        } else {
+            alert( JSON.stringify( err ) );
+        }
+        $api.html($api.byId('myindex'), html);
+      });
+    }else {
+      html+='<div class="my-header">';
+            html+='<i class="iconfont" onclick="openInform()">&#xe667;</i>';
+            html+='<div class="set" onclick="Openset()"></div>';
+      html+='</div>';
+      html+='<div class="nick">';
+            html+='<div class="nick_img">';
+                  html+='<img src="" onerror="this.src=\'../images/index/intro.png\'" onclick="openLogin()">';
+            html+='</div>';
+            html+='<div class="nickname"></div>';
+              html+='<span class="thisopp" onclick="openLogin()">马上登录</span>';
+      html+='</div>';
+      html+='<div class="footer">';
+            html+='<div class="participate">参与&nbsp;<i></i></div>';
+            html+='<div class="concern">关注&nbsp;<i></i></div>';
+            html+='<div class="fans">粉丝&nbsp;</div>';
+      html+='</div>';
+        bindingphonenum+='<i class="iconfonta" style="font-size:18px;">&#xe642;</i>';
+        bindingphonenum+='<div>';
+          bindingphonenum+='<span class="title">手机号码</span>';
+        bindingphonenum+='</div>';
+        bindingphonenum+='<span class="notmean">未绑定</span>';
+      bindingphonenum+='<span class="arrow"></span>';
+      document.getElementById('bindingphonenum').removeAttribute('onclick');
+      document.getElementById('bindingphonenum').setAttribute('onclick','OpenBindingCellPhone()');
+      $api.html($api.byId('bindingphonenum'), bindingphonenum);
+      $api.html($api.byId('myindex'), html);
+    }
+
+}
+
+function OpenmyAbount(){
+   api.openWin({
+       name: 'about',
+       url: 'About.html',
+       pageParam: {
+           name: 'test'
+       }
+   });
+ }
+ function OpenmyCollection(){
+     var userdata = {};
+     userdata = $api.getStorage('userdata');
+     if(userdata){
+         api.openWin({
+             name: 'MyCollection',
+             url: 'MyCollection.html',
+             pageParam: {
+                 name: 'test'
+             }
+         });
+     }else {
+         Toast('请登录之后再进行操作')
+     }
+ }
+ function Openset(){
+   api.openWin({
+       name: 'set',
+       url: 'Set.html',
+       pageParam: {
+           name: 'test'
+       }
+   });
+ }
+ function OpAgreement(){
+   api.openWin({
+       name: 'Agreement',
+       url: 'Agreement.html'
+   });
+ }
+ function OpenDeviceShare(){
+  //  var userdata = {};
+  //  userdata = $api.getStorage('userdata');
+  //  if(userdata){
+  //    api.openWin({
+  //        name: 'DeviceShare',
+  //        url: 'DeviceShare.html'
+  //    });
+  //  }else{
+  //      Toast('请登录之后再进行操作')
+  //  }
+  Toast('该功能即将开放',1000)
+ }
+ function OpenSuggestionFeedback(){
+     var userdata = {};
+     userdata = $api.getStorage('userdata');
+     if(userdata){
+         api.openWin({
+             name: 'SuggestionFeedback',
+             url: 'SuggestionFeedback.html',
+             pageParam: {
+                 uid: userdata['uid']
+             }
+         });
+     }else{
+         Toast('请登录之后再进行操作')
+     }
+ }
+ function openUntiePhone(){
+   api.openWin({
+       name: 'UntiePhone',
+       url: 'UntiePhone.html',
+       pageParam: {
+           name: 'test'
+       }
+   });
+
+ }
+ function OpenBindingCellPhone(){
+   var userdata = {};
+   userdata = $api.getStorage('userdata');
+   if(userdata){
+       api.openWin({
+           name: 'BindingCellPhone',
+           url: 'BindingCellPhone.html',
+           pageParam: {
+               name: 'test'
+           }
+       });
+   }else {
+       Toast('请登录之后再进行操作')
+   }
+ }
+ function OpenMyReport(){
+     var userdata = {};
+     userdata = $api.getStorage('userdata');
+     if(userdata){
+         api.openWin({
+             name: 'MyReport',
+             url: 'MyReport.html',
+             pageParam: {
+                 name: 'test'
+             }
+         });
+     }else {
+         Toast('请登录之后再进行操作')
+     }
+ }
+ function openLogin(){
+   api.openWin({
+       name: 'Login',
+       url: 'Login.html'
+   });
+ }
+
+ function openInform(){
+   api.openWin({
+       name: 'Inform',
+       url: 'Inform.html',
+       pageParam: {
+           name: 'test'
+       }
+   });
+ }
+
+ function openMyProfile(){
+   var userdata = {};
+   userdata = $api.getStorage('userdata');
+   if(userdata){
+     api.openWin({
+         name: 'MyProfile',
+         url: 'MyProfile.html',
+         pageParam: {
+             name: 'test'
+         }
+     });
+   }else {
+     Toast('请登录之后再进行操作')
+   }
+ }
+
+ function openMyParticipate(uid){
+   api.openWin({
+       name: 'MyParticipate',
+       url: 'MyParticipate.html',
+       pageParam: {
+           uid: uid
+       }
+   });
+
+ }
+
+ function openMyFans(uid){
+   var userdata = {};
+   userdata = $api.getStorage('userdata');
+   if(userdata){
+     api.openWin({
+         name: 'MyFans',
+         url: 'MyFans.html',
+         pageParam: {
+             uid: userdata['uid']
+         }
+     });
+   }else {
+     Toast('请登录之后再进行操作')
+   }
+ }
+
+ function openMyAttention(uid){
+   var userdata = {};
+   userdata = $api.getStorage('userdata');
+   if(userdata){
+     api.openWin({
+         name: 'MyAttention',
+         url: 'MyAttention.html',
+         pageParam: {
+             uid: userdata['uid']
+         }
+     });
+   }else {
+     Toast('请登录之后再进行操作')
+   }
+ }
+
+ //自定义弹框
+ function Toast(msg,duration){
+     duration=isNaN(duration)?3000:duration;
+     var m = document.createElement('div');
+     m.innerHTML = msg;
+     m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+     document.body.appendChild(m);
+     setTimeout(function() {
+         var d = 0.5;
+         m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+         m.style.opacity = '0';
+         setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+     }, duration);
+ }
+</script>
+</html>

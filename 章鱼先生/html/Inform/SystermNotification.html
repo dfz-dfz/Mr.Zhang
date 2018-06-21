@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+  />
+  <title>系统通知</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      display: block;
+    }
+
+    input {
+      border: none;
+    }
+
+    ul,
+    li,
+    ol {
+      list-style: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-weight: 400;
+    }
+
+    i {
+      font-style: normal;
+    }
+
+    /*头部开始*/
+
+    .mood {
+      width: 100%;
+      height: 44px;
+      position: fixed;
+      z-index: 999;
+      /*设置元素的堆叠顺序*/
+    }
+
+    .mood .top {
+      width: 100%;
+      height: 70px;
+      background: url('../../images/same_content/Header.jpg');
+    }
+
+    .mood .top .sect {
+      float: left;
+      width: 33.33%;
+      height: 100%;
+    }
+
+    .mood .top .fo {
+      font-size: 16px;
+      color: #fff;
+      line-height: 86px;
+      text-align: center;
+    }
+
+    .mood .top .left>i {
+      position: absolute;
+      left: 15px;
+      top: 36px;
+      width: 12px;
+      height: 12px;
+      border: 1px solid #fff;
+      border-top: none;
+      border-right: none;
+      transform: rotate(45deg);
+      -webkit-transform:rotate(45deg);
+    }
+    .main{
+      padding-top: 80px;
+    }
+
+    .contentitem {
+      justify-content: space-between;
+      padding: 10px 10px 10px 10px;
+      position: relative;
+      border-bottom: 1px solid #e1e1e1;
+    }
+    .content,.share{
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 10px 0px 10px;
+      position: relative;
+     }
+    .usercomment {
+      display: flex;
+    }
+
+    .usercomment img {
+      width: 40px;
+      height: 40px;
+      margin-right: 5px;
+      border-radius: 50%;
+    }
+
+    .usercomment i {
+      color: #808080;
+      font-size: 14px;
+    }
+
+    .commentcontent span {
+      color: #002663;
+      font-size: 14px;
+    }
+    .commentcontent{
+  padding-top: 5px;
+}
+    .commentcontent p {
+      margin-bottom: 6px;
+      color: #393939;
+      font-size: 14px;
+
+    }
+   .commentcontent .allright{
+  height: 15px;
+}
+    .commentcontent a {
+      display: inline-block;
+    }
+
+
+    /*头部结束*/
+  </style>
+</head>
+
+<body>
+  <div class="artical">
+    <!-- 头部开始 -->
+    <div class="mood">
+      <div class="top">
+        <div class="sect left">
+          <i onclick="api.closeWin()"></i>
+        </div>
+        <div class="sect fo">系统通知</div>
+      </div>
+    </div>
+    <!-- 头部结束 -->
+    <div class="main" id="main">
+      <div class="contentitem">
+        <div class="usercomment">
+          <img src="../../images/myattention/science1.png" alt="">
+          <div class="commentcontent">
+            <p>
+              <span>系统</span>
+            </p>
+            <p>你的用户组将升级为&nbsp;科技大侠&nbsp;看看我能做什么></p>
+            <i>2018-03-19</i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+  apiready = function () {
+    systemDatas();
+  };
+
+  var userdata = {};
+  userdata = $api.getStorage('userdata');
+  function systemDatas(){
+    var system = api.pageParam.type;
+    var html = '';
+    if(userdata){
+      api.ajax({
+          url: 'http://www.lxzntech.com/getNotice.php',
+          method: 'post',
+          data: {
+              values: {
+                  type:system,
+                  uid:userdata['uid']
+              }
+          }
+      },function(ret, err){
+          if (ret.status == 1) {
+              var data = ret.data;
+              for(var i=0;i<data.length;i++){
+                html+='<div class="contentitem">';
+                  html+='<div class="usercomment">';
+                    html+='<img src="'+data[i]['avatar']+'" alt="">';
+                    html+='<div class="commentcontent">';
+                      html+='<p><span>'+data[i]['author']+'</span></p>';
+                      html+='<p>'+data[i]['note']+'</p>';
+                      html+='<i>'+data[i]['dateline']+'</i>';
+                    html+='</div>';
+                  html+='</div>';
+                html+='</div>';
+              }
+              clearMessage();
+          } else {
+              alert( ret.msg );
+          }
+          $api.html($api.byId('main'), html);
+
+      });
+    }else{
+      html+='';
+      $api.html($api.byId('main'), html);
+    }
+  }
+
+  function clearMessage(){
+    api.ajax({
+        url: 'http://www.lxzntech.com/clearNotice.php',
+        method: 'post',
+        data: {
+            values: {
+                uid: userdata['uid'],type:'system'
+            }
+        }
+    },function(ret, err){});
+
+  }
+</script>
+
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>报警设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+        }
+           /*头部开始*/
+        header {
+            height: 70px;
+            line-height: 86px;
+            position: fixed;
+            background: url('../../images/gatewayimages/same_content/Header.jpg') no-repeat;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            color: #fff;
+            background-size: 100% 100%;
+        }
+
+        header>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+           -webkit-transform:rotate(45deg);
+        }
+             /*头部结束*/
+        .main {
+            -moz-box-flex: 1.0;/* Firefox */
+            -webkit-box-flex: 1.0;  /* Safari 和 Chrome */
+            box-flex: 1.0;
+            position: relative;
+            background: #f2f2f2;
+        }
+
+        .main ul {
+            padding: 0;
+        }
+
+        .main ul li {
+            height: 50px;
+            background: #fff;
+            line-height: 40px;
+            font-size: 15px;
+            color: #1e1e1e;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .main ul .cache>i {
+            position: absolute;
+            right: 15px;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #e5e5e5;
+            border-bottom: none;
+            border-left: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .main ul .cache>span {
+            position: absolute;
+            right: 30px;
+            font-size: 11px;
+            color: #6c6c6c;
+            top: 5px;
+        }
+
+        .about i {
+            position: absolute;
+            right: 15px;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #e5e5e5;
+            border-bottom: none;
+            border-left: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .music i {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 50px;
+            height: 30px;
+        }
+
+        .music .toggle {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 50px;
+            height: 30px;
+        }
+
+        .toggle {
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            width: 52px;
+            height: 32px;
+            background: #dfdfdf;
+            border-radius: 16px;
+            border: 1px solid #dfdfdf;
+            outline: 0;
+            box-sizing: border-box;
+        }
+
+        .toggle:checked {
+            border-color: #00e167;
+            background-color: #00e167;
+        }
+
+        .toggle:before,
+        .toggle:after {
+            content: " ";
+            position: absolute;
+            top: -1px;
+            left: 0;
+            height: 30px;
+            border-radius: 150%;
+            transition: transform 0.01s;
+            transition: -webkit-transform 0.01s;
+            transition: transform 0.01s, -webkit-transform 0.01s;
+            -webkit-transition: -webkit-transform 0.01s;
+        }
+
+        .toggle:before {
+            width: 50px;
+            background-color: #fdfdfd;
+        }
+
+        .toggle:after {
+            width: 30px;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .toggle:checked:before {
+            transform: scale(0);
+            -webkit-transform: scale(0);
+        }
+
+        .toggle:checked:after {
+            transform: translateX(20px);
+            -webkit-transform:translateX(20px);
+        }
+    </style>
+</head>
+
+<body>
+  <!-- 头部开始 -->
+    <header>
+        <i></i>
+        <span>报警设置</span>
+    </header>
+    <!-- 头部结束 -->
+    <div class="main">
+        <div>
+            <ul style="padding:10px 0px 0px 0px;">
+          <!-- 设备 begin -->
+                <span style="margin-left:10px; font-size:15px; color:#1e1e1e;">设备</span>
+                <li class="music" style="margin-top:10px;">
+                    <span>报警通知</span>
+                    <div class="t" style="font-size:11px; color:#6c6c6c;line-height:5px;">
+                        侦探到画面变化是发送通知
+                    </div>
+                    <input type="checkbox" class="toggle">
+                </li>
+                <li class="cache" >警戒定时<span>7:00-23:00</span><i></i></li>
+                <li class="cache" style="margin:0px 0 10px 0;">侦测区域<i></i></li>
+              <!-- 设备 end -->
+
+            <!-- 幼儿园哭闹报警 begin -->
+                <li class="music" style="margin:10px 0px 15px 0px;">
+                    <span>幼儿哭闹报警</span>
+                    <div class="t" style="font-size:11px; color:#6c6c6c;line-height:5px;">
+                        侦探到婴儿哭闹时发送通知
+                    </div>
+                    <input type="checkbox" class="toggle">
+                </li>
+            <!-- 幼儿园哭闹报警 end -->
+
+            <!-- 管理 begin-->
+                <span style="margin-left:10px;font-size:15px; color:#1e1e1e;">管理</span>
+                <li class="music" style="margin:10px 0px 15px 0px;">
+                    <span>幼儿哭闹报警</span>
+                    <div class="t" style="font-size:11px; color:#6c6c6c;line-height:5px;">
+                        侦探到婴儿哭闹时发送通知
+                    </div>
+                    <input type="checkbox" class="toggle">
+                </li>
+            <!-- 管理 end -->
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+</script>
+
+</html>

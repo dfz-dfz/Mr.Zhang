@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>搜索</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+      html,body{
+         -webkit-touch-callout:none;
+         -webkit-text-size-adjust:none;
+         -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+         -webkit-user-select:none;
+          line-height: 25px;
+     }
+
+    html body{
+        height: 100%;
+        width: 100%;
+        /*background-color: #f1f1f1;*/
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        font-style: normal;
+    }
+    ul{
+        height: 100%;
+        width: 100%;
+        list-style: none;
+        display: -webkit-box;
+        display: box;
+    }
+    header{
+      height: 70px;
+      line-height: 50px;
+      position: fixed;
+      background-color: #fff;
+      width: 100%;
+      position: relative;
+      text-align: center;
+    }
+    header>i{
+      position: absolute;
+      left: 15px;
+      top:15px;
+      width: 15px;
+      height: 15px;
+      border: 2px solid #000000;
+      border-top: none;
+      border-right: none;
+      transform:rotate(45deg);
+      -webkit-transform:rotate(45deg);
+    }
+    header>em{
+      position: absolute;
+      right: 15px;
+      top:15px;
+      width: 25px;
+      height: 25px;
+      background: #000;
+    }
+    /*返回标签开始*/
+    header .black {
+      position: absolute;
+      left: 16px;
+      top:48px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #808080;
+      border-top: none;
+      border-right: none;
+      transform:rotate(45deg);
+      -webkit-transform:rotate(45deg);
+    }
+    header div{
+      text-align: center;
+      padding-top: 30px;
+    }
+    header div a{
+      color: #e5e5e5;
+      font-size: 17px;
+    }
+    header div a.current{
+      color: #242424;
+      font-weight: 800;
+      border-bottom: 2px solid #000;
+    }
+    .body{
+      padding: 0 10px 0 10px;
+    }
+    .search-input{
+        width: 75%;
+        padding-left: 38px;
+        height: 28px;
+        text-align: center;
+        background-color: #e4e5e7;
+
+    }
+    .search-advertise{
+        position: absolute;
+        left: 10px;
+        margin-left: 0;
+        top: 13px;
+        width: 18px;
+        height: 18px;
+        background:url("../images/same_content/search.png") no-repeat;
+        background-size: 17px;
+        z-index: 2;
+    }
+    .flex1{
+        -webkit-box-flex:1;
+        position: relative;
+    }
+    .search-tag{
+        background-color:#6495F9;
+        color: #ffffff;
+
+    }
+    .webkit-box-center{
+        display:-webkit-box;
+        -webkit-box-pack:center;
+        -webkit-box-align:center
+    }
+    .tagBox{
+        margin-top: 30px;
+        margin-left: auto;
+
+    }
+    .cancel{
+        width:50px;
+        font-size:14px;
+    }
+    .ul{
+      width: 100%;
+      display: block;
+      float: left;
+      position: relative;
+    }
+    .ul li{
+      height: 30px;
+      line-height: 30px;
+      color: #262626;
+      background:#e5e5e5;
+      font-size: 12px;
+      line-height: 30px;
+      padding: 0 5px 0 5px;
+      margin: 10px 10px 12px 10px;
+      display: inline-flex;
+
+    }
+    .middles{
+      position: relative;
+      color:#ba0000;
+      font-size: 15px;
+      margin-top: 20px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+    }
+    .history{
+      position: relative;
+      color:#000000;
+      font-size: 15px;
+      margin-top: 20px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+    }
+    .middles.one{
+      margin-top: 30px;
+    }
+    .bigbox{
+      display: flex;
+    }
+    .history i{
+        float: right;
+        height: 100%;
+        width: 63px;
+        background: url(../images/garbage.png) no-repeat right center;
+        color: #000000;
+    }
+    .delete{
+      float: right;
+      color: #a9a9a9;
+      position: relative;
+      margin-right: 20px;
+    }
+    .delete img{
+      width: 16px;
+      height: 17px;
+      vertical-align:middle;
+      position: absolute;
+      right: -18px;
+      top: 4px;
+    }
+    .calloff{
+      float: right;
+      vertical-align:middle;
+      text-align: center;
+      line-height: 46px;
+      font-size: 15px;
+      width: 11%;
+      color: #686868;
+      font-style: normal;
+    }
+    .searchfor>div>i{
+      border-left:1px solid #cfcfcf;
+      border-right:1px solid #cfcfcf;
+    }
+    .searchfor>div>a{
+      color: #111;
+      width: 20%;
+    }
+    /*section*/
+
+    .main{
+      width: 100%;
+      height: 100%;
+      padding-top: 79px;
+      background-color: #f2f2f2;
+      display: none;
+    }
+    .main.current{
+      display: block;
+    }
+    .main .article{
+      padding: 8px 8px 0 8px;
+      height: 66px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .main .article img{
+      height: 60px;
+      width: 100px;
+    }
+    .main .article .text{
+      width: 100%;
+      height: 100%;
+      padding: 0 6px 0 6px;
+      position: relative;
+    }
+    .main .article .title
+    {
+      font-size: 16px;
+      color: #111;
+      line-height: 22px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+    }
+    .main .article .foot{
+      font-size: 10px;
+      color: #5d5d5d;
+    }
+    .main .article .foot .from{
+      position: absolute;
+      bottom: 4px;
+    }
+    .main .article .foot .read{
+      position: absolute;
+      bottom: 4px;
+      right: 0;
+    }
+    .main{
+      width: 100%;
+      height: 100%;
+      padding-top: 6px;
+      background-color: #f2f2f2;
+    }
+    .main .video{
+      padding: 8px 8px 0 8px;
+      height: 66px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      position: relative;
+    }
+    .main .video img{
+      height: 60px;
+    }
+    .main .video .image .playimg{
+      position: absolute;
+      height: 45px;
+      top: 22%;
+      left: 35px;
+    }
+    .main .video .text{
+      width: 100%;
+      height: 100%;
+      padding: 0 6px 0 6px;
+      position: relative;
+    }
+    .main .video .title
+    {
+      font-size: 16px;
+      color: #111;
+      line-height: 22px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+    }
+    .main .video .foot{
+      font-size: 10px;
+      color: #5d5d5d;
+    }
+    .main .video .foot .from{
+      position: absolute;
+      bottom: 4px;
+    }
+    .main .video .foot .read{
+      position: absolute;
+      bottom: 4px;
+      right: 0;
+    }
+    .main{
+      width: 100%;
+    }
+    .main .listbiao{
+      padding: 8px 8px 0 8px;
+      background-color: #fff;
+      margin-bottom: 6px;
+    }
+    .main .li{
+      height: 46px;
+      line-height: 46px;
+      width: 100%;
+      background-color: #fff;
+    }
+    .main .left{
+      height: 100%;
+      width: 50%;
+      float: left;
+      font-size: 16px;
+      color: #1e1e1e;
+    }
+    .main .right{
+      height: 100%;
+      width: 50%;
+      float: left;
+      text-align: right;
+      font-size: 12px;
+      color: #8d8d8d;
+    }
+    .main .list{
+      height: 92px;
+      width: 100%;
+    }
+    .main .list .underline{
+      border-bottom: 1px solid #e1e1e1;
+    }
+    .contentitem {
+      display: flex;
+      padding: 5px 1% 0px 1%;
+      position: relative;
+      background-color: #fff;
+      margin-bottom: 5px;
+      height: 80px;
+      width: 98%;
+    }
+
+    .contentitem img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    /*头部结束*/
+    .contentitem .title{
+      font-size: 14px;
+      color: #111;
+    }
+    .contentitem .cate {
+      font-size: 10px;
+      border: 1px solid #4e5d67;
+      color: #4e5d67;
+      text-align: center;
+      padding: 0px 1px 0px 1px;
+    }
+    .contentitem p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp:1;
+      -webkit-box-orient:vertical;
+      word-break: break-all;
+      width: 100%;
+      line-height: 28px;
+      font-size: 12px;
+      color: #3d3d3d;
+    }
+    .contentitem a{
+      position: absolute;
+      right: 8px;
+      font-size: 12px;
+      color: #afafaf;
+      padding: 1px 6px;
+      border: 1px solid #afafaf;
+      border-radius: 2px;
+    }
+    /*section end*/
+      </style>
+  </head>
+  <body>
+    <header  class="searchfor">
+        <i class="black" onclick ='closeSearch()'></i>
+        <div id="toggle">
+          <a href="javascript:void(0)" style="margin-left:17px;">帖子</a>
+            <i></i>
+          <a href="javascript:void(0)" class="current" >文章</a>
+            <i></i>
+          <a href="javascript:void(0)" style="margin-right:17px;">用户</a>
+        </div>
+    </header>
+    <div style="height: 100%" class="body">
+         <div id="header" style="background-color: #ffffff; height:44px;line-height: 44px">
+              <ul>
+                  <li class="flex1">
+                        <input type="text" value="" class="search-input" placeholder="请输入内容"/ id="searchInput"  onfocus="SearchTxetFocus()" onblur="SearchTxetBlur()">
+                        <div class="calloff" id="searchbtn" onclick="SearchTole()">搜索</div>
+                        <span class="search-advertise" id="searchAdvertise"></span>
+                  </li>
+                </ul>
+         </div>
+             <div id="searchBody">
+              <div>
+                    <!-- <div class="middles">热门搜索</div>
+                        <div class="bigbox" id="hot">
+                            <ul class="ul">
+                                <li>黑科技</li>
+                                <li>无线耳机</li>
+                                <li>人工智能</li>
+                                <li>iphoneX</li>
+                                <li>surface book2</li>
+                                <li>纳米眼药水</li>
+                                <li>隐形电视</li>
+                                <li>懒人清扫神器</li>
+                            </ul>
+                      </div> -->
+                      <div class="history">
+                            <span>搜索历史</span>
+                          <div class="delete" onclick="clearAll()">清空<img src="../images/search/remove.png"></div>
+                      </div>
+                      <div class="bigbox" id="history">
+                          <ul class="ul">
+                            <li>小辣椒手机</li>
+                            <li>屏幕指纹录入解锁</li>
+                            <li>夏普mini发布</li>
+                            <li>远程充电技能让电量也不会崩了</li>
+                          </ul>
+                      </div>
+              </div>
+              <div class="main current" id="main" style="display:none;">
+                  <!-- 有图片的文章 -->
+                  <div class="article">
+                      <div class="image"><img src="../images/FriendDetailsData/report1.png" alt=""></div>
+                      <div class="text">
+                        <div class="title t">工作时，我们总少不了需要一些小工具的协助</div>
+                        <div class="foot t">
+                            <div class="from">2018/04/11</div>
+                            <div class="read">2018阅读</div>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- 有图片的文章 end -->
+                  <!-- 没有图片的文章 -->
+                  <div class="article">
+                    <div class="text" style="padding-left:0;">
+                      <div class="title t">人工智能时代来临</div>
+                      <div class="foot t">
+                          <div class="from">2018/04/11</div>
+                          <div class="read">2018阅读</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 没有图片的文章 end -->
+                  <!-- 有视频的文章 -->
+                  <div class="video">
+                      <div class="image">
+                          <img src="../images/FriendDetailsData/report2.png" alt="">
+                          <img class="playimg" src="../images/myReport/play.png" alt="">
+                      </div>
+                      <div class="text">
+                        <div class="title t">真·海景房，早上鲨鱼来叫醒你</div>
+                        <div class="foot t">
+                            <div class="from">2018/04/11</div>
+                            <div class="read">2018阅读</div>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- 有视频的文章end -->
+                  <!-- 没有图片的文章 -->
+                  <div class="article">
+                    <div class="text" style="padding-left:0;">
+                      <div class="title t">AWE2017：真科技·敢不同 美的生活家电参展，主题为“智慧生活，全球平台”，同时为大家提供一个体拉数据分类静安寺快递费</div>
+                      <div class="foot t">
+                          <div class="from">2018/04/11</div>
+                          <div class="read">2018阅读</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 没有图片的文章 end -->
+              </div>
+          </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        hot();
+        searchHistory();
+      }
+
+      var searchInput = $api.byId('searchInput');
+      var searchAdvertise = $api.byId('searchAdvertise');
+      function SearchTxetFocus(){
+        searchInput.style.textAlign = 'left';
+        $api.html($api.byId('searchbtn'), '搜索');
+        document.getElementById('searchbtn').removeAttribute('onclick');
+        document.getElementById('searchbtn').setAttribute('onclick','SearchTole()')
+      }
+      function SearchTxetBlur(){
+        searchInput.style.textAlign = 'center';
+      }
+      //切换盒子
+      var column = 1;
+      var btns = document.getElementById('toggle').getElementsByTagName('a');
+      for(var i=0;i<btns.length;i++){
+          btns[i].index = i;
+          btns[i].onclick = function(){
+          //把所有的按钮的类都清除掉！
+            for(var i=0;i<btns.length;i++){
+              btns[i].className = '';
+             }
+          //确立自己
+              this.className = 'current';
+              column = this.index;
+          }
+      }
+      function SearchTole(){
+        SearchData(column);
+      }
+      //热门搜索
+      var hotHtml = '';
+      function hot(){
+        api.ajax({
+            url: 'http://www.lxzntech.com/hotwords.php',
+            method: 'post',
+        }, function(ret, err) {
+            hotHtml = '';
+            if (ret.status == 1) {
+              var hotData = ret.data;
+              hotHtml += '<ul class="ul">';
+                  for(var j=0;j<hotData.length;j++){
+                    hotHtml += '<li onclick="find(\''+hotData[j]['words']+'\')">'+hotData[j]['words']+'</li>';
+                  }
+              hotHtml += '</ul>';
+            }
+            $api.html($api.byId('hot'), hotHtml);
+        });
+      }
+      var words = '';
+      function find(word){
+        words = word;
+        SearchData(column);
+      }
+      //ajax
+      function SearchData(tab){
+          var html = '';
+          var searchInputVal = $api.val($api.byId('searchInput'));
+          if(!searchInputVal){
+            searchInputVal = words;
+            $api.val($api.byId('searchInput'),words);
+          }
+          if(searchInputVal==''){
+              Toast('请输入你要查找的内容')
+          }else {
+              api.ajax({
+              url: 'http://www.lxzntech.com/appSearch.php',
+                  method: 'post',
+                  data: {
+                      values: {
+                          tab:tab,words:searchInputVal
+                      }
+                  }
+              },function(ret, err){
+                  var data = ret.data;
+                    if(ret.status=='1'){
+                        html+='<div class="main current" id="main">';
+                        for(var i =0;i<data.length;i++){
+                          if (tab =='1') {
+                            html+='<div class="article" onclick="OpenArticalDetails('+data[i]['aid']+')">';
+                                html+='<div class="image"><img src="http://www.lxzntech.com/data/attachment/'+data[i]['pic']+'" alt=""></div>';
+                                html+='<div class="text">';
+                                      html+='<div class="title t">'+data[i]['title']+'</div>';
+                                      html+='<div class="foot t">';
+                                            html+='<div class="from">'+data[i]['dateline']+'</div>';
+                                            html+='<div class="read">'+data[i]['views']+'阅读</div>';
+                                      html+='</div>';
+                                html+='</div>';
+                            html+='</div>';
+                          }else if(tab =='0'){
+                            html+='<div class="article" onclick="CommunityDetails('+data[i]['tid']+','+data[i]['authorid']+')">';
+                                html+='<div class="text" style="padding-left:0;">';
+                                      html+='<div class="title t">'+data[i]['title']+'</div>';
+                                      html+='<div class="foot t">';
+                                            html+='<div class="from">'+data[i]['author']+'</div>';
+                                            html+='<div class="read">'+data[i]['views']+'阅读</div>';
+                                      html+='</div>';
+                                html+='</div>';
+                            html+='</div>';
+                          }
+                          else if(tab == '2'){
+                            html+='<div class="contentitem" onclick="openFriendDetailsData('+data[i]['uid']+')">';
+                                html+='<img src="'+data[i]['avatar']+'" alt="">';
+                                html+='<div class="commentcontent">';
+                                      html+='<div class="title">'+data[i]['username']+'</div>';
+                                      html+='<span class="cate">'+data[i]['group']+'</span>';
+                                      html+='<p>'+data[i]['sign']+'</p>';
+                                html+='</div>'
+                                // if(data[i]['haveFollow']){
+                                //   html+='<a>已互相关注</a>';
+                                // }{
+                                //   html+='<a>加关注</a>';
+                                // }
+                            html+='</div>';
+                          }
+                        }
+                      html+='</div>'
+
+                      //添加搜索记录
+                      var aa = '';
+                      if($api.getStorage('historys')){
+                        aa = $api.getStorage('historys');
+                      }
+                      var cc = searchInputVal+','+aa;
+                      $api.setStorage('historys', cc);
+                    }else {
+                      Toast(ret.msg);
+                    }
+                $api.html($api.byId('searchBody'), html);
+                $api.html($api.byId('searchbtn'), '取消');
+                document.getElementById('searchbtn').removeAttribute('onclick');
+                document.getElementById('searchbtn').setAttribute('onclick','cancelbtn()')
+              });
+          }
+      }
+      //返回热门搜索和搜索历史
+      function cancelbtn(){
+        $api.val($api.byId('searchInput'), '');
+        var history = document.getElementById('history');
+        var historys = '';
+        historys = $api.getStorage('historys');
+        var html = '';
+        html+='<div>';
+          // html+='<div class="middles">热门搜索</div>';
+          // html+='<div class="bigbox" id="hot">';//热门搜索
+          //   api.ajax({
+          //       url: 'http://www.lxzntech.com/hotwords.php',
+          //       method: 'post',
+          //   },function(ret, err){
+          //     var htmlhot = '';
+          //     if (ret.status == 1) {
+          //       var hotData = ret.data;
+          //       htmlhot += '<ul class="ul">';
+          //           for(var j=0;j<hotData.length;j++){
+          //             htmlhot += '<li onclick="find(\''+hotData[j]['words']+'\')">'+hotData[j]['words']+'</li>';
+          //           }
+          //       htmlhot += '</ul>';
+          //     }
+          //     $api.html($api.byId('hot'), htmlhot);
+          //   });
+          // html+='</div>';
+          // html+='<div class="history">';//搜索历史
+            html+='<span>搜索历史</span><div class="delete" onclick="clearAll()">清空<img src="../images/search/remove.png"></div>';
+            html+='<div class="bigbox">';
+              html+='<ul class="ul" id="history">';
+                api.ajax({
+                    url: 'http://www.lxzntech.com/doData.php',
+                    method: 'post',
+                    data: {
+                        values: {
+                            data: historys
+                        }
+                    }
+                },function(ret, err){
+                  var seatchhtml = '';
+                  if (ret.status == 1) {
+                    var data=ret.data;
+                    if(data[0]){
+                      seatchhtml+='<ul class="ul">';
+                      for(var i=0;i<data.length;i++){
+                        seatchhtml+='<li onclick="find(\''+data[i]+'\')">'+data[i]+'</li>';
+                      }
+                      seatchhtml+='</ul>';
+
+                    }
+                  }
+                  $api.html($api.byId('history'),seatchhtml);
+                });
+              html+='</ul>';
+            html+='</div>';
+          html+='</div>';
+        html+='</div>';
+        $api.html($api.byId('searchBody'), html);
+        $api.html($api.byId('searchbtn'), '搜索');
+        document.getElementById('searchbtn').removeAttribute('onclick');
+        document.getElementById('searchbtn').setAttribute('onclick','SearchTole()')
+      }
+
+      //清空搜索历史
+      function clearAll(){
+        var history = document.getElementById('history');
+        while(history.hasChildNodes()){
+          history.removeChild(history.firstChild);
+        }
+        $api.setStorage('historys', '');
+      }
+      //搜索历史
+      function  searchHistory() {
+        var history = document.getElementById('history');
+        var historys = '';
+        historys = $api.getStorage('historys');
+        var htmls = '';
+        api.ajax({
+            url: 'http://www.lxzntech.com/doData.php',
+            method: 'post',
+            data: {
+                values: {
+                    data: historys
+                }
+            }
+        },function(ret, err){
+            if (ret.status == 1) {
+              var data=ret.data;
+              if(data[0]){
+                htmls+='<ul class="ul">';
+                for(var i=0;i<data.length;i++){
+                  htmls+='<li onclick="find(\''+data[i]+'\')">'+data[i]+'</li>';
+                }
+                htmls+='</ul>';
+              }
+            } else {
+                alert( JSON.stringify( err ) );
+            }
+            $api.html($api.byId('history'),htmls);
+        });
+
+      }
+      //自定义弹框
+      function Toast(msg,duration){
+          duration=isNaN(duration)?3000:duration;
+          var m = document.createElement('div');
+          m.innerHTML = msg;
+          m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+          document.body.appendChild(m);
+          setTimeout(function() {
+              var d = 0.5;
+              m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+              m.style.opacity = '0';
+              setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+          }, duration);
+      }
+      //打开窗口
+      function OpenArticalDetails(aid){
+        api.openWin({
+            name: 'ArticalDetails',
+            url: 'ArticalDetails.html',
+            pageParam: {
+                aid: aid
+            }
+        });
+      }
+      function CommunityDetails(tid,authorid){
+        api.openWin({
+          name: 'CommunityDetails',
+          url: 'CommunityDetails.html',
+          pageParam: {tid:tid,authorid:authorid}
+        });
+      }
+      function openFriendDetailsData(authorid){
+        var userdata = {};
+        userdata = $api.getStorage('userdata');
+        if(userdata){
+          api.openWin({
+              name: 'FriendDetailsData',
+              url: 'FriendDetailsData.html',
+              pageParam: {
+                  uid: authorid
+              }
+          });
+        }else {
+          Toast('请登录再进行操作')
+        }
+      }
+
+      function closeSearch(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+        var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        api.closeWin({
+            name: 'search'
+        });
+
+        if (isIOS) {
+            api.setStatusBarStyle({
+                style: 'light',
+                color:'#363636'
+            });
+        }
+      }
+      // 限制input输入长度
+    /**  var input = document.querySelector("#searchInput")
+        console.log(input.maxLength);*/
+
+  </script>
+  </html>

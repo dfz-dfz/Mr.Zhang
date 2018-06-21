@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>参与关注粉丝</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            margin: 0;
+            padding: 0;
+          }
+          body,html{
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+          }
+          ul li {
+            list-style-type: none;
+          }
+          /*header*/
+          header{
+            width: 100%;
+            height: 170px;
+            background: url('../images/FriendDetailsData/bg.png') no-repeat;
+            background-size: 100% 100%;
+          }
+          header .headermenu{
+            width: 100%;
+            height: 44px;
+          }
+          header .headermenu>i{
+            position: absolute;
+            left: 15px;
+            top:32px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+          }
+          header .headermenu ul li{
+            float:right;
+            background: #fff;
+            width: 4px;
+            height:4px;
+            border-radius: 50%;
+            position: relative;
+            right:15px;
+            top:36px;
+            margin-left: 4px;
+          }
+          header .headermain{
+            height: 126px;
+            text-align: center;
+          }
+          header .headermain .namedatails{
+            width: 100%;
+            height: 100px;
+            position: relative;
+          }
+          header .headermain .namedatails .headerimg{
+            height: 60px;
+            width: 60px;
+            border: 2px solid #fff;
+            position: absolute;
+            left: 50%;
+            margin-left: -30px;
+            border-radius: 50%;
+          }
+          header .headermain .namedatails .headerimg img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+          header .headermain .namedatails .name{
+            width: 100%;
+            font-size: 14px;
+            color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 66px;
+            margin-left: -50%;
+          }
+          header .headermain .namedatails .sign{
+            width: 100%;
+            font-size: 10px;
+            color: #efeeee;
+            position: absolute;
+            left: 50%;
+            top: 86px;
+            margin-left: -50%;
+          }
+          header .headermain .headerfooter{
+            width: 100%;
+            height: 26px;
+            font-size: 14px;
+            line-height: 26px;
+            color: #fff;
+            position: relative;
+          }
+          header .headermain .headerfooter .tlf{
+            float: left;
+            width: 33.3%;
+            position: relative;
+          }
+          header .headermain .headerfooter .tlf .tl div{
+            width: 46%;
+            float: left;
+          }
+          header .headermain .headerfooter span{
+            height: 14px;
+            border-right: 1px solid #fff;
+            position: absolute;
+            top:6px;
+            right: 0;
+          }
+          /*header end*/
+
+          .menu{
+            position: relative;
+            height: 35px;
+            width: 100%;
+          }
+          .span{
+            border-right: 1px solid #e7e7e7;
+            position: absolute;
+            top: 4px;
+            height: 26px;
+          }
+          .menu .men{
+            width: 50%;
+            height: 35px;
+            float: left;
+            text-align: center;
+            line-height: 35px;
+            background-color: white;
+          }
+          .menu .men a{
+            color: #242424;
+            font-size: 16px;
+          }
+          .menu .men a.current{
+            color: #242424;
+            font-weight: 600;
+          }
+          .menu .men a.current:hover{
+            color: #1a1a1a;
+          }
+          .menu .men .underline{
+            /*border-bottom: 4px solid #1a1a1a;*/
+            width: 18px;
+            margin: 0 auto;
+            display: none;
+          }
+          .menu .men .underline.current{
+            display: block;
+          }
+
+          /*section*/
+
+          section .main{
+            width: 100%;
+            height: 100%;
+            padding-top: 79px;
+            background-color: #f2f2f2;
+            display: none;
+          }
+          section .main.current{
+            display: block;
+          }
+          section .main .article{
+            padding: 8px 8px 0 8px;
+            height: 66px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+          }
+          section .main .article img{
+            height: 60px;
+            width: 100px;
+          }
+          section .main .article .text{
+            width: 100%;
+            height: 100%;
+            padding: 0 6px 0 6px;
+            position: relative;
+          }
+          section .main .article .title
+          {
+            font-size: 16px;
+            color: #111;
+            line-height: 22px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+          }
+          section .main .article .foot{
+            font-size: 10px;
+            color: #5d5d5d;
+          }
+          section .main .article .foot .from{
+            position: absolute;
+            bottom: 4px;
+          }
+          section .main .article .foot .read{
+            position: absolute;
+            bottom: 4px;
+            right: 0;
+          }
+          section .main{
+            width: 100%;
+            height: 100%;
+            padding-top: 6px;
+            background-color: #f2f2f2;
+          }
+          section .main .video{
+            padding: 8px 8px 0 8px;
+            height: 66px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            position: relative;
+          }
+          section .main .video img{
+            height: 60px;
+          }
+          section .main .video .image .playimg{
+            position: absolute;
+            height: 45px;
+            top: 22%;
+            left: 35px;
+          }
+          section .main .video .text{
+            width: 100%;
+            height: 100%;
+            padding: 0 6px 0 6px;
+            position: relative;
+          }
+          section .main .video .title
+          {
+            font-size: 16px;
+            color: #111;
+            line-height: 22px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+          }
+          section .main .video .foot{
+            font-size: 10px;
+            color: #5d5d5d;
+          }
+          section .main .video .foot .from{
+            position: absolute;
+            bottom: 4px;
+          }
+          section .main .video .foot .read{
+            position: absolute;
+            bottom: 4px;
+            right: 0;
+          }
+
+          section .main{
+            width: 100%;
+          }
+          section .main .listbiao{
+            padding: 8px 8px 0 8px;
+            background-color: #fff;
+            margin-bottom: 6px;
+          }
+          section .main .li{
+            height: 46px;
+            line-height: 46px;
+            width: 100%;
+            background-color: #fff;
+          }
+          section .main .left{
+            height: 100%;
+            width: 50%;
+            float: left;
+            font-size: 16px;
+            color: #1e1e1e;
+          }
+          section .main .right{
+            height: 100%;
+            width: 50%;
+            float: left;
+            text-align: right;
+            font-size: 12px;
+            color: #8d8d8d;
+          }
+          section .main .list{
+            height: 92px;
+            width: 100%;
+          }
+          section .main .list .underline{
+            border-bottom: 1px solid #e1e1e1;
+          }
+          /*section end*/
+
+          /*footer*/
+          footer{
+            position: fixed;
+            bottom: 0;
+            height: 50px;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1;
+          }
+          footer .footer{
+            width: 50%;
+            text-align: center;
+            line-height: 50px;
+            height: 100%;
+            float: left;
+            font-size: 16px;
+            color: #2a2a2a;
+          }
+          footer  span{
+            position: absolute;
+            border-right: 1px solid #e7e7e7;
+            height: 20px;
+            top: 16px;
+          }
+          /*footer end*/
+      </style>
+  </head>
+  <body>
+      <div class="friendDetailsData">
+        <header style="position:fixed;top:0;z-index:1;">
+            <div class="headermenu">
+                <i onclick="api.closeWin()"></i>
+                <ul onclick="openShare()"><li></li><li></li><li></li></ul>
+            </div>
+            <div class="headermain" id="headermain">
+                <div class="namedatails">
+                    <div class="headerimg"><img src="../images/same_content/fly.png" alt=""></div>
+                    <div class="name"><span>辣椒酱</span></div>
+                    <div class="sign"><span>暂无签名</span></div>
+                </div>
+                <div class="headerfooter">
+                    <div class="tlf"><div class="tl">参与</div><span></span></div>
+                    <div class="tlf"><div class="tl">关注</div><span></span></div>
+                    <div class="tlf"><div class="tl">粉丝</div></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 菜单栏 -->
+        <div class="menu" id="menu" style="position:fixed;top:170px;z-index:1;">
+          <div class="men"><a href="javascript:void(0)" class="click current">发表<span class="underline current"></span></a></div>
+          <span class="span"></span>
+          <div class="men"><a href="javascript:void(0)" class="click">资料<span class="underline"></span></a></div>
+        </div>
+        <!-- 菜单栏 end-->
+
+        <section style="overflow:hidden;height:100%;padding-top:205px;margin-bottom:50px;">
+
+          <!-- 发表 end -->
+          <div class="main current" id="main">
+            <!-- 有图片的文章 -->
+
+            <div class="article">
+                <div class="image"><img src="../images/FriendDetailsData/report1.png" alt=""></div>
+                <div class="text">
+                  <div class="title t">工作时，我们总少不了需要一些小工具的协助</div>
+                  <div class="foot t">
+                      <div class="from">2018/04/11</div>
+                      <div class="read">2018阅读</div>
+                  </div>
+                </div>
+            </div>
+            <!-- 有图片的文章 end -->
+
+            <!-- 没有图片的文章 -->
+            <div class="article">
+              <div class="text" style="padding-left:0;">
+                <div class="title t">人工智能时代来临</div>
+                <div class="foot t">
+                    <div class="from">2018/04/11</div>
+                    <div class="read">2018阅读</div>
+                </div>
+              </div>
+            </div>
+            <!-- 没有图片的文章 end -->
+            <!-- 有视频的文章 -->
+            <div class="video">
+                <div class="image">
+                    <img src="../images/FriendDetailsData/report2.png" alt="">
+                    <img class="playimg" src="../images/myReport/play.png" alt="">
+                </div>
+                <div class="text">
+                  <div class="title t">真·海景房，早上鲨鱼来叫醒你</div>
+                  <div class="foot t">
+                      <div class="from">2018/04/11</div>
+                      <div class="read">2018阅读</div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="video">
+                <div class="image">
+                    <img src="../images/FriendDetailsData/report3.png" alt="">
+                    <img class="playimg" src="../images/myReport/play.png" alt="">
+                </div>
+                <div class="text">
+                  <div class="title t">真·海景房，早上鲨鱼来叫醒你</div>
+                  <div class="foot t">
+                      <div class="from">2018/04/11</div>
+                      <div class="read">2018阅读</div>
+                  </div>
+                </div>
+            </div>
+            <!-- 有视频的文章end -->
+
+            <!-- 没有图片的文章 -->
+            <div class="article">
+              <div class="text" style="padding-left:0;">
+                <div class="title t">AWE2017：真科技·敢不同 美的生活家电参展，主题为“智慧生活，全球平台”，同时为大家提供一个体拉数据分类静安寺快递费</div>
+                <div class="foot t">
+                    <div class="from">2018/04/11</div>
+                    <div class="read">2018阅读</div>
+                </div>
+              </div>
+            </div>
+            <!-- 没有图片的文章 end -->
+          </div>
+          <!-- 发表 end -->
+
+          <!-- 资料 -->
+          <div class="main" id="data">
+              <div class="listbiao">
+                  <div class="li">
+                    <div class="left">性别</div>
+                    <div class="right">保密</div>
+                  </div>
+              </div>
+              <div class="listbiao">
+                  <div class="list">
+                    <div class="li underline">
+                      <div class="left">积分</div>
+                      <div class="right">32</div>
+                    </div>
+                    <div class="li">
+                      <div class="left">智币</div>
+                      <div class="right">62</div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <!-- 资料 end-->
+        </section>
+
+        <footer id="footer">
+            <div class="footer">私信</div>
+            <span></span>
+            <div class="footer" id="follow">加关注</div>
+        </footer>
+      </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  window.onload = function(){
+  //原生封装好获取class
+  function getClass(tagName,className){
+    if(document.getElementsByClassName){
+      return document.getElementsByClassName(className);//.类名CLASS
+    }
+    else{
+      var tags=document.getElementsByTagName(tagName)//div
+      var tagArr=[];
+      for(var i=0;i < tags.length; i++){
+        if(tags[i].class == className){
+          tagArr[tagArr.length] = tags[i];
+        }
+      }
+      return tagArr;
+    }
+  }
+
+  //切换盒子
+  var btns = document.getElementById('menu').getElementsByTagName('div');
+  var maxboxs = getClass("div","main")
+  var as = getClass("div","click")
+  var line = getClass("span","underline")
+  for(var i=0;i<btns.length;i++){
+      btns[i].index =i
+      btns[i].onclick = function(){
+          //把所有的按钮的类都清除掉！
+         var a = this.index
+         for(var i=0;i<btns.length;i++){
+              as[i].className = 'click';
+              line[i].className = 'underline';
+         }
+          as[a].className = 'click current';//确立自己
+          line[a].className = 'underline current';
+          for(var i=0;i<maxboxs.length;i++){
+            maxboxs[i].className = 'main'
+          }
+          maxboxs[this.index].className = 'main current'
+      }
+  }
+}
+
+var uid = '';
+var data = {};
+var html = '';
+var htmlmain = '';
+var htmldata = '';
+var opendetails = '';
+var htmlfoot = '';
+var userdata = {};
+userdata = $api.getStorage('userdata');
+apiready = function(){
+  uid = api.pageParam.uid;
+  api.ajax({
+      url: 'http://www.lxzntech.com/myCenter.php',
+      method: 'post',
+      data: {
+          values: {
+              uid: uid,myuid:userdata.uid
+          }
+      }
+  },function(ret, err){
+      if (ret.status==1) {
+          data = ret.data;
+          html+='<div class="namedatails">';
+            html+='<div class="headerimg"><img src="'+data['avatar']+'" alt="" onclick="openimg(this)"></div>';//发帖人头像
+            html+='<div class="name"><span>'+data['username']+'</span></div>';//资讯发布人名称
+            if(data['author']){
+              html+='<div class="sign"><span>'+data['author']+'</span></div>';//签名
+            }else{
+              html+='<div class="sign"><span>暂无签名</span></div>';//签名
+            }
+          html+='</div>';
+          html+='<div class="headerfooter">';
+            html+='<div class="tlf"><div class="tl">参与&nbsp;&nbsp;'+data['joinNum']+'</div><span></span></div>';
+            html+='<div class="tlf"><div class="tl">关注&nbsp;&nbsp;'+data['followNum']+'</div><span></span></div>';
+            html+='<div class="tlf"><div class="tl">粉丝&nbsp;&nbsp;'+data['fansNum']+'</div></div>';
+          html+='</div>';
+
+          for(var i=0;i<data.sentData.length;i++){
+            //判断文章和社区
+            if(data.sentData[i]['idtype']=='aid'){
+              opendetails = 'toartical('+data.sentData[i]['id']+')';
+            }else if(data.sentData[i]['idtype']=='tid'){
+              opendetails = 'tocommunity('+data.sentData[i]['id']+')';
+            }
+              htmlmain+='<div class="article" onclick="'+opendetails+'">';
+              if(data.sentData[i]['pic']!=''){
+                htmlmain+='<div class="image"><img src="http://www.lxzntech.com/data/attachment/'+data['sentData'][i]['pic']+'" alt=""></div>';
+              }
+                htmlmain+='<div class="text">';
+                  htmlmain+='<div class="title t">'+data['sentData'][i]['title']+'</div>';
+                  htmlmain+='<div class="foot t">';
+                    htmlmain+='<div class="from">'+data['sentData'][i]['dateline']+'</div>';
+                    htmlmain+='<div class="read">'+data['sentData'][i]['views']+'阅读</div>';
+                  htmlmain+='</div>'
+                htmlmain+='</div>';
+              htmlmain+='</div>';
+          }
+
+          htmldata+='<div class="listbiao">';
+            htmldata+='<div class="li"><div class="left">性别</div><div class="right">'+data['sex']+'</div></div>';
+          htmldata+='</div>';
+          htmldata+='<div class="listbiao">';
+            htmldata+='<div class="list">';
+              htmldata+='<div class="li underline"><div class="left">积分</div><div class="right">'+data['score']+'</div></div>';
+              htmldata+='<div class="li"><div class="left">智币</div><div class="right">'+data['score']+'</div></div>';
+            htmldata+='</div>';
+          htmldata+='</div>';
+
+          htmlfoot+='<div class="footer" onclick="openChatWindow('+uid+')">私信</div>';
+          htmlfoot+='<span></span>';
+          if(data.hasFollow == 1){
+              htmlfoot+='<div class="footer" id="follwid" onclick="followed()">已关注</div>';
+          }else {
+              htmlfoot+='<div class="footer" id="follwid" onclick="follows()">加关注</div>';
+          }
+      } else {
+          alert(err.msg)
+      }
+      $api.html($api.byId('headermain'), html);
+      $api.html($api.byId('main'), htmlmain);
+      $api.html($api.byId('data'), htmldata);
+      $api.html($api.byId('footer'), htmlfoot);
+  });
+
+}//
+
+  function openShare(){
+      api.actionSheet({
+          cancelTitle: '取消',
+          buttons: ['举报']
+      }, function(ret, err){
+          if( ret ){
+             if(ret.buttonIndex == '1'){
+               var userdata = {};
+               userdata = $api.getStorage('userdata');
+               api.ajax({
+                   url: 'http://www.lxzntech.com/report.php',
+                   method: 'post',
+                   data: {
+                       values: {
+                         // rid	举报id：如帖子评论的pid；文章评论的cid	string	Y	-
+                         // tid	举报的帖子tid或者文章的aid	string	Y	-
+                         // uid	举报人id	string	Y	-
+                         // username	举报人名称	string	Y	-
+                         // type	举报的类型：post为帖子，article为文章	string	Y	-
+                         // message	举报说明	string	N	-
+                         tid:uid,uid:userdata['uid'],username:userdata['username'],type:'user'
+                       }
+                   }
+               },function(ret, err){
+                   if (ret.status == 1) {
+                       Toast('举报成功',1000)
+                   } else {
+                       Toast(ret.msg,1000);
+                   }
+               });
+
+             }
+          }
+      });
+
+  }
+
+  function openChatWindow(uid){
+    api.openWin({
+        name: 'ChatWindow',
+        url: 'ChatWindow.html',
+        pageParam: {
+            uid:uid
+        }
+    });
+
+  }
+
+function follows(){
+  api.ajax({
+      url: 'http://www.lxzntech.com/action.php?action=follow',
+      method: 'post',
+      data: {
+          values: {
+              uid:userdata.uid,
+              username:userdata.username,
+              followuid:uid,
+              fusername:data.username
+          }
+      }
+  },function(ret, err){
+      if (ret.status == 1) {
+          Toast('关注成功',1000);
+          $api.text($api.byId('follwid'), '已关注');
+          document.getElementById('follwid').removeAttribute('onclick');
+          document.getElementById('follwid').setAttribute('onclick','followed()')
+      } else {
+          // Toast(ret.msg);
+      }
+  });
+
+}
+
+  //已关注
+  function followed(){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var followData ={};
+    if(userdata){
+      followData.uid = userdata.uid;
+      followData.followuid=uid;
+    }else{
+      Toast('请登录后再操作')
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/actionCancel.php?action=follow',
+        method: 'post',
+        data: {
+            values: followData
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            Toast('取消关注成功',1000)
+            $api.html($api.byId('follwid'), '加关注');
+            document.getElementById('follwid').removeAttribute('onclick');
+            document.getElementById('follwid').setAttribute('onclick','follows()')
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+
+//id类型
+function toartical(aid){
+    api.openWin({
+        name: 'ArticalDetails',
+        url: 'ArticalDetails.html',
+        pageParam: {
+            aid: aid
+        }
+    });
+}
+
+function tocommunity(tid){
+    api.openWin({
+        name: 'CommunityDetails',
+        url: 'CommunityDetails.html',
+        pageParam: {
+            tid: tid
+        }
+    });
+}
+
+//自定义弹框
+function Toast(msg,duration){
+    duration=isNaN(duration)?3000:duration;
+    var m = document.createElement('div');
+    m.innerHTML = msg;
+    m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+    document.body.appendChild(m);
+    setTimeout(function() {
+        var d = 0.5;
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+        m.style.opacity = '0';
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+    }, duration);
+}
+//打开一张图片
+  function openimg(ret) {
+      var src = ret.getAttribute("src");
+      //图片加载
+      var photoBrowser = api.require('photoBrowser');
+      photoBrowser.open({
+        images: [
+            src
+        ],
+      bgColor: '#000'
+  }, function(ret, err) {
+      if(ret.eventType=='click'){
+          photoBrowser.close();
+      }
+    });
+}
+  </script>
+  </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+      <style>
+      @font-face {
+        font-family: 'iconfont';
+        src: url('../../icon/iconfont.eot');
+        src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../../icon/iconfont.woff') format('woff'),
+        url('../../icon/iconfont.ttf') format('truetype'),
+        url('../../icon/iconfont.svg#iconfont') format('svg');
+      }
+      .iconfont{
+        font-family: "iconfont" !important;
+        font-style: normal;
+        font-size: 22px;
+        color: #000;
+      }
+
+/* 这个字体图标是哪来的
+阿里巴巴矢量图库的
+下载的吗
+对，下载下来了
+我的需求是选中状态和未选中状态两个图片不一样，
+但是ui给我的一个是字体图标，一个是图片来的，
+你懂吗
+我先看看 哪两个，这是我的一个demo
+我给你看我需要需求的那个页面嗯
+ */
+      </style>
+  </head>
+  <body>
+    <div id="button">
+          <i class="iconfont" id="picts">&#xe60f;</i>
+       </div>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+
+      };
+      function change_pic(){
+           var button = document.getElementById("button");
+
+           var picts = document.getElementById("picts");
+
+           button.onclick = function(){
+               if(picts.getAttribute("src",2) == "iconfont"){
+
+                   picts.setAttribute("src","../../images/index/mine.png");
+
+               }else{
+
+                   picts.setAttribute("src","iconfont");
+
+               };
+           }
+       }
+       change_pic();
+
+  </script>
+  </html>

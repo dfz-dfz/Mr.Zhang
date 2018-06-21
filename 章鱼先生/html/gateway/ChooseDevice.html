@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>网关地址</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+    @font-face {
+      font-family: 'iconfont';
+      src: url('../../icon/iconfont.eot');
+      src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('../../icon/iconfont.woff') format('woff'),
+      url('../../icon/iconfont.ttf') format('truetype'),
+      url('../../icon/iconfont.svg#iconfont') format('svg');
+    }
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #f1f1f1;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+        }
+        /*header 顶部样式*/
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 16px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+        /*header end*/
+
+        .main {
+            -moz-box-flex: 1.0;  /* Firefox */
+            -webkit-box-flex: 1.0;  /* Safari 和 Chrome */
+            box-flex: 1.0;
+            position: relative;
+            background: #f2f2f2;
+            padding-top: 80px;
+        }
+
+        .main ul {
+            padding: 0;
+
+        }
+
+        .main ul li {
+            height: 50px;
+            background: #fff;
+            line-height: 50px;
+            font-size: 15px;
+            color: #101010;
+            font-weight: normal;
+            padding: 0px 10px 0px 10px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+        }
+
+        .number {
+            letter-spacing: 2px;
+            margin-left: 13px;
+            font-weight: normal;
+            font-size: 15px;
+            color: #101010;
+        }
+
+        .add {
+            background-color: #fff;
+            width: 40px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #bfbfbf;
+            font-size: 14px;
+            color: #2f2f2f;
+            float: right;
+            position: absolute;
+            left: 82%;
+            margin-top: -36px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .iconfont{
+        font-family:"iconfont" !important;
+        font-size:22px;
+        font-style:normal;
+        color: black;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="gateway">
+        <!-- header begin-->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i onclick="api.closeWin()"></i></div>
+                <div class="sect fo">选择设备</div>
+
+            </div>
+        </div>
+        <!-- header end -->
+        <div class="main">
+
+            <div>
+                <ul>
+                    <li><i class="iconfont">&#xe62e;</i><span class="number">192.168.1.121.90</span>
+                    </li>
+                    <div class="add" >
+                        <button type="button" name="" style="background-color:#fff;" onclick="openDeviceName()">添加</button>
+                    </div>
+                </ul>
+            </div>
+
+          </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+
+    }
+    function openDeviceName(){
+      api.openWin({
+          name: 'DeviceName',
+          url: 'DeviceName.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
+    }
+</script>
+
+</html>

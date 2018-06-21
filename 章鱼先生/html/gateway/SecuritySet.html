@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>安全设置</title>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #f1f1f1;
+        }
+
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+            position: relative;
+        }
+        /*header 顶部样式 begin*/
+
+        .header {
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .header .top {
+            width: 100%;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+        }
+
+        .header .top .sect {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        .header .top .fo {
+            font-size: 17px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+        .header .top .left>i {
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .header .top .right {
+            position: relative;
+        }
+
+        .header .top .right .t {
+            position: absolute;
+            font-size: 13px;
+            color: #dfdfdf;
+            right: 12px;
+            text-align: center;
+            line-height: 86px;
+        }
+        /*header end*/
+
+        .main {
+            padding-top: 40px;
+        }
+
+        .main ul {
+            padding: 0;
+            padding-top: 40px;
+        }
+
+        .main li {
+            height: 40px;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .main li .bg {
+            background: #fff;
+            height: 100%;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+        }
+
+        .main li div div {
+            float: left;
+        }
+
+        .main li .name {
+            height: 100%;
+            line-height: 40px;
+            padding-left: 10px;
+            color: #1e1e1e;
+            width: 28%;
+            font-size: 16px;
+        }
+
+        .main li .input {
+            height: 100%;
+            line-height: 40px;
+            max-width: 220px;
+            padding-left: 5px;
+        }
+
+        .main li .input input {
+            height: 35px;
+            width: 82%;
+            background-color: #fff;
+            font-size: 15px;
+            max-width: 230px;
+            color: #9e9e9e;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- header begin -->
+        <div class="header">
+            <div class="top">
+                <div class="sect left"><i></i></div>
+                <div class="sect fo">安全设置</div>
+                <div class="sect right">
+                    <div class="t">保存</div>
+                </div>
+            </div>
+        </div>
+    </header>
+      <!-- header end -->
+
+    <div class="main">
+        <ul>
+          <!-- 当前密码 -->
+            <li style="margin-bottom:10px;">
+                <div class="bg">
+                    <div class="name">当前密码</div>
+                    <div class="input" style="margin-left:-20px;">
+                        <input type="text" id="text" maxlength="15" placeholder="默认密码&nbsp;1&nbsp;2&nbsp;3&nbsp;4&nbsp;5&nbsp;6&nbsp;7&nbsp;8">
+                    </div>
+                </div>
+            </li>
+            <!-- 新密码 -->
+            <li>
+                <div class="bg">
+                    <div class="name">新密码</div>
+                    <div class="input"  style="margin-left:-30px;">
+                        <input type="text" id="text"  maxlength="15" placeholder="请输入新密码">
+                    </div>
+                </div>
+            </li>
+            <!-- 确认新密码 -->
+            <li>
+                <div class="bg">
+                    <div class="name">确认新密码</div>
+                    <div class="input">
+                        <input type="text"id="text" maxlength="15" placeholder="请输入新密码">
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <footer>
+            <div class="password">
+                <p style="margin:10px 0px 0px 10px;font-size:13px;color:#808080;">密码设置输入6-16位以内的字母或大小写英文字母</p>
+            </div>
+        </footer>
+
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+// 限制文本框输入长度
+var textarea = document.querySelector("#text")
+console.log(textarea.maxLength);
+</script>
+
+</html>

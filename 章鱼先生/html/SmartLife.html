@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>智能生活</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: #f1f1f1;
+            background: url('../images/gatewayimages/life/life.png') no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .wrap {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+        }
+
+        header img {
+            width: 18px;
+        }
+
+        .header {
+            height: 44px;
+            width: 100%;
+            line-height: 44px;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header {
+            display: none;
+        }
+
+        .header.current {
+            display: block;
+            height: 70px;
+        }
+        .header.myself,
+        header.main {
+            background: #666;
+            line-height: 44px;
+            color: #fff;
+        }
+
+        .index .discov {
+            line-height: 100px;
+            display: inline-block;
+            width: 70%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 50%;
+            left: 50%;
+            margin-left: -38%;
+        }
+
+        .index .discov>a {
+            color: #0f0f0f;
+            font-size: 17px;
+            font-weight: normal;
+            width: 38%;
+            margin-left: 25px;
+        }
+
+        .index .discov>a.hover {
+            color: #808080;
+            line-height: 86px;
+
+            font-size: 17px;
+
+        }
+
+        .add a {
+            float: right;
+            margin-right: 18px;
+            font-size: 30px;
+            color: #808080;
+            line-height: 100px;
+        }
+
+
+        /*脚步*/
+        flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            position: relative;
+        }
+        .flex-1 {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            background-image: url('../gatewayimages/life/life.png ');
+            background-size: 100% 100%;
+            padding: 5px;
+        }
+
+        .flex-1 p {
+            font-size: 16px;
+            color: #1c1c1c;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .adddevice {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #fff;
+            margin: 0 auto;
+            margin-top: 12px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .center-button button {
+            background-color: #1f4075;
+            width: 90%;
+            height: 38px;
+            border: 1px solid #999;
+            color: #ffffff;
+            outline: none;
+            border-radius: 15px;
+            font-size: 16px;
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+          /*  position: absolute;*/
+            top: 100px;
+        }
+
+
+    </style>
+</head>
+
+<body class="wrap">
+    <header class="header index current" id="header">
+        <div class="discov">
+            <a style="margin-right:-5px;" class="menu ">智能生活</a>
+            <i></i>
+            <a class="menu hover" onclick="openChooseDevicetype()">智能场景</a>
+        </div>
+        <div class="add">
+            <a href="#" onclick="openChooseDevicetype()">+</a></div>
+    </header>
+    <section class="flex-1">
+        <div class="adddevice">
+            <p>暂时还没有设备</p>
+            <div class="center-button" style="padding:0px 10px;">
+                <button type="button" name="" onclick="openChooseDevicetype()">添加设备</button>
+            </div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+    };
+    function openChooseDevicetype(){
+      api.openWin({
+          name: 'ChooseDevicetype',
+          url: 'gateway/ChooseDevicetype.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
+      // api.toast({
+      //     msg: '该功能即将开放',
+      //     duration: 1000,
+      //     location: 'bottom'
+      // });
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>好友通知</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+      <style>
+          body,html{
+            width: 100%;height: 100%; margin: 0; padding: 0;
+            font-size:
+          }
+
+          ul li{
+            list-style-type:none;
+          }
+
+          /*section 顶部样式*/
+          .section{
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            background: url('../../images/same_content/Header.jpg');
+          }
+          .section .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .section .fo{
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 86px;
+            text-align: center;
+            white-space: nowrap;
+          }
+          .section .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+          }
+          /*section end*/
+
+          /*ul菜单*/
+          .inform ul{
+            padding-top: 70px;
+          }
+          .inform ul li{
+            width: 100%;
+            height: 54px;
+            position: relative;
+            border-bottom: 1px solid #e1e1e1;
+          }
+
+          .inform ul li .img{
+            width: 32px;
+            height: 32px;
+            margin:0 5px;
+            position: absolute;
+            top: 50%;
+            margin-top: -16px;
+          }
+          .inform ul li img{
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+          }
+          .inform ul li .main{
+            position: absolute;
+            left: 42px;
+            width: 80%;
+          }
+
+          .inform ul li .time{
+            font-size: 10px;
+            color: #808080;
+            position: absolute;
+            right: 5px;
+            top: 20%;
+          }
+          .inform ul li .time .num{
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 15px;
+            background-color: #d84a42;
+            bottom:-20px;
+            right: 0;
+            color: #fff;
+          }
+          .inform ul li .title{
+            font-size: 14px;
+            color: #111;
+            line-height: 34px;
+          }
+
+          .inform ul li .text{
+            width: 90%;
+            font-size: 10px;
+            color: #7c7c7c;
+            line-height: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          /*ul菜单 edn*/
+      </style>
+  </head>
+  <body>
+    <div class="inform">
+      <!-- section 顶部 -->
+        <div class="section">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">好友通知</div>
+        </div>
+      <!-- section end -->
+      <!-- ul菜单 -->
+      <ul id="main">
+        <li>
+          <div class="img"><img src="../../images/myattention/science1.png" alt=""></div>
+          <div class="main">
+            <div class="title">大艺术家</div>
+            <div class="text">我不太清楚</div>
+          </div>
+          <div class="time">04-11 <div class="num">1</div></div>
+        </li>
+      </ul>
+      <!-- ul菜单 end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        friendDatas();
+      };
+
+      var userdata = {};
+      userdata = $api.getStorage('userdata');
+      function friendDatas(){
+        var follow = api.pageParam.type;
+        var html = '';
+        if(userdata){
+          api.ajax({
+              url: 'http://www.lxzntech.com/getNotice.php',
+              method: 'post',
+              data: {
+                  values: {
+                      type:follow,uid:userdata['uid']
+                  }
+              }
+          },function(ret, err){
+              if (ret.status == 1) {
+                  var data = ret.data;
+                  for(var i=0;i<data.length;i++){
+                    if(data[i]['type'] == 'follow'){
+                      html+='<li onclick="openFriendDetalisData('+data[i]['uid']+')">';
+                        html+='<div class="img"><img src="'+data[i]['avatar']+'" alt=""></div>';
+                        html+='<div class="main">';
+                          html+='<div class="title">'+data[i]['username']+'</div>';
+                          html+='<div class="text">'+data[i]['message']+'</div>';
+                        html+='</div>';
+                        if(data[i]['new'] != ''){
+                          html+='<div class="time">'+data[i]['dateline']+'<div class="num">'+data[i]['new']+'</div></div>';
+                        }else{
+                          html+='<div class="time">'+data[i]['dateline']+'</div>';
+                        }
+                      html+='</li>';
+                    }else{
+                      html+='<li onclick="openChatWindow('+data[i]['uid']+')">';
+                        html+='<div class="img"><img src="'+data[i]['avatar']+'" alt=""></div>';
+                        html+='<div class="main">';
+                          html+='<div class="title">'+data[i]['username']+'</div>';
+                          html+='<div class="text">'+data[i]['message']+'</div>';
+                        html+='</div>';
+                        if(data[i]['new'] != ''){
+                          html+='<div class="time">'+data[i]['dateline']+'<div class="num">'+data[i]['new']+'</div></div>';
+                        }else{
+                          html+='<div class="time">'+data[i]['dateline']+'</div>';
+                        }
+                      html+='</li>';
+                    }
+                  }
+                  clearMessage();
+              } else {
+                  alert(ret.msg);
+              }
+              $api.html($api.byId('main'), html);
+
+          });
+        }else{
+          html+='';
+          $api.html($api.byId('main'), html);
+        }
+      }
+
+      function clearMessage(){
+        api.ajax({
+            url: 'http://www.lxzntech.com/clearNotice.php',
+            method: 'post',
+            data: {
+                values: {
+                    uid: userdata['uid'],type:'follow'
+                }
+            }
+        },function(ret, err){});
+
+      }
+
+
+      function openChatWindow(uid){
+        api.openWin({
+            name: 'ChatWindow',
+            url: '../ChatWindow.html',
+            pageParam: {
+                uid: uid
+            }
+        });
+
+      }
+
+      function openFriendDetalisData(uid){
+        api.openWin({
+            name: 'FriendDetailsData',
+            url: '../FriendDetailsData.html',
+            pageParam: {
+                uid: uid
+            }
+        });
+      }
+  </script>
+  </html>

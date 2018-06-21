@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title发现</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+      @font-face {
+          font-family: 'iconfont';
+          src: url('../icon/iconfont.eot');
+          src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+          url('../icon/iconfont.woff') format('woff'),
+          url('../icon/iconfont.ttf') format('truetype'),
+          url('../icon/iconfont.svg#iconfont') format('svg');
+        }
+          body,html{
+            width: 100%;height: 100%; margin: 0; padding: 0;
+          }
+          ul li{
+            list-style-type: none;
+          }
+
+          .find_style{
+            max-width:555px;  margin:0 auto;
+          }
+/*picture carousel css*/
+          .content{
+            overflow:hidden;  height: 160px;  position: relative;
+          }
+
+          .content .scroll{
+            position: absolute; height: 100%;
+          }
+
+          .content .scroll img{
+            float: left;
+            height:100%;
+          }
+
+          .content ol{
+            position: absolute;
+            width: 47px;
+            bottom: 5px;
+            left:0;
+            right: 0;
+            margin:0 auto;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-justify-content: center;
+          }
+
+          .content ol li{
+            float: left;
+            width:5px;
+            height: 5px;
+            cursor: pointer;
+            background-color: #383131;
+            border-radius: 50%;
+            margin-left: 2px;
+          }
+          .content ol li.current{
+            background: #fff;
+          }
+          .arrow {
+            position: absolute;
+            top:70px;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            font-size: 36px;
+            line-height: 39px;
+            text-align: center;
+            color: #000;
+            cursor: pointer;
+          }
+/*picture carousel css end*/
+
+/*mue*/
+          .mue{
+            width: 100%;
+            height: 35px;
+            z-index: 1;
+            border-bottom: 1px solid #dfdfdf;
+          }
+
+          .mue .click{
+            float: left;
+            height: 100%;
+            width: 20%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 15px;
+            color: #5f5d5d;
+            position: relative;
+          }
+          /*.mue div span{
+            border-right: 1px solid #cfcfcf;
+            position: absolute;
+            right: 0;
+            top: 12px;
+            height: 12px;
+          }*/
+          .mue .click.hover{
+            color: #000;
+            font-weight: 600;
+            font-size: 17px;
+          }
+/*mue end*/
+
+/*article*/
+          section .sect{
+            display: none;
+          }
+          section .current{
+            display: block;
+          }
+
+          .section{
+            width: 100%;
+          }
+          .section .mainList{
+            background-color: #f1f1f1;
+            padding: 5px 10px 5px 10px;
+          }
+          .section .mainList .article{
+            border-radius: 5px;
+            background-color: #fff;
+            border: 1px solid #e1e1e1;
+          }
+          .section .article .picture{
+            position: relative;
+            width: 100%;
+            height: 162px;
+          }
+          .section .article .picture img{
+            width: 100%;
+            height: 100%;
+            border-radius: 5px 5px 0 0;
+          }
+
+          .section .article .text{
+            width: 100%;
+          }
+          .section .article .text .title{
+            color: #1a1a1a;
+            font-size: 15px;
+            padding-top: 5px;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin: 0 2px 0 10px;
+          }
+          .section .article .text .content{
+            color:#5e5e5e;
+            font-size:15px;
+            line-height: 25px;
+            padding-bottom: 10px;
+          }
+          .section .article .ltls{
+            position: relative;
+            font-size: 10px;
+            line-height: 15px;
+            padding-top: 5px;
+          }
+          .section .article .ltls .ll{
+            position: relative;
+          }
+          .section .article .ltls div{
+            display: inline-flex;
+            height: 32px;
+            line-height: 35px;
+            margin-left: 8px;
+            color: #808080;
+            font-size: 12px;
+            margin-right: 4px;
+          }
+          .section .article .ltls div img{
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+          }
+          .section .article .ltls .share{
+            right:0;
+            position: absolute;
+            width: 25px;
+            top:8px;
+          }
+
+/*article end*/
+
+        /*video*/
+        .section .video{
+          border-bottom: 2px solid #e1e1e1;
+          padding: 7.5px 7.5px 0 7.5px;
+          padding-top: 0;
+        }
+        .section .video .picture{
+          position: relative;
+          width: 100%;
+          height: 143px;
+        }
+        .section .video .picture .img{
+          width: 100%;
+          height: 100%;
+        }
+        .section .video .picture .playbtn{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin-left: -4%;
+          margin-top: -4%;
+        }
+        .section .video .picture .playbtn img{
+          width: 40px;
+        }
+        .section .video .picture .icotext div{
+          display: inline-flex;
+          margin-left: 3px;
+        }
+        .section .video .picture .playlength{
+          position: absolute;
+          right: 4px;
+          bottom: 4px;
+          color: #fff;
+          font-size: 8px;
+          background-color: #666;
+          border-radius: 5px;
+          width: 25px;
+          text-align: center;
+          overflow : hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+        .section .video .text{
+          width: 100%;
+        }
+        .section .video .text .title{
+          color: #1a1a1a;
+          font-size: 15px;
+          padding-top: 5px;
+        }
+        .section .video .text .content{
+          color:#5e5e5e;
+          font-size:15px;
+          line-height: 25px;
+          padding-bottom: 10px;
+        }
+        .section .video .ltls{
+          position: relative;
+          font-size: 10px;
+          line-height: 15px;
+          padding-top: 5px;
+        }
+        .section .video .ltls .ll{
+          position: relative;
+        }
+        .video .ltls div{
+          display: inline-flex;
+          height: 32px;
+          line-height: 32px;
+          margin-left: 2px;
+          color: #808080;
+          font-size: 12px;
+        }
+        .video .ltls div img{
+          border-radius: 50%;
+          padding-right: 6px;
+        }
+        .section .video .ltls .share{
+          right:0;
+          position: absolute;
+          width: 25px;
+          top:10px;
+        }
+        /*video end*/
+        .iconfont{
+          font-family: "iconfont" !important;
+          font-style: normal;
+          font-size: 22px;
+          color: #000;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="find_style">
+        <!-- picture carousel -->
+      <div class="content" id="content">
+        <div class="scroll" id="scroll">
+            <img src="../images/discovery/discovery_banner1.png" / alt="1">
+            <img src="../images/discovery/discovery_banner2.png" / alt="2">
+            <img src="../images/discovery/discovery_banner3.png" / alt="3">
+            <img src="../images/discovery/discovery_banner1.png" / alt="4">
+            <img src="../images/discovery/discovery_banner2.png" / alt="3">
+        </div>
+        <ol id='ridusTolle'>
+          <li class="current"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+        <!-- picture carousel-end -->
+
+        <!-- mue -->
+        <div class="mue" id="mueToggle">
+          <div class="click hover">推荐<span></span></div>
+          <div class="click">原创<span></span></div>
+          <div class="click">趣闻<span></span></div>
+          <div class="click">探索<span></span></div>
+          <div class="click">脑洞</div>
+        </div>
+        <!-- mue-end -->
+
+        <!-- main -->
+    <section class="section" id="section">
+      <div class="sect current" id='sectRcmd'>
+      <div class="mainList">
+        <div class="article">
+            <div class="picture" id="picture">
+                <img class="img" src="../images/discovery/article_image1.png" alt="">
+            </div>
+            <div class="text">
+                <div class="title">asfdasdfasdfsadfsdfaasdfsfd价格比Xpeia Touch低了三十多倍！这投影仪能和索尼互杠</div>
+            </div>
+            <div class="ltls">
+                <div class="ll like">
+                        <div>
+                            <img src="../images/discovery/headerpicture1.png" alt="">
+                        </div>
+                        <div>风一样的男子</div>
+                </div>
+                <div class="ll share">
+                  <i class="iconfont">&#xe600;</i>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+      </div>
+
+    </section>
+        <!-- main-end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+    //定义切换clss
+    var tid = 0;
+    var btns = document.getElementById('mueToggle').getElementsByTagName('div');
+    for(var j=0;j<btns.length;j++){
+        btns[j].index = j;
+        btns[j].onclick =  function(){
+            for(var x=0;x<btns.length;x++){
+                btns[x].className = 'click';
+            }
+            this.className = 'click hover';
+            htmls = '';
+            discoveryDate(this.index);
+            tid = this.index;
+        }
+    }
+    var numb = 0;
+    var countNum = 0;
+    var countN = 0;
+    apiready = function(){
+      banner();
+      discoveryDate(0,0);
+
+      //下拉刷新
+      api.setRefreshHeaderInfo({
+        loadingImg: 'widget://image/refresh.png',
+        bgColor: '#f1f1f1',
+        textColor: '#000',
+        textDown: '拉我试试',
+        textUp: '松开刷新...',
+        showTime:'false'
+      } , function(ret, err) {
+        htmls = '';
+        discoveryDate(tid,0)
+        numb=0;
+        api.refreshHeaderLoadDone();
+        banner();
+      });
+
+      //上拉加载
+      api.addEventListener({
+        name:'scrolltobottom',
+        extra:{
+          threshold:0 //设置距离底部多少距离时触发，默认值为0，数字类型
+        }
+      },function(ret, err){
+          numb++;
+          discoveryDate(tid,numb);
+      })
+
+      //原生滑动
+      function GetSlideAngle(dx, dy) {
+        return Math.atan2(dy, dx) * 180 / Math.PI;
+      }
+
+      //根据起点和终点返回方向 1：向上，2：向下，3：向左，4：向右,0：未滑动
+      function GetSlideDirection(startX, startY, endX, endY) {
+        var dy = startY - endY;
+        var dx = endX - startX;
+        var result = 0;
+        //如果滑动距离太短
+        if((Math.abs(dy) > 15||Math.abs(dy) < 0)||Math.abs(dx) < 30) {
+          return result;
+        }
+        var angle = GetSlideAngle(dx, dy);
+        if(angle >= -45 && angle < 45) {
+           result = 4;
+        }else if (angle >= 45 && angle < 135) {
+           result = 1;
+        }else if (angle >= -135 && angle < -45) {
+           result = 2;
+        }else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
+           result = 3;
+        }
+        return result;
+      }
+
+      //滑动处理
+      var startX, startY;
+      function touchTarger(targer){
+            targer.addEventListener('touchstart',function (ev) {
+                startX = ev.touches[0].pageX;
+                startY = ev.touches[0].pageY;
+            }, false);
+            targer.addEventListener('touchend',function (ev) {
+                var endX, endY;
+                endX = ev.changedTouches[0].pageX;
+                endY = ev.changedTouches[0].pageY;
+                var direction = GetSlideDirection(startX, startY, endX, endY);
+                switch(direction) {
+                    case 3:
+                        if(targer==section){
+                          api.sendEvent({
+                              name: 'indexleft',
+                          });
+                        }else if(targer==content){
+                          removeTouch();
+                          animate();
+                        }
+                        break;
+                    case 4:
+                        num--;
+                        if(num<0){
+                          num = listpi.length-1;
+                        }
+                        for (var i = 0; i < ridusTolles.length; i++) {
+                          ridusTolles[i].className='';
+
+                        }
+                        if(num==listpi.length){
+                          $api.addCls(ridusTolles[0],'current')
+                        }
+                        else{
+                          $api.addCls(ridusTolles[num],'current')
+                        }
+                        runIng(list,"left",-num*winWdith,null);
+                        break;
+                    default:
+                }
+            }, false);
+        }
+        touchTarger(content);
+        touchTarger(section);
+    }//
+
+    //打开banner链接
+    function openHref(url){
+      var aids = url.replace(/(http:\/\/www\.lxzntech\.com\/portal\.php\?mod=view&aid=)/i,'');
+      var match = /^[0-9]+$/;
+      var sta = match.test(aids);
+      if(sta){
+        api.openWin({
+            name: 'ArticalDetails',
+            url: 'ArticalDetails.html',
+            pageParam: {
+                aid: aids
+            }
+        });
+      }else{
+        api.openWin({
+            name: 'ArticalDetails',
+            url: url
+        });
+      }
+    }
+    //banner
+    function banner(){
+      var html = '';
+      var li = '';
+      api.ajax({
+          url: 'http://www.lxzntech.com/banner.php',
+          method: 'post'
+      },function(ret, err){
+          if (ret.status == 1) {
+              var data= ret.data;
+              for(var i=0;i<data.length&i<5;i++){
+                html+='<img onclick="openHref(\''+data[i]['url']+'\')" src="'+data[i]['images']+'" alt="'+i+'"/>';
+              }
+              li+='<li class="current"></li>';
+              for(var i=1;i<data.length&i<5;i++){
+                li+='<li></li>';
+              }
+          } else {
+              html+='<img src="../images/discovery/discovery_banner1.png" / alt="0">';
+              li+='<li></li>';
+          }
+          $api.html($api.byId('scroll'), html);
+          $api.html($api.byId('ridusTolle'), li);
+          for(var j = 0;j<listpi.length;j++){
+            listpi[j].style.width = winWdith+'px'
+          }
+          var listpiLast =listpi[0].cloneNode(true);//克隆第一张图片
+          list.appendChild(listpiLast)
+      });
+    }
+      var htmls = '';
+      var userdata = {};
+      userdata = $api.getStorage('userdata');
+      function discoveryDate(tid,num){
+        if(numb > countN){
+          numb = countN;
+          num = numb;
+          return;
+          // htmls = '';
+        }
+      api.ajax({
+          url:'http://www.lxzntech.com/discovery.php',
+          method:'post',
+          dataType:'json',
+          data: {
+                 values: {
+                     　tid:tid,num:num
+                 }
+             }
+      },function(ret, err){
+          countN = ret.countNum;
+          if(ret.status == 1){
+            var data = ret.data;
+            // htmls = '';
+            for(var i=0;i<data.length;i++){
+            htmls += '<div class="mainList">';
+              htmls += '<div class="article">';
+                  htmls+='<div onclick=OpenDetail('+data[i]['aid']+')>';
+                        htmls += '<div class="picture">';
+                        //图片数据
+                            htmls += '<img width="100%" src="http://www.lxzntech.com/data/attachment/'+data[i]['pic']+'">';
+                        htmls += '</div>';
+                        //文章标题
+                        htmls += '<div class="text">';
+                              htmls += '<div class="title">'+data[i]['title']+'</div>';
+                        htmls += '</div>';
+                  htmls+='</div>';
+                  //文章主体
+                  htmls += '<div class="ltls">';
+                        htmls+='<div class="ll like">';
+                            htmls+='<div><img src="'+data[i]['avatar']+'" alt="" onclick="openFriendDetailsData('+data[i]['uid']+')"></div>';//用户头像
+                            htmls+='<div>'+data[i]['username']+'</div>';//用户名字
+                        htmls+='</div>';
+                        htmls +='<div class="ll share"><i class="iconfont" onclick="openShareOther(\''+data[i]['avatar']+'\',\''+data[i]['title']+'\',\''+data[i]['aid']+'\')">&#xe600;</i><div></div></div>';
+                  htmls += '</div>';
+            htmls += '</div>';
+          htmls += '</div>';
+          }
+        }else if (ret.status == 2) {
+            htmls = '';
+            htmls ='<div style="text-align:center;line-height:50px;height:300px;">没有数据</div>'
+        }else{
+            $api.toast(err.msg);
+        }
+          $api.html($api.byId('sectRcmd'),htmls);
+          fjcHeight('picture','0.45');
+      });
+    }
+    window.onload = function(){
+      autoplay();
+      fjcHeight("content","0.42");
+    }
+    var section = document.getElementById('section');
+    //封装获取class函数
+    function getClass(tagName,className){
+        if(document.getElementsByClassName){
+            return document.getElementsByClassName(className);
+        }else{
+            var args = document.getElementsByTagName(tagName);
+            var argsArr = [];
+            for(var i=0;i<args.length;i++){
+                if(args[i].class==className){
+                    argsArr[argsArr.length] = args[i];
+                }
+            }
+            return argsArr;
+        }
+    }
+    //animiate动画效果封装
+    function runIng(obj,attr,target,fn){
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+      var cur = 0;
+      if(attr == "opacity"){
+        cur = Math.round(parseFloat(getstyle(obj,attr))*100);
+      }else{
+        cur = parseInt(getstyle(obj,attr));
+      }
+        var speed = (target-cur)/8;
+        speed = speed>0?Math.ceil(speed):Math.floor(speed);
+
+        if(cur == target){
+          clearInterval(obj.timer);
+            if(fn){
+              fn();
+            }
+        }else{
+            if(attr == "opacity"){
+                obj.style.filter = "alpha(opacity="+(cur+speed)+")";
+                obj.style.opacity = (cur+speed)/100;
+              }else{
+                obj.style[attr] = cur + speed + "px";
+              }
+             }
+          },30)
+      }
+    //获取样式
+    function getstyle(obj,name){
+      if(obj.currentStyle){
+          return obj.currentStyle[name];
+      }else{
+        return getComputedStyle(obj,false)[name];
+      }
+    }
+
+      // 轮播图
+      var listpi = document.getElementById('scroll').getElementsByTagName('img');//获取图片数量
+      var winWdith = document.body.clientWidth;//获取屏幕宽度
+      var list = document.getElementById('scroll');//获取大盒子
+      var ridusTolles = document.getElementById('ridusTolle').getElementsByTagName('li')//获取li的数量
+      var listLength;
+      var listpiLast =listpi[0].cloneNode(true);//克隆第一张图片
+      list.appendChild(listpiLast)
+      listLength=list.style.width = listpi.length*winWdith+'px';//定义大盒子长度
+      //定义图片长度
+      for(var i = 0;i<listpi.length;i++){
+        listpi[i].style.width = winWdith+'px'
+      }
+      //轮播
+      var num = 0;
+      function animate(){
+        num++;
+        for (var i = 0; i < ridusTolles.length; i++) {
+          ridusTolles[i].className='';
+        }
+        if(num==listpi.length){
+          num=0;
+          list.style.left='0';
+          $api.addCls(ridusTolles[0],'current')
+        }
+        else{
+          $api.addCls(ridusTolles[num],'current')
+        }
+        runIng(list,"left",-num*winWdith,null);
+      }
+      //自动轮播
+      var timer;
+      function autoplay(){
+          clearInterval(timer)
+          timer = setInterval(function(){
+            animate()
+          },5000)
+      }
+
+      //滑动到指定位置定死
+      var mueToggle = document.getElementById('mueToggle');
+      var content = document.getElementById('content');
+      //执行一次就不执行
+      window.onscroll = function(){
+        var bodyScrollTop = document.body.scrollTop;
+        if(bodyScrollTop>160){
+          mueToggle.style.position = 'fixed';
+          mueToggle.style.top = '0px';
+          mueToggle.style.background = '#fff';
+        }else{
+          mueToggle.style.position = 'static';
+        }
+      }
+      function OpenDetail(aid){
+        api.openWin({
+            name: 'ArticalDetails',
+            url: 'ArticalDetails.html',
+            pageParam: {
+                aid: aid
+            }
+        });
+        var u = navigator.userAgent, app = navigator.appVersion;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+        var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isIOS) {
+            api.setStatusBarStyle({
+                style: 'dark',
+                color:'#363636'
+            });
+        }
+      }
+      function openShareOther(DsShareImg,DsShareText,aid){
+        api.openFrame({
+            name: 'ShareOther',
+            url: 'ShareOther.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                DsShareImg:DsShareImg,DsShareText:DsShareText,aid:aid
+            },
+            animation:{
+              type:"push",
+              subType:"from_bottom",
+              duration:300
+            },
+            bounces: false,
+            bgColor: 'rgba(0,0,0,0)',
+            vScrollBarEnabled: false,
+            hScrollBarEnabled: false
+        });
+      }
+
+      function openFriendDetailsData(uid){
+        var userdata = {};
+        userdata = $api.getStorage('userdata');
+        if(userdata){
+          api.openWin({
+              name: 'FriendDetailsData',
+              url: 'FriendDetailsData.html',
+              pageParam: {
+                  uid: uid
+              }
+          });
+        }else{
+          Toast('请登录再进行操作')
+        }
+      }
+
+      //自定义弹框
+      function Toast(msg,duration){
+          duration=isNaN(duration)?3000:duration;
+          var m = document.createElement('div');
+          m.innerHTML = msg;
+          m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+          document.body.appendChild(m);
+          setTimeout(function() {
+              var d = 0.5;
+              m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+              m.style.opacity = '0';
+              setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+          }, duration);
+      }
+      //监听屏幕滑动
+
+    function removeTouch(){
+      api.removeEventListener({
+          name: 'indexleft'
+      });
+    }
+    //比例缩放
+    function fjcHeight(fjc,size){
+          var fjcdiv = document.getElementsByClassName(fjc);
+          if(fjcdiv){
+              var nowWidth = document.body.clientWidth;
+              var nowHeight = size*nowWidth;
+              for(var i = 0;i<fjcdiv.length;i++){
+                  fjcdiv[i].style.height = nowHeight+"px"
+              }
+          }
+    }
+  </script>
+  </html>

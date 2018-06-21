@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>意见反馈</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          body,html{
+            padding: 0;margin: 0;width: 100%;height: 100%;
+            background-color: #f1f1f1;
+          }
+          ul li{
+            list-style-type: none;
+          }
+          input{
+            outline: none;
+          }
+          /*header 顶部样式*/
+          .header{
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999;
+          }
+          .header .top{
+            width: 100%;
+            height: 70px;
+            background: url('../images/same_content/Header.jpg');
+          }
+          .header .top .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .header .top .fo{
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 86px;
+            text-align: center;
+          }
+          .header .top .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+         }
+          /*header end*/
+          /*main*/
+          .main{
+            width: 100%;
+            height: 100%;
+            padding-top: 70px;
+          }
+          .main .box{
+            padding: 0 10px 0 10px;
+          }
+          .main .box .sug .title{
+            font-size: 16px;
+            color: #2d2d2d;
+            padding: 20px 0 16px 0;
+            font-weight: bold;
+          }
+          .main .box .sug .text{
+            width: 100%;
+            background-color: white;
+            border-radius: 4px;
+          }
+          .main .box .sug .text textarea{
+            width: 100%;
+            height: 162px;
+            padding:0 6px 0 6px;
+            font-size: 12px;
+            line-height: 30px;
+            outline: none;
+            resize: none;
+          }
+          .main .box .link{
+            padding: 0 0 20px 0;
+          }
+          .main .box .link .lt{
+            font-size: 16px;
+            color: #2d2d2d;
+            padding:20px 0 15px 0;
+            font-weight: bold;
+          }
+          .main .box .link .li{
+            width: 100%;
+            height: 32px;
+            background-color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #9a9999;
+          }
+          .main .box .link .li input{
+            width: 100%;
+            height: 100%;
+            padding-left: 6px;
+          }
+          .main .box .btn{
+            width: 100%;
+            height: 45px;
+            background-color: #24292d;
+            font-size:15px;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 45px;
+          }
+          .main .box .btn input{
+            color: #fff;
+          }
+          /*main end*/
+      </style>
+  </head>
+  <body>
+    <div class="feedback">
+      <!-- header -->
+      <div class="header">
+        <div class="top">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">意见反馈</div>
+        </div>
+      </div>
+      <!-- header end -->
+      <!-- main -->
+      <form class="" action=".html" method="post">
+        <div class="main">
+          <div class="box">
+            <div class="sug">
+              <div class="title">你要反馈的意见或者建议:</div>
+              <div class="text" id="text">
+                <textarea type="text" name="" class="suggestion" id="suggestion" maxLength="100" value="" placeholder="欢迎说出您的疑问和建议，我们会及时处理" ></textarea>
+              </div>
+            </div>
+            <div class="link">
+              <div class="lt">您的联系方式：</div>
+              <div class="li" id="li">
+                <input type="text" name="" class="link" id="link" maxLength="25" value="" placeholder="请留下您的QQ或者邮箱">
+              </div>
+            </div>
+            <div class="btn" id="btn">
+              <input type="button" value="提交" onclick="subsug()">
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- main end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  // 限制文本框输入长度
+  var textarea= document.querySelector("#suggestion")
+  console.log(textarea.maxLength);
+  var input = document .querySelector("#link")
+  console.log(input.maxLength);
+
+      var userdata = {};
+      userdata = $api.getStorage('userdata');
+      function subsug(){
+        var suggestion = $api.val($api.byId('suggestion'));
+        var link = $api.val($api.byId('link'));
+        if(!(/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(link) || /^[1-9]\d{4,12}$/.test(link))){
+           alert("请输入正确的邮箱或QQ");
+           document.getElementById('link').focus();
+           return false;
+        }
+        var advice = suggestion;
+        var connection = link;
+        if(suggestion == '' || link == ''){
+          Toast('请填写好信息在提交',1000)
+        }else{
+          api.ajax({
+              url: 'http://www.lxzntech.com/advice.php',
+              method: 'post',
+              data: {
+                  values: {
+                      'advice':advice,'connection':connection
+                  }
+              }
+          },function(ret, err){
+              if (ret.status == 1) {
+                  Toast('提交成功')
+                  $api.val($api.byId('suggestion'), '');
+                  $api.val($api.byId('link'), '');
+              } else {
+                  Toast( JSON.stringify( err ) );
+              }
+          });
+
+        }
+      }
+      //自定义弹框
+      function Toast(msg,duration){
+          duration=isNaN(duration)?3000:duration;
+          var m = document.createElement('div');
+          m.innerHTML = msg;
+          m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+          document.body.appendChild(m);
+          setTimeout(function() {
+              var d = 0.5;
+              m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+              m.style.opacity = '0';
+              setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+          }, duration);
+      }
+  </script>
+  </html>

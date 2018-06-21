@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"  />
+  <title>文章详情</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css" />
+  <style>
+    .quote{
+      background-color: #f5f5f5;
+    }
+    .quote>blockquote{
+      margin:10px 0;
+      text-align: left;
+      padding-left: 5px;
+      font-size: 14px;
+      color: #3a3a3a;
+    }
+    @font-face {
+      font-family: 'iconfont';
+      src: url('../icon/iconfont.eot');
+      src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('../icon/iconfont.woff') format('woff'),
+      url('../icon/iconfont.ttf') format('truetype'),
+      url('../icon/iconfont.svg#iconfont') format('svg');
+    }
+    body,html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    ul li {
+      list-style-type: none;
+    }
+    span {
+      display: inline;
+    }
+   .comment_details {
+     width: 100%;
+     background-color: #f1f1f1;
+     height: 100%;
+     overflow-x: hidden;
+     overflow-y: scroll;
+     -webkit-overflow-scrolling: touch;
+    }
+    #articalDetails{
+      /*width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;*/
+    }
+    /*标题开始*/
+   .header {
+     width: 100%;
+     background-color: white;
+     border-bottom: 10px solid #f5f5f5;
+    }
+    .header .title {
+      margin-left: 10px;
+      color: #111;
+      font-size: 18px;
+      padding: 28px 0 14px 0;
+      position: relative;
+      font-weight: bold;
+    }
+    /*标题结束*/
+    /*资讯标签条开始*/
+   .header .nametime {
+     padding-left: 12px;
+     height: 20px;
+     margin-bottom: 14px;
+     align-items: center;
+     text-overflow: ellipsis;
+     display: -webkit-box;
+  }
+
+  .header .nametime .name {
+    display: flex;
+    align-items: center;
+    color: #002663;
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+   .header .nametime .name>div {
+     height: 10px;
+     border-right: 1px solid #cfcfcf;
+     margin-left: 8px;
+  }
+
+   .header .nametime .time {
+     display: flex;
+     align-items: center;
+     color: #555;
+     font-size: 12px;
+     margin-right: 8px;
+  }
+
+   .header .nametime .time>div {
+     height: 10px;
+     border-right: 1px solid #cfcfcf;
+     margin-left: 8px;
+  }
+
+   .header .nametime .readnum {
+     color: #555;
+     font-size: 12px;
+     line-height: 18px;
+     align-items: center;
+     text-overflow: ellipsis;
+     display: flex;
+  }
+   .header .bottom {
+     margin: 0 10px 0 10px;
+     padding-bottom: 10px;
+     line-height: 24px;
+  }
+    .header .nametime .reasonfor{
+      font-size: 12px;
+      color: #555;
+      margin-left: 16px;
+      align-items: center;
+      width: 30%;
+      display: flex;
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+}
+   /*资讯标签条结束*/
+   /*视屏界面开始*/
+   .photoprojector {
+     position: relative;
+     width: 96%;
+     padding: 0 10px 0 10px;
+   }
+   .photoprojector p{
+     text-indent: 0 !important;
+     padding: 0 10px 0 10px !important;
+   }
+  .photoprojector img{
+    width: 100%;
+  }
+  .photoprojector a{
+    padding: 0 10px 0 10px;
+    color:#000
+  }
+  .photoprojector iframe{
+    height: 250px;
+  }
+   .photoprojector .playmode {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform: translateY(-50%) translateX(-50%);
+     width: 35px;
+     height: 35px;
+   }
+    /*视屏界面结束*/
+    /*最最新咨讯开始*/
+    .header .uptop {
+      margin: 8px 10px 12px 10px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background-color: #f7f7f7;
+      height: 70px;
+    }
+    .header .uptop .left {
+      width: 46px;
+      height: 46px;
+      margin: 0 6px 0 10px;
+    }
+    .header .uptop .left img {
+      width: 46px;
+      border-radius: 50%;
+    }
+    .header .uptop .mid {
+      height: 48px;
+      width: 100%;
+      margin-right: 60px;
+    }
+    .header .uptop .mid .name {
+      font-size: 16px;
+      color: #222;
+      line-height: 28px;
+      height: 24px;
+    }
+    .header .uptop .mid .sign {
+      height: 24px;
+      font-size: 12px;
+      color: #8f8f8f;
+      line-height: 24px;
+      position: absolute;
+      bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+    .header .uptop .right img {
+      position: absolute;
+      width: 46px;
+      top: 50%;
+      margin-top: -12px;
+      right: 10px;
+    }
+    .artbook p{
+      display: inline-block;
+      margin-left: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    /*最最新咨讯结束*/  /*header end*/
+    /*new开始 相关推荐开始*/
+    .news {
+      padding-left: 10px;
+      background-color: #f7f7f7;
+    }
+    .news h3 {
+      margin-bottom: 5px;
+      font-size: 15px;
+      color: #555;
+        }
+    .news ul {
+      display: flex;
+      overflow-x: auto;
+            }
+     .news ul::-webkit-scrollbar {
+        /* 隐藏滚动条 */
+       display: none
+            }
+     .news li {
+       padding: 3px;
+       margin-right: 3px;
+            }
+     .news li img {
+       width: 100px;
+       height: 80px;
+       margin-right: 5px;
+            }
+     .news li a {
+       display: flex;
+            }
+      .news a p {
+        width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #232323;
+            }
+    .news a span {
+      font-size: 9px;
+      color: #8d8d8d;
+            }
+
+    /*new结束*//*相关推荐结束*/
+    /*main开始*/
+    .main {
+      width: 100%;
+      background-color: white;
+      border-bottom: 1px solid #e1e1e1;
+      padding-bottom: 44px;
+    }
+    /*评论区*/
+    .main .menu {
+      width: 100%;
+      height: 26px;
+      line-height: 25px;
+      border-bottom: 1px solid #f1f1f1;
+    }
+    .main .menu div {
+      float: left;
+      font-size: 15px;
+      color: #515151;
+    }
+    .main .mue .left {
+      color: #555;
+      font-size: 16px;
+      text-align: center;
+      font-weight: 500;
+      line-height: 40px;
+      border-bottom: 1px solid #f7f7f7;
+    }
+    .main .menu .left div {
+      margin-right: 5px;
+    }
+    .main .replay {
+      border-bottom: 1px solid #f7f7f7;
+    }
+    /*回复区开始*/
+    .main .text {
+      width: 100%;
+      background-color: #fff;
+      position: relative;
+    }
+    .main .text .left {
+      width: 40px;
+      height: 40px;
+      margin: 10px 6px 0 10px;
+      border-radius: 50%;
+    }
+
+    .main .text .left img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .main .text .right {
+      display: flex;
+    }
+    .main .text .right .top {
+      font-size: 14px;
+      color: #4a4a4a;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px 0 6px 60px;
+    }
+    .main .text .right>i {
+      position: absolute;
+      right: 15px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #808080;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+    .main .text .right .mid {
+      padding-left: 60px;
+      margin-top: -10px;
+      width: 100%;
+    }
+    .main .text .right .mid img{
+      width: 100%;
+    }
+    .main .text .right .mid .art {
+      color: #242424;
+      font-size: 16px;
+      line-height: 22px;
+    }
+    .main .text .right .mid .answer {
+      background-color: #f5f5f5;
+      width: 98%;
+      padding-left: 2%;
+    }
+    .main .text .right .mid .answer .li {
+      width: 100%;
+      padding-top: 4px;
+      font-size: 14px;
+      color: #3a3a3a;
+    }
+    .main .text .right .mid .answer a {
+      color: #002663;
+    }
+    .main .text .right .mid .answer .an {
+      font-size: 10px;
+      color: #003663;
+      padding-bottom: 8px;
+    }
+    .main .text .right .mid .answer span {
+      width: 5px;
+      margin: 0 5px 0 5px;
+    }
+    .main .foot {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      position: relative;
+    }
+
+    .main .foot div {
+      height: 100%;
+    }
+    .main .foot .left {
+      font-size: 10px;
+      color: #8d8d8d;
+    }
+    .main .foot .left .date {
+      position: absolute;
+      left: 60px;
+    }
+    .main .foot .left .time {
+      position: absolute;
+      left: 90px;
+    }
+    .main .foot .right {
+      font-size: 10px;
+      color: #4e4e4e;
+    }
+    .main .foot .right .talk {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      color: #4e4e4e;
+      font-size: 12px;
+    }
+    .main .foot .right .img {
+      position: absolute;
+      top: 0;
+      right: 50px;
+      width: 16px;
+      font-style: normal;
+      font-size: 14px;
+      color: #000;
+      font-family: "iconfont" !important;
+    }
+    .main .foot .right .share {
+      position: absolute;
+      top: 0;
+      right: 15px;
+    }
+    /*main end*/  /*回复区结束*/
+
+    /*footer开始*/
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 44px;
+      display: flex;
+      background-color: #fff;
+      border: 1px solid #e1e1e1;
+    }
+    /*返回标签开始*/
+    .footer .ii {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10%;
+      position: relative;
+    }
+
+    .footer .ii>i {
+      position: absolute;
+      left: 16px;
+      top:18px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #808080;
+      border-top: none;
+      border-right: none;
+      transform:rotate(45deg);
+      -webkit-transform:rotate(45deg);
+    }
+   /*返回标签结束*/
+    .footer .list {
+      display: flex;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer .list .li {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer .list input {
+      height: 26px;
+      background-color: #fff;
+      width: 100%;
+      border-radius: 16px;
+      color: #8f8f8f;
+      font-size: 12px;
+      text-indent: 10px;
+      border: 1px solid #e7e7e7;
+      outline: none;
+    }
+
+    .footer .list a {
+      display: flex;
+      align-items: center;
+      width: 25%;
+      justify-content: center;
+    }
+    .footer .list a:nth-child(1) {
+      position: relative;
+    }
+    .footer .list a:nth-child(2) {
+      position: relative;
+    }
+     /*字体图标*/
+    .iconfont {
+      font-family: "iconfont" !important;
+      font-style: normal;
+      font-size: 22px;
+      color: #000;
+    }
+    .icontalk {
+      font-size: 20px;
+    }
+    .iconlike {
+      font-size: 22px;
+    }
+   .iconcollection {
+      font-size: 24px;
+    }
+    .iconshare {
+      font-size: 20px;
+    }
+    .footer .list .talknum {
+      position: absolute;
+      background-color: #fff;
+      font-size: 10px;
+      color: #000;
+      text-align: center;
+      line-height: 20px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      top: -8px;
+      right: 0;
+    }
+    .footer .list .likenum {
+      position: absolute;
+      background-color: #fff;
+      font-size: 10px;
+      color: #000;
+      text-align: center;
+      line-height: 20px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      top: -8px;
+      right: 0;
+    }
+  /*上升标签开始*/
+  .topget {
+    height: 30px;
+    width: 30px;
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    background: url("../images/articalDetails/up.png");
+    background-size: 100% 100%;
+    transition: all 1s;
+    display: none;
+  }
+  .topget .active {
+    display: block;
+  }
+    /*footer结束*/
+  /*textareaMain*/
+  .textareaMain{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      max-height: 120px;
+      background-color: #fff;
+      border-top: 1px solid #e1e1e1;
+      display: none;
+    }
+  .textareaMain textarea{
+      font-size: 12px;
+      color: #8f8f8f;
+      background-color: #eee;
+      line-height: 18px;
+      border-radius: 10px;
+      height: 50px;
+      max-height: 62px;
+      padding:3px 0 3px 0;
+      margin: 0 2% 0 2%;
+      width: 96%;
+      outline: none;
+      resize: none;
+      overflow: visible;
+      -webkit-voerflow:visible;
+      position: absolute;
+      bottom: 6px;
+  }
+  .textareaMain .text{
+      top: 0;
+      width: 100%;
+      height: 38px;
+  }
+  .textareaMain .text .attention input{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #eee;
+  }
+  .textareaMain .text .attention .atttext{
+      position: absolute;
+      top: 9px;
+      left: 28px;
+      font-size: 12px;
+  }
+  .textareaMain .text .send{
+      position: absolute;
+      top: 10px;
+      right: 8px;
+      color:#8f8f8f;
+  }
+    /*textareaMain end*/
+  </style>
+</head>
+
+<body>
+  <div class="comment_details">
+    <div id="articalDetails">
+      <!-- header开始 -->
+    <!-- <div class="header">
+      <div class="title">
+        <div class="titl">机器人“慧眼”巡逻速率是人工的21倍</div>
+      </div>
+      <div class="nametime">
+      <div class="nametime">
+        <div class="name">最最新咨讯
+          <div></div>
+        </div>
+        <div class="time">2018-4-2
+          <div></div>
+        </div>
+        <div class="readnum">浏览数:123</div>
+        <div class="reasonfor">来源：网络</div>
+      </div> -->
+      <!-- 资讯标签页结束 -->
+      <!-- 视频界面开始 -->
+      <!-- <div class="photoprojector">
+        <img class="video" src="../images/discovery/article_image2.png" alt="">
+      </div>
+      <div class="artbook">
+        <p>蛋白质受热会凝固,蛋白质受热会凝固,蛋白质受热会凝固</p>
+      </div>
+      <div class="photoprojector">
+        <img class="video" src="../images/discovery/article_image2.png" alt="">
+      </div>
+      <div class="artbook">
+        <p>蛋白质受热会凝固,蛋白质受热会凝固,蛋白质受热会凝固</p>
+      </div> -->
+      <!-- 视频界面结束 -->
+      <!-- 最最新咨讯界面开始 -->
+      <!-- <div class="uptop">
+        <div class="left">
+          <img src="../images/community_comment_details/commDetails1.png" alt="">
+        </div>
+        <div class="mid">
+          <div class="name">最最新咨讯</div>
+          <div class="sign">life is beautiful</div>
+        </div>
+        <div class="right">
+          <img src="../images/same_content/attention.png" alt="">
+        </div>
+      </div> -->
+      <!-- 最最新咨讯界面结束 -->
+    <!-- </div> -->
+    <!-- header end -->
+    <!-- 相关推荐开始 -->  <!-- new开始 -->
+    <!-- <div class="news">
+      <h3>相关推荐</h3>
+      <ul>
+        <li>
+          <a href="javascript:;">
+            <div class="empire">
+              <img src="../images/discovery/article_image3.png" alt="">
+            </div>
+            <div>
+              <p>2年时间造出5款机器人</p>
+              <span>2018/3/24</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="javascript:;">
+            <div class="tableempire">
+              <img src="../images/discovery/article_image1.png" alt="">
+            </div>
+            <div>
+              <p>价格是Touch的两倍，科技科技科技</p>
+              <span>2018/3/24</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div> -->
+    <!-- 相关推荐结束 --><!-- new结束 -->
+    <!-- main开始 -->
+    <!-- <div class="main">
+      <div class="mue">
+        <div class="left">评论</div>
+      </div>
+      <div class="replay">
+        <div class="text">
+          <div class="left">
+            <img src="../images/same_content/fly.png" alt="">
+          </div>
+          <div class="right">
+            <div class="top">afbgn</div>
+            <i></i>
+            <div class="mid">
+              <div class="art">如果你无法简洁的表达你打想法，那只说明你还不够了解它。阿尔伯特·爱因斯坦</div>
+              <div class="answer">
+                <div class="li">
+                  <a href="">iusjjdj：</a>
+                  <span>hshdfshsdfhdfs</span>
+                </div>
+                <div class="li">
+                  <a href="">dgdgjkaf：</a>
+                  <span>sdfgsdfhsdhsdhdsfg</span>
+                </div>
+                <div class="an li">
+                  <a href="javascript:void(0)" onclick="OpcomSonSon()">共
+                    <span>8</span>条回复&nbsp;></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="left">
+            <div class="date">3-20</div>
+            <div class="time">15:10</div>
+          </div>
+          <div class="right">
+            <div><i class="iconfont img">&#xe617;</i></div>
+            <div class="talk">回复</div>
+          </div>
+        </div>
+      </div>
+      <div class="replay">
+        <div class="text">
+          <div class="left">
+            <img src="../images/same_content/fly.png" alt="">
+          </div>
+          <div class="right">
+            <div class="top">afbgn</div>
+            <i></i>
+            <div class="mid">
+              <div class="art">如果你无法简洁的表达你打想法，那只说明你还不够了解它。阿尔伯特·爱因斯坦</div>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <div class="left">
+            <div class="date">3-20</div>
+            <div class="time">15:10</div>
+          </div>
+          <div class="right">
+            <div><i class="iconfont img">&#xe617;</i></div>
+            <div class="talk">回复</div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- main end -->
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div id="foot">
+      <div id="footer" class="footer">
+        <!-- 返回标签开始 -->
+        <div class="ii" onclick="api.closeWin();">
+          <i></i>
+        </div>
+        <!-- 返回标签结束 -->
+        <div class="list">
+          <div class="li">
+            <input type="text" name="" id="talk" maxLength="150" placeholder="写评论...">
+          </div>
+          <!-- 字体图标 -->
+          <div class="li">
+            <a href="javascript:;">
+              <i class="iconfont icontalk">&#xe75b;</i>
+              <div class="talknum">28</div>
+            </a>
+            <a href="javascript:;">
+              <i class="iconfont iconlike">&#xe617;</i>
+              <div class="likenum">28</div>
+            </a>
+            <a href="javascript:;">
+              <i class="iconfont iconcollection">&#xe6a7;</i>
+            </a>
+            <a href="javascript:;">
+              <i class="iconfont iconshare">&#xe600;</i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- footer end -->
+      <!-- 增大后的评论 -->
+        <div class="textareaMain" id="textareaMain">
+            <div class="text" id="text">
+                <div class="attention">
+                    <input type="checkbox">
+                    <div class="atttext">同时关注这篇文章作者</div>
+                </div>
+                <div class="send" onclick="criticism()">发送</div>
+            </div>
+            <textarea name="textarea" id="textarea"   cols="40" rows="1"  placeholder="回复评论" onpropertychange="changeHeight(this)" oninput="changeHeight(this)"></textarea>
+        </div>
+      <!-- 增大后的评论 -->
+  </div>
+  <!-- 上升标签开始 -->
+  <div id="topget" class="topget"></div>
+  <!-- 上升标签结束 -->
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+var return_top = document.getElementById('topget')
+var sTop;
+window.onscroll = function () { //sTop :滚动条距离顶部的距离数值 sTop
+  sTop = document.body.scrollTop || document.documentElement.scrollTop;
+  if (sTop > 300) {
+    $api.addCls(return_top, 'topget active');
+  } else {
+    $api.addCls(return_top, 'topget');
+  }
+}
+return_top.onclick = function (){
+  var termId = setInterval(function (){
+    sTop -= 50;
+    if (sTop <= 0){
+      clearInterval(termId);
+    }
+    window.scrollTo(0, sTop);
+  },1);
+}
+  // 打开回复按钮
+  function OpcomSonSon() {
+    api.openWin({
+      name: 'CommunityCommentDetails',
+      url: 'CommunityCommentDetails.html'
+    });
+  }
+
+  var userdata = {};
+  userdata = $api.getStorage('userdata');
+  var data = {};
+
+  apiready = function(){
+    ArticalDetailsData();
+    // api.addEventListener({
+    //     name:'scrolltobottom',
+    //     extra:{
+    //        threshold:0
+    //     }
+    //  },function(ret, err){
+    //        alert('已滚动到底部');
+    //  });
+  }
+
+  function ArticalDetailsData(){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var html = '';
+    var htmls = '';
+    var pageParamAid = api.pageParam.aid;
+    var title = api.pageParam.title;
+    var ArticalDetailsData = {};
+    if(userdata){
+      ArticalDetailsData.aid = pageParamAid;
+      ArticalDetailsData.uid = userdata.uid;
+    }else {
+      ArticalDetailsData.aid = pageParamAid;
+    }
+        api.ajax({
+            url: 'http://www.lxzntech.com/articleDetail.php',
+            method: 'post',
+            data: {
+                values:ArticalDetailsData
+            }
+        },function(ret, err){
+            data = ret.data;
+            if (ret.status==1) {
+                    html+='<div class="header" id="headerbox" onclick="toggleFooter();">';
+                      html+='<div class="title">';
+                        html+='<div class="titl">'+data['title']+'</div>';//文章标题
+                      html+='</div>';
+                      html+='<div class="nametime">';
+                        html+='<div class="name" onclick="openFriendDetailsData('+data['uid']+')">'+data['username']+'<div></div></div>';//文章作者
+                        html+='<div class="time">'+data['dateline']+'<div></div></div>';//文章发布时间
+                        html+='<div class="readnum">浏览次数：'+data['viewnum']+'</div>';//查看次数
+                        html+='<div class="reasonfor">来源：'+data['from']+'</div>';//来源
+                      html+='</div>';
+                      html+='<div class="photoprojector"">'+data['content']+'</div>';//内容
+                      html+='<div class="uptop">';
+                        html+='<div class="left"><img src="'+data['avatar']+'" alt="" onclick="openFriendDetailsData('+data['uid']+')"></div>';//发布人头像
+                        html+='<div class="mid">';
+                          html+='<div class="name">'+data['username']+'</div>';//发布人名称
+                          if(data['sign']){
+                            html+='<div class="sign">'+data['sign']+'</div>';//签名
+                          }else{
+                            html+='<div class="sign">暂无签名</div>';
+                          }
+                          if(data['haveFollow']){
+                            html+='<div class="right" id="follow"><img src="../images/same_content/attentioned.png" onclick="followed()" alt=""></div>';//已关注
+                          }else {
+                            html+='<div class="right" id="follow"><img src="../images/same_content/attention.png" onclick="follow()" alt=""></div>';//未关注
+                          }
+                        html+='</div>';
+                      html+='</div>';
+                    html+='</div>';
+
+                    html+='<div class="news" id="newsbox" onclick="toggleFooter();">';
+                      html+='<h3>相关推荐</h3>';
+                      html+='<ul>';
+                      for(var i=0;i<5;i++){
+                        html+='<li onclick="OpenDetail('+data['relates'][i]['aid']+')">';
+                          html+='<a href="javascript:;">';
+                            html+='<div class="empire"><img src="http://www.lxzntech.com/data/attachment/'+data['relates'][i]['pic']+'" alt=""></div>';//相关推荐图片
+                            html+='<div><p>'+data['relates'][i]['title']+'</p><span>'+data['relates'][i]['dateline']+'</span></div>';//相关推荐
+                          html+='</a>';
+                        html+='</li>';
+                      }
+                      html+='</ul>';
+                    html+='</div>';
+                      if(data.comments.length){
+                        html+='<div class="main" id="toTalk">';
+                          html+='<div class="mue"><div class="left">评论</div></div>';
+                          for(i=0;i<data.comments.length;i++){
+                            html+='<div class="replay">';
+                              html+='<div class="text" onclick="toggleFooter();">';
+                                html+='<div class="left"><img src="'+data.comments[i]['avatar']+'" alt="" onclick="openFriendDetailsData('+data.comments[i]['uid']+')"></div>';//评论头像
+                                html+='<div class="right">';
+                                  html+='<div class="top">'+data.comments[i]['username']+'</div>';//评论人
+                                  if(userdata){
+                                    if(data.comments[i]['uid'] == userdata['uid']){//举报
+                                      html+='';
+                                    }else{
+                                      html+='<i onclick="accusation('+data.comments[i]['cid']+','+pageParamAid+',\'article\')"></i>';
+                                    }
+                                  }else{
+                                    html+='<i></i>';
+                                  }
+
+                                  html+='<div class="mid">';
+                                    html+='<div class="art">'+data.comments[i]['message']+'</div>';//评论内容
+                                  html+='</div>';
+                                html+='</div>';
+                              html+='</div>';
+                              html+='<div class="foot">';
+                                html+='<div class="left">';
+                                  html+='<div class="date">'+data.comments[i]['dateline']+'</div>';//评论时间
+                                html+='</div>';
+                                html+='<div class="right">';
+                                  if(data.comments[i]['haveLike'] == 1){
+                                    html+='<div onclick="toggleFooter();"><i class="iconfont img" id="postlike'+data.comments[i]['cid']+'" onclick="postlike('+data.comments[i]['cid']+',\'cid\')">&#xe635;</i></div>';
+                                  }else {
+                                    html+='<div onclick="toggleFooter();"><i class="iconfont img" id="postlike'+data.comments[i]['cid']+'" onclick="postlike('+data.comments[i]['cid']+',\'cid\')">&#xe617;</i></div>';
+                                  }
+                                  html+='<div class="talk" onclick="inputFouse('+data.comments[i]['cid']+')">回复</div>';
+                                html+='</div>';
+                              html+='</div>';
+                            html+='</div>';
+                          }
+                        html+='</div>';
+                      }else{
+                        html+='<div class="main" style="text-align:center;padding-bottom:44px;" onclick="toggleFooter();">';
+                          html+='<div class="mue"><div class="left" style="border:0;">暂无评论</div></div>';
+                        html+='</div>';
+                      }
+
+                    htmls+='<div id="footer" class="footer">';
+                      htmls+='<div class="ii" onclick="api.closeWin()"><i></i></div>';
+                      htmls+='<div class="list">';
+                        htmls+='<div class="li"><input type="text" name="" id="talk" placeholder="写评论..." onclick="inputFouse(\'\');"></div>';
+                        htmls+='<div class="li">';
+                          htmls+='<a href="javascript:;"><i class="iconfont icontalk" onclick="toTalk()">&#xe75b;</i><div class="talknum">'+data['commentnum']+'</div></a>';//评论次数
+                          if(data['haveLike']== 1){
+                            htmls+='<a href="javascript:;" onclick="likeData('+pageParamAid+',\'aid\')" id="likeicom"><i class="iconfont iconlike">&#xe635;</i><div class="likenum">'+data['likeNum']+'</div></a>';//点赞次数
+                          }else {
+                            htmls+='<a href="javascript:;" onclick="likeData('+pageParamAid+',\'aid\')" id="likeicom"><i class="iconfont iconlike">&#xe617;</i><div class="likenum">'+data['likeNum']+'</div></a>';
+                          }
+                          if(data['haveFav'] == 1){
+                            htmls+='<a href="javascript:;" onclick="collectioned()" id="favicom"><i class="iconfont iconcollection">&#xe672;</i></a>';
+                          }else {
+                            htmls+='<a href="javascript:;" onclick="footerAll()" id="favicom"><i class="iconfont iconcollection">&#xe6a7;</i></a>';
+                          }
+                          htmls+='<a href="javascript:;"><i class="iconfont iconshare" onclick="openShareOther(\''+data['title']+'\','+pageParamAid+')">&#xe600;</i></a>';
+                        htmls+='</div>';
+                      htmls+='</div>';
+                    htmls+='</div>';
+                    //增大后盒子
+                    htmls+='<div class="textareaMain" id="textareaMain">';
+                      htmls+='<div class="text" id="text">';
+                            htmls+='<div class="attention">';
+                                htmls+='<input id="attenchb" type="checkbox">';
+                                htmls+='<div class="atttext">同时关注这篇文章作者</div>';
+                            htmls+='</div>';
+                            htmls+='<div class="send" onclick="criticism()" id="send">发送</div>';
+                      htmls+='</div>';
+                      htmls+='<textarea name="textarea" id="textarea" cols="40" rows="1" autofocus placeholder="回复评论" onpropertychange="changeHeight(this)" oninput="changeHeight(this)"></textarea>'
+                    htmls+='</div>';
+            } else {
+              Toast(ret.msg)
+            }
+            $api.html($api.byId('articalDetails'), html);
+            $api.html($api.byId('foot'), htmls);
+
+        });
+  }
+  //跳转
+  function toTalk(){
+    location.href  = "#toTalk";
+  }
+  //举报
+  function accusation(pid,tid,type){
+    api.openFrame({
+        name: 'accusation',
+        url: 'Accusation.html',
+        rect: {
+            x: 0,
+            y: 0,
+            marginTop:518,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            pid:pid,tid:tid,type:type
+        },
+        animation:{
+          type:"push",
+          subType:"from_bottom",
+          duration:300
+        },
+        bounces: false,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: false,
+        hScrollBarEnabled: false
+    });
+
+  }
+
+  //关注
+  function follow(){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var html = '';
+    var pageParamAid = api.pageParam.aid;
+    followData ={};
+    if(userdata){
+      followData.uid = userdata.uid;
+      followData.username = userdata.username;
+      followData.followuid=data.uid;
+      followData.fusername = data.username;
+    }else{
+      Toast('请登录之后再进行操作' )
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/action.php?action=follow',
+        method: 'post',
+        data: {
+            values: followData
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            Toast('关注成功',1000)
+            var follow = document.getElementById('follow');
+            $api.html($api.byId('follow'), '<img src="../images/same_content/attentioned.png" onclick="followed()" alt="">');
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+
+  //已关注
+  function followed(){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var html = '';
+    followData ={};
+    if(userdata){
+      followData.uid = userdata.uid;
+      followData.followuid=data.uid;
+    }else{
+      Toast('请登录之后再进行操作' )
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/actionCancel.php?action=follow',
+        method: 'post',
+        data: {
+            values: followData
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            Toast('取消关注成功',1000)
+            var follow = document.getElementById('follow');
+            $api.html($api.byId('follow'), '<img src="../images/same_content/attention.png" onclick="follow()" alt="">');
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+
+  function postlike(id,type){
+    var likedatas = {};
+    if(userdata){
+      likedatas.uid = userdata['uid'];
+      likedatas.username = userdata['username'];
+      likedatas.id = id;
+      likedatas.type = type;
+    }else{
+      Toast('请登录之后再进行操作' )
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/like.php',
+        method: 'post',
+        data: {
+            values: likedatas
+        }
+    },function(ret, err){
+        if (ret.status == 1) {
+            var data = ret.data;
+            $api.html($api.byId('postlike'+id),"&#xe635;");
+            Toast('点赞成功')
+        } else {
+            // alert(ret.msg);
+        }
+    });
+
+  }
+
+  function openFriendDetailsData(uid){
+    if(userdata){
+      api.openWin({
+          name: 'FriendDetailsData',
+          url: 'FriendDetailsData.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+    }else {
+      Toast('请登录之后再进行操作' )
+    }
+  }
+
+  function openShareOther(DsShareText,aid){
+    api.openFrame({
+        name: 'ShareOther',
+        url: 'ShareOther.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            DsShareText:DsShareText,aid:aid
+        },
+        animation:{
+          type:"push",
+          subType:"from_bottom",
+          duration:300
+        },
+        bounces: false,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: false,
+        hScrollBarEnabled: false
+    });
+  }
+
+  function OpenDetail(aid){
+    api.openWin({
+      name: 'ArticalDetails'+aid,
+      url: 'ArticalDetails.html',
+      pageParam: {
+           aid:aid
+      }
+    });
+  }
+  //评论自动换行
+  function changeHeight(i){
+    i.style.height = 'auto';
+    i.style.height=i.scrollHeight +32 +"px";
+    var text = document.getElementById('text');
+    text.style.height = 'auto';
+    text.style.height = text.scrollHeight + i.style.height + text.style.height + "px";
+    var textareaMain = document.getElementById('textareaMain');
+    textareaMain.style.padding = "0 0 6px 0";
+    textareaMain.style.height = textareaMain.scrollHeight + i.style.height + text.style.height;
+  }
+  //收藏
+  function footerAll(){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var favdata = '';
+    resData={};
+    if(userdata){
+      resData.uid = userdata['uid'];//关注人id
+      resData.username =userdata['username'];//关注人名称
+      resData.id = data['aid'];//文章id
+      resData.idtype = 'aid';//收藏帖子
+      resData.title = data['title'];//收藏标题
+    }else {
+      Toast('请登录之后再进行操作' )
+    }
+
+    api.ajax({
+        url: 'http://www.lxzntech.com/action.php?action=favorite',
+        method: 'post',
+        data: {
+            values: resData
+        }
+    },function(ret, err){
+        if (ret.status==1) {
+          $api.html($api.byId('favicom'),'<i class="iconfont iconcollection">&#xe672;</i>')
+          document.getElementById('favicom').removeAttribute('onclick');
+          document.getElementById('favicom').setAttribute('onclick','collectioned()')
+          Toast('收藏成功',1000)
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+
+  //已收藏
+  function collectioned(){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var favdata = '';
+    resData={};
+    if(userdata){
+      resData.uid = userdata['uid'];//关注人id
+      resData.id = data['aid'];//文章id
+      resData.type = 'aid';//收藏帖子
+    }else {
+      Toast('请登录之后再进行操作' )
+    }
+
+    api.ajax({
+        url: 'http://www.lxzntech.com/actionCancel.php?action=fav',
+        method: 'post',
+        data: {
+            values: resData
+        }
+    },function(ret, err){
+        if (ret.status==1) {
+          $api.html($api.byId('favicom'),'<i class="iconfont iconcollection">&#xe6a7;</i>')
+          document.getElementById('favicom').removeAttribute('onclick');
+          document.getElementById('favicom').setAttribute('onclick','footerAll()')
+          Toast('取消收藏成功',1000)
+        } else {
+            // Toast(ret.msg);
+        }
+    });
+  }
+  var cidtype='';
+  //评论盒子显示和消失
+  var replyPid = 0;
+  function inputFouse(cid){
+    cidtype = cid;
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var footer = document.getElementById('footer');
+    var textareaMain = document.getElementById('textareaMain');
+    if(userdata){
+      textareaMain.style.display = 'block';
+      footer.style.display = 'none';
+      textareaMain.getElementsByTagName("textarea")[0].focus();
+    }else {
+      Toast('请登录之后再进行操作' )
+      footer.getElementsByTagName("input")[0].blur();
+    }
+  }
+
+  //主题评论提交
+  function criticism(){
+        var attenchb = document.getElementById('attenchb').checked;
+        var userdata = {};
+        var pageParamAid = api.pageParam.aid;
+        userdata = $api.getStorage('userdata');
+        var textarea = $api.val($api.byId('textarea'));
+        criticismData={};
+        if(cidtype){
+          criticismData.cid = cidtype;
+        }
+        criticismData.aid = pageParamAid;//文章id
+        criticismData.uid = userdata['uid'];//操作用户id
+        criticismData.username = userdata['username'];//操作用户id名称
+        criticismData.message = textarea;//评论内容
+        criticismData.follow = attenchb;
+        if(textarea==''){
+          Toast('请输入你要评论的内容',2000);
+          textareaMain.getElementsByTagName("textarea")[0].focus();
+        }else {
+          api.ajax({
+                url: 'http://www.lxzntech.com/articleComment.php',
+                method: 'post',
+                data: {
+                      values:criticismData
+                }
+            },function(ret, err){
+                if (ret.status == 1) {
+                  ArticalDetailsData();
+                  Toast('评论成功',2000)
+                }else {
+                  Toast(ret.msg);
+                }
+        });
+      }
+    }
+  //自定义弹框
+  function Toast(msg,duration){
+      duration=isNaN(duration)?1000:duration;
+      var m = document.createElement('div');
+      m.innerHTML = msg;
+      m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 50%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+      document.body.appendChild(m);
+      setTimeout(function() {
+          var d = 0.5;
+          m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+          m.style.opacity = '0';
+          setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+      }, duration);
+  }
+
+  //点击切换底部
+  function toggleFooter(){
+    if(textareaMain){
+      textareaMain.style.display = 'none';
+      footer.style.display = 'flex';
+    }
+  }
+
+  //点赞
+  function likeData(id,type){
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    var pageParamAid = api.pageParam.aid;
+    var likeDatas = {};
+    var datahtml = '';
+    if(userdata){
+      likeDatas.uid = userdata['uid'];//用户id
+      likeDatas.username = userdata['username'];//用户名
+      likeDatas.id = id;//帖子id
+      likeDatas.type = type;//帖子id
+    }else {
+      Toast('请登录之后再进行操作' )
+    }
+    api.ajax({
+        url: 'http://www.lxzntech.com/like.php',
+        method: 'post',
+        data: {
+            values: likeDatas
+        }
+    },function(ret, err){
+        if(err){
+          alert(err.msg);
+        }else {
+          if (ret.status == 1) {
+              var likedata = ret.data;
+              datahtml+='<i class="iconfont iconlike">&#xe635;</i><div class="likenum">'+likedata+'</div>';
+              $api.html($api.byId('likeicom'),datahtml)
+              Toast('点赞成功')
+          }else {
+            // Toast(ret.msg)
+          }
+        }
+
+    });
+  }
+  //打开一张图片
+    function openimg(ret) {
+        var src = ret.getAttribute("src");
+        //图片加载
+        var photoBrowser = api.require('photoBrowser');
+        photoBrowser.open({
+          images: [
+              src
+          ],
+        bgColor: '#000'
+    }, function(ret, err) {
+        if(ret.eventType=='click'){
+            photoBrowser.close();
+        }
+      });
+  }
+  //视频加载
+  function openVideo(str){
+    var videoPlayer = api.require('videoPlayer');
+    videoPlayer.play({
+        styles: {
+            head: {
+                bg: 'rgba(0.5,0.5,0.5,0.7)',
+                height: 24,
+                titleSize: 10,
+                titleColor: '#fff',
+                backSize: 24,
+                backImg: 'fs://img/back.png',
+                setSize: 24,
+                setImg: 'fs://img/set.png'
+            },
+            foot: {
+                bg: 'rgba(0.5,0.5,0.5,0.7)',
+                height: 24,
+                playSize: 24,
+                playImg: 'fs://img/back.png',
+                pauseImg: 'fs://img/back.png',
+                nextSize: 24,
+                nextImg: 'fs://img/back.png',
+                timeSize: 14,
+                timeColor: '#fff',
+                sliderImg: 'fs://img/slder.png',
+                progressColor: '#696969',
+                progressSelected: '#76EE00'
+            }
+        },
+        path:str , //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
+        //在 android 平台上不支持 widget://
+        autoPlay: true //（可选项）布尔类型；打开时是否自动播放；默认：true（自动播放）
+    }, function(ret, err) {
+
+    });
+  }
+
+</script>
+
+</html>

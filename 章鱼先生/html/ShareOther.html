@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>分享</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            margin: 0;padding: 0; list-style: none;border: 0;
+          }
+          ul li{
+            list-style-type: none;
+          }
+          html,body{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(241, 241, 241, 0.2);
+          }
+          /*footer*/
+          .footer{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background-color:#e8e8ea;
+            border-color: #9c9c9c;
+          }
+          .footer .share{
+            width: 98%;
+            padding:1%;
+            font-size: 12px;
+            color: #757575;
+          }
+          .footer .out{
+            width: 100%;
+            height: 130px;
+            padding-bottom:
+          }
+          .footer .out ul>li>div{
+            font-size: 12px;
+            color: #474747;
+          }
+          .footer .out ul{
+            padding: 0;
+          }
+          .footer .out ul li{
+            float: left;
+            width: 25%;
+            text-align: center;
+            font-size: 16px;
+            padding-top: 22px;
+          }
+          .footer .out ul li img{
+            width: 50px;
+            padding-bottom: 10px;
+          }
+          .footer .cancel{
+            height: 46px;
+            line-height: 46px;
+            text-align: center;
+            color: #474747;
+            font-size: 14px;
+            border-top: 1px solid #9c9c9c;
+          }
+          /*footer end*/
+      </style>
+  </head>
+  <body>
+    <!-- footer -->
+    <div class="footer">
+      <div class="share">
+        <div class="sha">分享到：</div>
+        <div class="out">
+          <ul>
+            <li>
+              <div><img src="../images/set/weixin.png" alt="" onclick="shareWxHy()"></div>
+              <div>微信好友</div>
+            </li>
+            <li>
+              <div><img src="../images/set/pyq.png" alt="" onclick="shareWxPyq()"></div>
+              <div>朋友圈</div>
+            </li>
+            <!-- <li>
+              <div><img src="../images/set/qq.png" alt=""></div>
+              <div>QQ</div>
+            </li>
+            <li>
+              <div><img src="../images/set/weibo.png" alt=""></div>
+              <div>微博</div>
+            </li> -->
+            <!-- <li>
+              <div><img src="../images/set/share.png" alt=""></div>
+              <div>更多</div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+      <div class="cancel" onclick="api.closeFrame()">取消</div>
+    </div>
+    <!-- footer end -->
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+    apiready = function() {
+
+    }
+    function shareWxHy(){
+      var wx = api.require('wx');
+      var DsShareImg = api.pageParam.DsShareImg;
+      var DsShareText = api.pageParam.DsShareText;
+      var aid = api.pageParam.aid;
+      wx.isInstalled(function(ret, err) {
+          if (ret.installed) {
+            wx.shareWebpage({
+              apiKey: 'wx2322d2c43eee90ac',
+              scene: 'session',
+              title: DsShareText,
+              description: '分享内容的描述',
+              thumb: DsShareImg,
+              contentUrl: 'http://www.lxzntech.com/portal.php?mod=view&aid='+aid
+            }, function(ret, err) {
+              if (ret.status) {
+                $api.toast('分享成功');
+              } else {
+                $api.toast(err.code);
+              }
+            });
+          } else {
+              api.Toast('当前设备未安装微信客户端');
+          }
+      });
+      api.closeFrame();
+    }
+    function shareWxPyq(){
+      var wx = api.require('wx');
+      var DsShareImg = api.pageParam.DsShareImg;
+      var DsShareText = api.pageParam.DsShareText;
+      var aid = api.pageParam.aid;
+      wx.isInstalled(function(ret, err) {
+          if (ret.installed) {
+            wx.shareWebpage({
+              apiKey: 'wx2322d2c43eee90ac',
+              scene: 'timeline',
+              title: DsShareText,
+              description: '分享内容的描述',
+              thumb: DsShareImg,
+              contentUrl: 'http://www.lxzntech.com/portal.php?mod=view&aid='+aid
+            }, function(ret, err) {
+              if (ret.status) {
+                $api.toast('分享成功');
+              } else {
+                $api.toast(err.code);
+              }
+            });
+          } else {
+              api.Toast('当前设备未安装微信客户端');
+          }
+      });
+      api.closeFrame();
+    }
+  </script>
+  </html>

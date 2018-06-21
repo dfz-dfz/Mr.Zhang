@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人资料</title>
+  <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+  <style>
+      * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+      }
+	html{
+
+	}
+     body {
+       font-family: "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+       background-color: #f1f1f1;
+       overflow-x: hidden;
+     }
+       a {
+        text-decoration: none;
+        color: #000;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        display: block;
+      }
+
+        input {
+        border: none;
+      }
+
+         ul,li,ol {
+        list-style: none;
+     }
+
+        h1, h2,h3,h4,h5 {
+         font-weight: 400;
+        }
+        body,html{
+           width: 100%;height: 100%; margin: 0; padding: 0;
+           /* overflow: hidden; */
+        }
+         body{
+           background:#f1f1f1;
+        }
+         ul li{
+           list-style-type:none;
+        }
+         .myindex{
+           position:relative;
+           background: #fff;
+           overflow-x:hidden
+         }
+         /*my-header开始*/
+           .header .top{
+             width: 100%;
+             height: 70px;
+             background: url('../images/same_content/Header.jpg');
+           }
+           .header .top .sect{
+             float: left;
+             width: 33.33%;
+             height: 100%;
+           }
+           .header .top .fo{
+             font-size: 16px;
+             color: #fff;
+             line-height: 86px;
+             text-align: center;
+           }
+           .header .top .left>i{
+             position: absolute;
+             left: 15px;
+             top:36px;
+             width: 12px;
+             height: 12px;
+             border: 1px solid #fff;
+             border-top: none;
+             border-right: none;
+             transform:rotate(45deg);
+             -webkit-transform:rotate(45deg);
+          }
+          /*my-header结束*/
+            /*开始*/
+         .item_content .phone,.item_content .mine,.item_content .msg,.item_content .hobby{
+          padding-top: 10px;
+     }
+        .nicksculpture{
+          height: 68px;
+       }
+         .item_content a {
+          display:flex;
+          justify-content: space-between;
+          padding: 10px;
+          background-color: #fff;
+          align-items: center;
+          border-bottom: 1px solid #eee;
+
+      }
+         .item_content a img{
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+   }
+         .item_content a .title{
+          vertical-align: top;
+          font-size: 15px;
+          color: #1e1e1e;
+     }
+        .item_content a .arrow{
+         border-right: 1px solid #666;
+         border-bottom: 1px solid #666;
+         width: 10px;
+         height: 10px;
+         transform: rotate(-45deg);
+         -webkit-transform:rotate(-45deg);
+     }
+       .sculpture{
+         display: inline-block;
+         font-size: 12px;
+         color: #7b7b7b;
+         position: absolute;
+         right: 28px;
+         top:86px;
+      }
+
+       .notmean{
+         font-size: 12px;
+         color: #7b7b7b;
+         position: absolute;
+         right: 28px;
+         line-height: 20px;
+         width: 50%;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         text-align: right;
+       }
+       .nickname{
+         font-size: 12px;
+         color: #7b7b7b;
+         position: absolute;
+         right: 28px;
+         line-height: 20px;
+         width: 50%;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         text-align: right;
+       }
+        .realname{
+          font-size: 12px;
+          color: #7b7b7b;
+          position: absolute;
+          right: 28px;
+          line-height: 20px;
+          width: 50%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-align: right;
+        }
+        .sex{
+          font-size: 12px;
+          color: #7b7b7b;
+          position: absolute;
+          right: 28px;
+          line-height: 20px;
+        }
+        .tel{
+          font-size: 12px;
+          color: #7b7b7b;
+          position: absolute;
+          right: 10px;
+          line-height: 20px;
+        }
+        .qqformobile{
+          font-size: 12px;
+          color: #7b7b7b;
+          position: absolute;
+          right: 28px;
+          line-height: 20px;
+        }
+        .add{
+          font-size: 12px;
+          color: #7b7b7b;
+          position: absolute;
+          right: 28px;
+          line-height: 20px;
+          width: 50%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-align: right;
+        }
+
+       .footer>div>i{
+         border-left:1px solid #cfcfcf;
+         border-right:1px solid #cfcfcf;
+         margin-left: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="myindex">
+    <div class="header">
+      <div class="top">
+        <div class="sect left"><i onclick="api.closeWin()"></i></div>
+        <div class="sect fo">个人资料</div>
+      </div>
+    </div>
+  </div>
+        <div class="item_content" id="data" >
+            <div class="phone">
+                <a class="nicksculpture" href="javascript:;" onclick="openChangeHeaderImg()">
+                    <div id="headerimg">
+                        <span class="title">头像<span class="sculpture" id="sculpture"><img src="../images/my/headerSculpture.png"></span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+              </div>
+              <div class="addname">
+                <a href="javascript:;" onclick="openDataSign()">
+                    <div id="sign">
+                        <span class="title">签名<span class="notmean">添加</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+            </div>
+            <div class="mine">
+                <a href="javascript:;" onclick="openDataNickName()">
+                    <div id="nickname">
+                        <span class="title">昵称<span class="nickname">昵称</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+                <a href="javascript:;" onclick="openDataTrueName()">
+                    <div id="turename">
+                        <span class="title">真实姓名<span class="realname">保密</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+                <a href="javascript:;" onclick="openDataSexSelect()">
+                    <div id="sex">
+                        <span class="title">性别<span class="sex">男</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+            </div>
+            <div class="msg">
+                <a href="javascript:;">
+                    <div id="phonenum">
+                        <span class="title">手机<span class="tel">13345678945</span></span>
+                    </div>
+                    <!-- <span class="arrow"></span> -->
+                </a>
+                <a href="javascript:;" onclick="openDataQq()">
+                    <div id="qq">
+                        <span class="title">QQ<span class="qqformobile">1334567</span></span>
+                    </div>
+                    <span class="arrow"></span>
+                </a>
+            </div>
+            <div class="hobby">
+              <a href="javascript:;" onclick="openHobbies()">
+                  <div id="hobbies">
+                      <span class="title">兴趣爱好<span class="add">添加</span></span>
+                  </div>
+                  <span class="arrow"></span>
+              </a>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+      mydatas();
+      api.addEventListener({
+          name: 'mydata'
+      }, function(ret, err){
+        mydatas();
+      });
+
+    }
+
+    var userdata = {};
+    userdata = $api.getStorage('userdata');
+    function mydatas(){
+      var html = '';
+      api.ajax({
+          url: 'http://www.lxzntech.com/myCenter.php',
+          method: 'post',
+          data: {
+              values: {
+                  uid: userdata['uid']
+              }
+          }
+      },function(ret, err){
+          if (ret.status == 1) {
+              api.clearCache();
+              var data = ret.data;
+              html+='<div class="phone">';
+                html+='<a class="nicksculpture" href="javascript:;" onclick="openChangeHeaderImg('+userdata['uid']+')">';
+                  html+='<div id="headerimg"><span class="title">头像<span class="sculpture" id="sculpture"><img src="'+data['avatar']+'" onclick=openimg(this)></span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+              html+='</div>';
+              html+='<div class="addname">';
+                html+='<a href="javascript:;" onclick="openDataSign('+userdata['uid']+')">';
+                  html+='<div id="sign"><span class="title">签名<span class="notmean">'+data['sightml']+'</span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+              html+='</div>';
+              html+='<div class="mine">';
+                html+='<a href="javascript:;" onclick="openDataNickName('+userdata['uid']+')">';
+                  html+='<div id="nickname"><span class="title">昵称<span class="nickname">'+data['username']+'</span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+                html+='<a href="javascript:;" onclick="openDataTrueName('+userdata['uid']+')">';
+                  html+='<div id="turename"><span class="title">真实姓名<span class="realname">'+data['realname']+'</span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+                html+='<a href="javascript:;" onclick="openDataSexSelect('+userdata['uid']+')">';
+                  html+='<div id="sex"><span class="title">性别<span class="sex">'+data['sex']+'</span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+              html+='</div>';
+              html+='<div class="msg">';
+                html+='<a href="javascript:;">';
+                  html+='<div id="phonenum"><span class="title">手机<span class="tel">'+data['mobile']+'</span></span></div>';
+                html+='</a>';
+                html+='<a href="javascript:;" onclick="openDataQq('+userdata['uid']+')">';
+                  html+='<div id="qq"><span class="title">QQ<span class="qqformobile">'+data['qq']+'</span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+              html+='</div>';
+              html+='<div class="hobby">';
+                html+='<a href="javascript:;" onclick="openHobbies('+userdata['uid']+')">';
+                  html+='<div id="hobbies"><span class="title">兴趣爱好<span class="add">'+data['interest']+'</span></span></div>';
+                  html+='<span class="arrow"></span>';
+                html+='</a>';
+              html+='</div>';
+
+          } else {
+              alert( ret.msg );
+          }
+          $api.html($api.byId('data'), html);
+      });
+    }
+
+    function openChangeHeaderImg(uid){
+      api.openFrame({
+          name: 'ChangeHeaderImg',
+          url: 'ChangeHeaderImg.html',
+          rect: {
+              x: 0,
+              y: 0,
+              w: 'auto',
+              h: 'auto'
+          },
+          pageParam: {
+              uid: uid
+          },
+          bounces: false,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: false,
+          hScrollBarEnabled: false
+      });
+    }
+
+    function openDataSign(uid){
+      api.openWin({
+          name: 'DataSign',
+          url: 'DataSign.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+
+    }
+
+    function openDataNickName(uid){
+      api.openWin({
+          name: 'DataNickName',
+          url: 'DataNickName.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+    }
+
+    function openDataTrueName(uid){
+      api.openWin({
+          name: 'DataTrueName',
+          url: 'DataTrueName.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+
+    }
+
+    function openDataSexSelect(uid){
+      api.openFrame({
+          name: 'DataSexSelect',
+          url: 'DataSexSelect.html',
+          rect: {
+              x: 0,
+              y: 0,
+              w: 'auto',
+              h: 'auto'
+          },
+          pageParam: {
+              uid: uid
+          },
+          bounces: false,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: false,
+          hScrollBarEnabled: false
+      });
+    }
+
+    function openDataPhone(uid){
+      api.openWin({
+          name: 'DataPhone',
+          url: 'DataPhone.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+
+    }
+
+    function openDataQq(uid){
+      api.openWin({
+          name: 'DataQq',
+          url: 'DataQq.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+
+    }
+
+    function openHobbies(uid){
+      api.openWin({
+          name: 'Hobbies',
+          url: 'Hobbies.html',
+          pageParam: {
+              uid: uid
+          }
+      });
+
+    }
+
+    function openimg(ret) {
+        var src = ret.getAttribute("src");
+        var photoBrowser = api.require('photoBrowser');
+        photoBrowser.open({
+          images: [src],
+        bgColor: '#000'
+        }, function(ret, err) {
+          api.clearCache();
+          if(ret.eventType=='click'){
+              photoBrowser.close();
+          }
+      });
+  }
+</script>
+</html>

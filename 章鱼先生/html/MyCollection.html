@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>我的收藏</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          body,html{
+            width: 100%;height: 100%;margin: 0;padding: 0;
+            background-color: #f1f1f1;
+          }
+          ul li{
+            list-style-type: none;
+          }
+          /*top 顶部样式*/
+          .collection{
+            width: 100%;
+            height: 79px;
+            position: fixed;
+            z-index: 999;
+          }
+          .collection .top{
+            width: 100%;
+            height: 70px;
+            background: url('../images/same_content/Header.jpg');
+          }
+          .collection .top .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .collection .top .fo{
+            font-size: 18px;
+            color: #ffffff;
+            line-height: 86px;
+            text-align: center;
+          }
+          .collection .top .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+          }
+          .collection .menu .men{
+            width: 50%;
+            height: 35px;
+            float: left;
+            text-align: center;
+            line-height: 35px;
+            background-color: white;
+            border-bottom: 1px solid #e1e1e1;
+          }
+           .collection .menu .line{
+             position: absolute;
+             left: 50%;
+             border-right: 1px solid #e7e7e7;
+             height: 20px;
+             top: 78px;
+           }
+          .collection .menu .men a{
+            color: #979797;
+            font-size: 16px;
+          }
+          .collection .menu .men a.current{
+            color: #1a1a1a;
+          }
+          .collection .menu .men a.current:hover{
+            color: #1a1a1a;
+          }
+          .collection .menu .men .underline{
+            border-bottom: 4px solid #1a1a1a;
+            width: 18px;
+            margin: 0 auto;
+            display: none;
+            margin-top: -4px;
+          }
+          .collection .menu .men .underline.current{
+            display: block;
+          }
+          /*top end*/
+
+          /*main (文章)内容页面*/
+          .main{
+            width: 100%;
+            height: 100%;
+            padding-top: 79px;
+            background-color: #f2f2f2;
+            display: none;
+          }
+          .main.current{
+            display: block;
+          }
+          .main .article{
+            padding: 8px 8px 0 8px;
+            height: 66px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+          }
+          .main .article img{
+            height: 60px;
+            width: 82px;
+          }
+          .main .article .text{
+            width: 100%;
+            height: 100%;
+            padding: 0 6px 0 6px;
+            position: relative;
+          }
+          .main .article .title
+          {
+            font-size: 16px;
+            color: #111;
+            line-height: 22px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+          }
+          .main .article .foot{
+            font-size: 10px;
+            color: #5d5d5d;
+          }
+          .main .article .foot .from{
+            position: absolute;
+            bottom: 4px;
+          }
+          .main .article .foot .read{
+            position: absolute;
+            bottom: 4px;
+            right: 0;
+          }
+          /*有视频的文章*/
+          .main{
+            width: 100%;
+            height: 100%;
+            padding-top: 106px;
+            background-color: #f2f2f2;
+          }
+          .main .video{
+            padding: 8px 8px 0 8px;
+            height: 66px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+            position: relative;
+          }
+          .main .video img{
+            height: 60px;
+          }
+          .main .video .image .playimg{
+            position: absolute;
+            height: 45px;
+            top: 22%;
+            left: 35px;
+          }
+          .main .video .text{
+            width: 100%;
+            height: 100%;
+            padding: 0 6px 0 6px;
+            position: relative;
+          }
+          .main .video .title
+          {
+            font-size: 16px;
+            color: #111;
+            line-height: 22px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+          }
+          .main .video .foot{
+            font-size: 10px;
+            color: #5d5d5d;
+          }
+          .main .video .foot .from{
+            position: absolute;
+            bottom: 4px;
+          }
+          .main .video .foot .read{
+            position: absolute;
+            bottom: 4px;
+            right: 0;5
+          }
+          /*有视频的文章end*/
+          /*main (文章)内容页面 end*/
+
+      </style>
+  </head>
+  <body>
+    <div class="mycollection">
+      <!-- top 顶部 -->
+      <div class="collection">
+        <div class="top">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">我的收藏</div>
+        </div>
+        <div class="menu" id="menu">
+          <div class="men"><a href="javascript:void(0)" class="click current">资讯<span class="underline current"></span></a></div>
+          <span class="line"></span>
+          <div class="men"><a href="javascript:void(0)" class="click">帖子<span class="underline"></span></a></div>
+        </div>
+      </div>
+      <!-- top end -->
+
+      <!-- main （文章）内容页面 -->
+      <div class="main current" id="main">
+        <!-- 有图片的文章 -->
+        <div class="article">
+            <div class="image"><img src="../images/myReport/report1.png" alt=""></div>
+            <div class="text">
+              <div class="title t">真·海景房，早上鲨鱼来叫醒你</div>
+              <div class="foot t">
+                  <div class="from">最新资讯&nbsp;&nbsp;&nbsp;2018/04/07</div>
+                  <div class="read">2018阅读</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="image"><img src="../images/myReport/report2.png" alt=""></div>
+            <div class="text">
+              <div class="title t">工作时，我们总少不了需要一些小工具的协助</div>
+              <div class="foot t">
+                  <div class="from">科技&nbsp;&nbsp;&nbsp;2018/04/07</div>
+                  <div class="read">2018阅读</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="article">
+            <div class="image"><img src="../images/myReport/report3.png" alt=""></div>
+            <div class="text">
+              <div class="title t">科技时代，连美甲都是智能</div>
+              <div class="foot t">
+                  <div class="from">真撒拉&nbsp;&nbsp;&nbsp;2018/04/07</div>
+                  <div class="read">2018阅读</div>
+              </div>
+            </div>
+        </div>
+        <!-- 有图片的文章 end -->
+
+        <!-- 没有图片的文章 -->
+        <div class="article">
+          <div class="text" style="padding-left:0;">
+            <div class="title t">人工智能时代来临人工智能时代来临人工智能时代来临人工智能时代来临</div>
+            <div class="foot t">
+                <div class="from">按时发动机&nbsp;&nbsp;&nbsp;2018/04/07</div>
+                <div class="read">2018阅读</div>
+            </div>
+          </div>
+        </div>
+        <!-- 没有图片的文章 end -->
+        <!-- 有视频的文章 -->
+        <div class="video">
+            <div class="image">
+                <img src="../images/myreport/report4.png" alt="">
+                <img class="playimg" src="../images/myReport/play.png" alt="">
+            </div>
+            <div class="text">
+              <div class="title t">真·海景房，早上鲨鱼来叫醒你</div>
+              <div class="foot t">
+                  <div class="from">MIS &nbsp;&nbsp;&nbsp;2018/03/20</div>
+                  <div class="read">2018阅读</div>
+              </div>
+            </div>
+        </div>
+        <!-- 有视频的文章end -->
+      </div>
+      <!-- main （文章）内容页面 end -->
+      <!-- ma (视频)内容页面 end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  apiready = function(){
+     MyCollectionData(0);
+  }
+  window.onload = function(){
+  //原生封装好获取class
+  function getClass(tagName,className){
+    if(document.getElementsByClassName){
+      return document.getElementsByClassName(className);//.类名CLASS
+    }
+    else{
+      var tags=document.getElementsByTagName(tagName)//div
+      var tagArr=[];
+      for(var i=0;i < tags.length; i++){
+        if(tags[i].class == className){
+          tagArr[tagArr.length] = tags[i];
+        }
+      }
+      return tagArr;
+    }
+  }
+  //切换盒子
+  var btns = document.getElementById('menu').getElementsByTagName('div');
+  var as = getClass("div","click");
+  var line = getClass("span","underline");
+  var index = 0;
+  for(var i=0;i<btns.length;i++){
+      btns[i].index =i
+      btns[i].onclick = function(){
+          //把所有的按钮的类都清除掉！
+         var a = this.index
+         for(var i=0;i<btns.length;i++){
+              as[i].className = 'click';
+              line[i].className = 'underline';
+         }
+          as[a].className = 'click current';//确立自己
+          line[a].className = 'underline current';
+          index = this.index;
+           MyCollectionData(index);
+      }
+  }
+}//
+
+
+function MyCollectionData(index){
+        var userdata = {};
+        userdata = $api.getStorage('userdata');
+        var html = '';
+        api.ajax({
+            url: 'http://www.lxzntech.com/myCenter.php',
+            method: 'post',
+            data: {
+                values: {
+                    uid:userdata['uid']
+                }
+            }
+        },function(ret, err){
+          if(ret.status==1){
+            var data = ret.data.favData;
+                  if(index==0){
+                    for(var i=0;i<data.article.length;i++){
+                      html+='<div class="article" onclick="OpenDetail('+data.article[i]['aid']+')">';
+                            html+='<div class="image"><img src="http://www.lxzntech.com/data/attachment/'+data.article[i]['pic']+'" alt=""></div>';
+                            html+='<div class="text">';
+                                  html+='<div class="title t">'+data.article[i]['title']+'</div>';
+                                  html+='<div class="foot t">';
+                                        html+='<div class="from">'+data.article[i]['username']+'&nbsp;&nbsp;&nbsp;'+data.article[i]['dateline']+'</div>';
+                                        html+='<div class="read">'+data.article[i]['viewnum']+'&nbsp;阅读</div>';
+                                  html+='</div>';
+                            html+='</div>';
+                      html+='</div>';
+                    }
+                  }else if(index==1){
+                    for(var j=0;j<data.topic.length;j++){
+                    html+='<div class="article" onclick="openCommunityDetails('+data["topic"][j]['tid']+')">';
+                          html+='<div class="text" style="padding-left:0;">';
+                                html+='<div class="title t">'+data["topic"][j]["subject"]+'</div>';
+                                html+='<div class="foot t">';
+                                      html+='<div class="from">'+data["topic"][j]["author"]+'&nbsp;&nbsp;&nbsp;'+data["topic"][j]['dateline']+'</div>';
+                                      html+='<div class="read">'+data["topic"][j]["num"]+'&nbsp;条评论</div>';
+                                html+='</div>';
+                          html+='</div>';
+                    html+='</div>';
+                  }
+                }
+                $api.html($api.byId('main'), html);
+
+            }else {
+              alert(ret.msg)
+            }
+          });
+      }
+
+      function openCommunityDetails(tid,authorid){
+          api.openWin({
+          name: 'CommunityDetails',
+          url: 'CommunityDetails.html',
+          pageParam: {tid:tid,authorid:authorid}
+        });
+      }
+
+      function OpenDetail(aid){
+        api.openWin({
+            name: 'ArticalDetails',
+            url: 'ArticalDetails.html',
+            pageParam: {
+                aid: aid
+            }
+        });
+      }
+  </script>
+  </html>

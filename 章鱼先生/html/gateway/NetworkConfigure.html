@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网络配置</title>
+    <style>
+        html {
+            background-color: #f1f1f1;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+        }
+        .top {
+            display: flex;
+            justify-content: space-between;
+            height: 70px;
+            background: url('../../images/gatewayimages/same_content/Header.jpg');
+            background-size: 100% 100%;
+        }
+
+        .top .left {
+            position: relative;
+        }
+
+        .top .center {
+            font-size: 17px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+        }
+
+       .top .right .t{
+         position: absolute;
+         font-size: 13px;
+         color: #dfdfdf;
+         right: 12px;
+         text-align: center;
+         line-height: 86px;
+       }
+        .top .left i {
+            position: absolute;
+            left: 10px;
+            top: 36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform: rotate(45deg);
+            -webkit-transform:rotate(45deg);
+        }
+
+        .content .content_top {
+            margin: 24px auto;
+            width: 250px;
+            height: 250px;
+        }
+
+        .content .content_top img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content .content_bottom {
+            display: flex;
+            justify-content: center;
+        }
+
+        .content .content_bottom p {
+            margin: 8px;
+            font-size: 13px;
+            color: #282828;
+        }
+
+        .footer {
+            position: fixed;
+            width: 95%;
+            bottom: 10px;
+            padding: 10px 8px;
+        }
+        .footer .linkwifi {
+            display: flex;
+            margin: 5px;
+            align-items: center;
+        }
+        .footer .linkwifi img {
+            width: 15px;
+            height: 12px;
+        }
+        .footer .linkwifi span {
+            font-size: 13px;
+            color: #282828;
+            font-style: normal;
+            vertical-align: middle;
+            padding-left: 3px;
+        }
+
+        .footer .tech {
+            padding: 10px;
+            border: 1px solid #fff;
+            background-color: #fff;
+        }
+
+        .footer .tech i {
+            right: 22px;
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 1px solid black;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-135deg);
+            -webkit-transform:rotate(-135deg);
+        }
+
+        .footer .tech p {
+            font-size: 13px;
+            color: #282828;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="left"><i onclick="api.closeWin()"></i></div>
+        <div class="center">网络配置</div>
+        <div class="right">
+            <div class="t" onclick="openChooseDevice()">下一步</div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content_top" onclick="yuanCheng()">
+            <img src="../../images/gatewayimages/networkconfigure/port.png">
+        </div>
+        <div class="content_bottom">
+            <div class="b_content">
+                <p>1&nbsp;、摄像机接通电源，正常开机后，接入以太网线</p>
+                <p>2&nbsp;、确认手机连接的网线和摄像头接入的以太网是同一路由器</p>
+                <p>3&nbsp;、听到语音提示以太网联网成功后点击下一步</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="linkwifi">
+            <img src="../../images/gatewayimages/networkconfigure/wifi.png">&nbsp;&nbsp;
+            <span>当前连接网络</span>
+        </div>
+        <div class="tech">
+            <p id="tech">骏卓科技<i></i></p>
+        </div>
+        <div class="linkwifi">
+            <img src="../../images/gatewayimages/networkconfigure/boot.png">
+            <span>设备不支持5G&nbsp;&nbsp;wifi</span>
+        </div>
+        <!-- 你把那个箭头调小点把？ 感觉好突兀       哈哈我故意的
+        你们做成的效果      这样子差不多了？         还是要怎么样
+        好了把？
+        看一下我
+        我觉得挺好的
+        你可以把 那里的空隙弄小点
+        我觉得可以了
+      -->
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+var ipsdk=null;
+  apiready = function(){
+    var wifissid = api.require('wifiSSID');
+    wifissid.getSsid(null, function(ret, err) {
+      if (ret.ssid) {
+        $api.html($api.byId('tech'),ret.ssid+'<i></i>');
+      } else {
+        $api.toast({
+            msg: err.error
+        });
+      }
+    });
+  }
+  function openChooseDevice(){
+    ipsdk =api.require('IpcamSDK');
+    ipsdk.showSerachCamActivity();
+  }
+  function yuanCheng(){
+    ipsdk =api.require('IpcamSDK');
+    ipsdk.showRemoteCamActivity();
+  }
+</script>
+</html>

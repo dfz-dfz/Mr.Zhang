@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+      @font-face {
+          font-family: 'iconfont';
+          src: url('../icon/iconfont.eot');
+          src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+          url('../icon/iconfont.woff') format('woff'),
+          url('../icon/iconfont.ttf') format('truetype'),
+          url('../icon/iconfont.svg#iconfont') format('svg');
+        }
+        .iconfont{
+          font-family: "iconfont" !important;
+          font-style: normal;
+          font-size: 22px;
+          color: #898989;
+          position: absolute;
+          left: -2px;
+          top: 8px;
+        }
+          body,html{
+            padding: 0;margin: 0;width: 100%;height: 100%;
+            background-color: #f1f1f1;
+          }
+          ul li{
+            list-style-type: none;
+          }
+          /*header*/
+          .header{
+            width: 100%;
+            height: 44px;
+            position: fixed;
+            z-index: 999; //设置元素的堆叠顺序
+          }
+          .header .top{
+            width: 100%;
+            height: 70px;
+            background: url('../images/same_content/Header.jpg');
+          }
+          .header .top .sect{
+            float: left;
+            width: 33.33%;
+            height: 100%;
+          }
+          .header .top .fo{
+            font-size: 18px;
+            color: #fff;
+            line-height: 86px;
+            text-align: center;
+          }
+          .header .top .left>i{
+            position: absolute;
+            left: 15px;
+            top:36px;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #fff;
+            border-top: none;
+            border-right: none;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+         }
+          /*header end*/
+          /*main*/
+          .main{
+            width: 100%;
+            padding-top: 44px;
+          }
+          .main .registermain{
+            text-align: center;
+            padding:80px 20px 0 20px;
+          }
+          .main .registermain img{
+            width: 22px;
+            margin-right: 10px;
+          }
+          .main .registermain input{
+            border-bottom: 1px solid #898989;
+            width: 86%;
+            height: 38px;
+            color: #bfbfbf;
+            font-size:14px;
+            outline: none;
+          }
+          .main .registermain .idcodeinput{
+            position: relative;
+          }
+          .main .registermain .idcodebtn{
+            background-color: #444e57;
+            color: #f4f4f4;
+            font-size: 12px;
+            width: 72px;
+            height: 24px;
+            border-radius: 2px;
+            position: absolute;
+            right: 10%;
+            top: 8px;
+          }
+          .main .registermain .registerbtn{
+            height: 42px;
+            margin-top: 40px;
+          }
+          .main .registermain .registerbtni{
+            background-color: #24292d;
+            font-size: 16px;
+            color: #fff;
+            border-radius: 6px;
+            width: 88%;
+            height: 100%;
+          }
+          .main .registermain .ico{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+          }
+          .main .registermain .phone{
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+          }
+          .main .registermain .idcode .idcodeline{
+            width: 80%;
+          }
+          /*main end*/
+          .agreement{
+            padding: 10px 10px 0 10px;
+            font-size: 12px;
+          }
+      </style>
+  </head>
+  <body>
+    <div class="register">
+      <!-- header -->
+      <div class="header">
+        <div class="top">
+          <div class="sect left"><i onclick="api.closeWin()"></i></div>
+          <div class="sect fo">注册</div>
+        </div>
+      </div>
+      <!-- header end -->
+
+      <!-- main -->
+      <div class="main">
+        <form action="" id='myForm' method="post" >
+          <div class="registermain">
+              <div class="">
+                <div class="phone ico" style="position:relative;">
+                    <i class="iconfont">&#xe620;</i>
+                    <input type="text" name="" id="username" maxlength="14" onblur="aleardreg()" value="" placeholder="手机号码">
+                    <input type="button" id="sendbtn" class="idcodebtn" onclick="sendCode()" value="发送验证码">
+                </div>
+                <div class="password ico" style="position:relative;">
+                    <i class="iconfont">&#xe657;</i>
+                    <input type="password" name="" id="password" maxLength="15" value="" placeholder="请设置登录密码">
+                </div>
+                <div class="idcode ico"style="position:relative;">
+                    <i class="iconfont">&#xe64c;</i>
+                    <input type="text" id="codenum" maxLength="6" class="idcodeinput" placeholder="请填写手机验证码">
+                </div>
+              </div>
+              <div class="registerbtn">
+                    <input type="button" name="" class="registerbtni" value="注册" onclick="register()">
+              </div>
+
+              <div class="agreement">
+                <div class="readagreement">
+                    <p>注册即代表阅读并同意<a href="javascript:;" style="color:skyblue;font-style:normal;" onclick="openAgreement()">使用条款</a>和<a href="javascript:;" style="color:skyblue;font-style:normal;" onclick="openPrivacy()">隐私政策</a></p>
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <!-- main end -->
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function() {
+
+      }
+      function openAgreement(){
+        api.openWin({
+            name: 'Agreement',
+            url: 'Agreement.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+      }
+      function openPrivacy(){
+        api.openWin({
+            name: 'Privacy',
+            url: 'PrivacyPolicy.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+      }
+
+
+      var username = '';
+      var password = '';
+      var code = '';
+
+      function register(){
+        api.closeWin({
+            name: 'Login'
+        });
+
+        var user = $api.val($api.byId('username'));
+        var pass = $api.val($api.byId('password'));
+        var codenum = $api.val($api.byId('codenum'));
+        username = user;
+        password = pass;
+        code = codenum;
+          api.ajax({
+              url: 'http://www.lxzntech.com/register.php',
+              method: 'post',
+              data: {
+                  values: {
+                      'username':username,'password':password,'code':code
+                  }
+              }
+          },function(ret, err){
+              if (ret.status == 1) {
+                  Toast( '注册成功',2000);
+                  sub();
+                  api.closeWin();
+              }else{
+                  Toast(ret.msg,2000)
+              }
+          });
+
+      }
+      //判断手机是否已注册
+      function aleardreg(){
+        var phonenum = $api.val($api.byId('username'));
+        api.ajax({
+            url: 'http://www.lxzntech.com/checkMobile.php',
+            method: 'post',
+            data: {
+                values: {
+                    phone: phonenum
+                }
+            }
+        },function(ret, err){
+            if (ret.status == 1) {
+                Toast('该手机号码已被注册',1000)
+            }
+        });
+
+      }
+
+      function sendCode(){
+        var countdown = 60;
+        var phonenum = $api.val($api.byId('username'));
+
+        var sendbtn = $api.byId('sendbtn');
+
+        if(!(/^1[3|5|7|8][0-9]\d{4,8}$/.test(phonenum))){
+
+           alert("请输入正确的手机号码");
+           document.getElementById('username').focus();
+           return false;
+        }
+        phone = phonenum;
+
+          api.ajax({
+              url: 'http://www.lxzntech.com/sendSms.php',
+              method: 'post',
+              data: {
+                  values: {
+                      phone:phone
+                  }
+              }
+          },function(ret, err){
+              if (ret.status == 1) {
+                  var data =ret.data;
+                  Toast( '发送成功' );
+                  sendbtn.disabled = true;
+                  sendbtn.value = '重新发送'+countdown;
+                  sendbtn.style.backgroundColor = '#e1e1e1';
+                  clock = setInterval(timeclock,1000);
+                  function timeclock(){
+                    countdown--;
+                    if(countdown > 0){
+                      sendbtn.value = '重新发送'+countdown;
+                      sendbtn.style.backgroundColor = '#e1e1e1';
+                    }else{
+                      clearInterval(clock);
+                      sendbtn.disabled = false;
+                      sendbtn.value = '发送验证码';
+                      sendbtn.style.backgroundColor = '#444e57';
+                      nums = 60;
+                    }
+                  };
+              } else {
+                  Toast( ret.msg );
+              }
+          });
+
+      }
+
+      function sub(){
+        api.ajax({
+          url: 'http://www.lxzntech.com/appapi/login.php',
+          method: 'post',
+          data: {
+              values: {
+                  'password':password,'username':username
+              }
+          }
+          }, function(ret, err) {
+            if (ret.errornum=='E00000') {
+                $api.setStorage('userdata',ret.data);//获取用户数据
+                api.sendEvent({
+                    name: 'RefreshMy'//登录成功刷新会员中心页面
+                });
+                api.closeWin();
+            } else {
+              Toast(ret.errormsg,2000)
+            }
+        });
+      }
+
+      //自定义弹框
+      function Toast(msg,duration){
+          duration=isNaN(duration)?3000:duration;
+          var m = document.createElement('div');
+          m.innerHTML = msg;
+          m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 60%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";
+          document.body.appendChild(m);
+          setTimeout(function() {
+              var d = 0.5;
+              m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+              m.style.opacity = '0';
+              setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+          }, duration);
+      }
+      // 限制input输入长度
+      var input = document.querySelector("#password")
+      console.log(input.maxLength);
+      var input = document.querySelector("#username")
+      console.log(input.maxLength);
+      var input =document.querySelector("#codenum")
+      console.log(input.maxLength);
+
+  </script>
+  </html>
